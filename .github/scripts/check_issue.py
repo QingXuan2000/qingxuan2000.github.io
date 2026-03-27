@@ -143,7 +143,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
         <nav>
             <ul>
                 <li>
-                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
@@ -177,7 +177,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
 
             <ul>
                 <li>
-                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <li>
