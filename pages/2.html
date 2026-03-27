@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QingBlog - 关于”我“</title>
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../css/font-awesome.css" />
+    <link rel="stylesheet" href="../css/QBLOG.css" />
+    <link rel="stylesheet" href="../css/blogArticle.css" />
+
+    <script src="../js/QBLOG.js"></script>
 </head>
 
 <body>
@@ -61,7 +69,7 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                    <a href="../pages.html"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
                 </li>
 
                 <li>
@@ -83,60 +91,49 @@
         </div>
     </header>
 
-    <ul id="card-list">
-        
-            <li>
-                    <li>
-            <a href="../pages/1.html">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Hello World!</h2>
-                    </div>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <p>Hello World!
+    <div class="card">
+        <div class="card-header">
+            <h1>关于”我“</h1>
+            <p>作者：QingXuan2000</p>
+            <p>发布日期：2026年03月27日 17:29</p>
+        </div>
 
-<br />
+        <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
 
-My name is QingXuanJun!</p>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <div class="card-footer">
-                        <div class="article-tag">
-                            <div class="tag"><span>个人</span></div>
-                        </div>
-                        <p>发布日期：2026年03月27日 13:52</p>
-                    </div>
-                </div>
-            </a>
-        </li>
+        <div class="card-content">
+            <h2 id="readme-text">😋<strong><em>Readme Text</em></strong></h2>
+<p><br /><br>
+<strong><em>I'm QingXuanJun | 我是轻玄君</em></strong><br>
+<br /><br>
+<strong><em>以下是关于我的个人自述哦！</em></strong>😙<br>
+<br /><br>
+<strong><em>Here's a little self-introduction! </em></strong>😙<br>
+<br /></p>
+<hr>
+<p><br /></p>
+<h3 id="chinese-language">Chinese Language：</h3>
+<p><br /><br>
+🌏中国广东人，在校学生。🎮爱打游戏，💻也在学编程，平时喜欢折腾各种小东西。⏳游戏时间不算多，😫正在电子阳痿中。<br>
+✨小小做了几个Wallpaper壁纸，欢迎来订阅！<br>
+GitHub / Gitee：QingXuan2000<br>
+<br /></p>
+<hr>
+<p><br /></p>
+<h3 id="english-language">English Language：</h3>
+<p><br /><br>
+🌏From Guangdong, China, currently a student. 🎮Loves playing games and 💻learning programming, enjoys tinkering with all sorts of little projects in daily life. ⏳Doesn't have much time for gaming lately—😫kind of experiencing gaming burnout.<br>
+✨Has made a few Wallpaper Engine wallpapers—feel free to subscribe!<br>
+<em>(My English isn't great. </em>😊<em>)</em><br>
+GitHub / Gitee: QingXuan2000</p>
+        </div>
 
-        <li>
-            <a href="../pages/2.html">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>关于”我“</h2>
-                    </div>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <p>## 😋***Readme Text***
-<br />
-***I'm QingXuanJun | 我是轻玄君***
-<br />
-***以下是关于我的个人自述哦！***😙
-<br />
-***Here's a little self-introduction! ***😙
-<br />
----
-<b...</p>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <div class="card-footer">
-                        <div class="article-tag">
-                            <div class="tag"><span>个人</span></div>
-                        </div>
-                        <p>发布日期：2026年03月27日 17:29</p>
-                    </div>
-                </div>
-            </a>
-        </li>
-</ul>
+        <div class="article-footer">
+            <div class="article-tag">
+                <span>文章标签：</span>
+                <div class="tag"><span>个人</span></div>
+            </div>
+        </div>
+    </div>
 
     <div id="back-to-top">
         <i class="fa fa-chevron-up"></i>
@@ -148,20 +145,32 @@ My name is QingXuanJun!</p>
 
     <!-- ------------------------------------------------------------ -->
 
-    <link rel="stylesheet" href="../css/QBLOG.css">
+    <link rel="stylesheet" href="../css/QBLOG.css" />
     <script src="../js/QBLOG.js"></script>
 
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
 
     <!-- ------------------------------------------------------------ -->
 
     <style>
-        #card-list {
-            border-top: none;
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .card-header p {
+            justify-content: center;
+        }
+
+        .card-content {
+            min-height: calc(100dvh - (var(--nav-height) + 26rem));
         }
     </style>
 
     <!-- ------------------------------------------------------------ -->
+
 </body>
 
 </html>
