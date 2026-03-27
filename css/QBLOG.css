@@ -1,0 +1,650 @@
+/* ------------------------------------------------------------- */
+/* CSS 变量定义 */
+/* ------------------------------------------------------------- */
+
+:root {
+    /* 主题变量 */
+    --bg-color: linear-gradient(180deg, #122126, #0f2027, #17272e, #0c1518);
+    --text-color: #FFFFFF;
+    --nav-height: 0px;
+    --primary-color: #388bff;
+    --border-color: #ffffff30;
+    --background-light: rgba(255, 255, 255, 0.1);
+    --box-shadow: #00000020 inset 0 0 10px 0px;
+}
+
+/* ------------------------------------------------------------- */
+/* 全局样式和重置 */
+/* ------------------------------------------------------------- */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* ------------------------------------------------------------- */
+/* 动画定义 */
+/* ------------------------------------------------------------- */
+
+/* 遮罩动画 */
+@keyframes showOverlayAnimation {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hideOverlayAnimation {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* 弹窗动画 */
+@keyframes alertAnimation {
+    0% {
+        transform: translateX(110%) scale(0.8);
+        opacity: 0;
+    }
+
+    15% {
+        transform: translateX(-8%) scale(1.02);
+        opacity: 1;
+    }
+
+    20% {
+        transform: translateX(0) scale(1);
+    }
+
+    85% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    90% {
+        transform: translateX(-5%) scale(0.98);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(110%) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* 侧边栏动画 */
+@keyframes showSidebarAnimation {
+    from {
+        transform: translateX(110%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hideSidebarAnimation {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(110%);
+    }
+}
+
+/* 浮动动画 */
+@keyframes floatAnimation {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* 基础元素样式 */
+/* ------------------------------------------------------------- */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    color: var(--text-color);
+    background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+p,
+.home-div-user-down-text {
+    color: #a1a1a1;
+}
+
+/* ------------------------------------------------------------- */
+/* 字体定义 */
+/* ------------------------------------------------------------- */
+
+@font-face {
+    font-family: "FirstShine";
+    src: url("../fonts/FirstShine.otf");
+}
+
+@font-face {
+    font-family: "This-July";
+    src: url("../fonts/This-July.ttf");
+}
+
+/* ------------------------------------------------------------- */
+/* 弹窗样式 */
+/* ------------------------------------------------------------- */
+
+#alert {
+    display: flex;
+}
+
+#alert-message {
+    position: fixed;
+    top: 8vh;
+    right: 2vw;
+    z-index: 10000;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    min-width: 14em;
+    transform: translateX(110%);
+    backdrop-filter: blur(0.5em);
+}
+
+/* ------------------------------------------------------------- */
+/* 遮罩样式 */
+/* ------------------------------------------------------------- */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    opacity: 0;
+    animation: showOverlayAnimation 0.5s forwards;
+    display: none;
+}
+
+/* ------------------------------------------------------------- */
+/* 侧边栏样式 */
+/* ------------------------------------------------------------- */
+
+#sidebar {
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #0b151ac9;
+    backdrop-filter: blur(0.5em);
+    height: 100vh;
+    width: 50vw;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+    box-shadow: 0 0 5px 1px #000;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem 0 0 1rem;
+    padding-top: 5rem;
+    container-type: inline-size;
+    gap: 5%;
+    overflow-y: auto;
+}
+
+#sidebar img {
+    width: 50%;
+    background: #FFF;
+    border-radius: 50%;
+    border: 1px solid #a1a1a1;
+}
+
+#sidebar-close {
+    position: absolute;
+    display: grid;
+    place-content: center;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border-color);
+    color: #FFF;
+    backdrop-filter: blur(0.5em);
+    box-shadow: var(--box-shadow);
+}
+
+/* 侧边栏导航 */
+#sidebar nav {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+#sidebar nav ul {
+    background: var(--background-light);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 90%;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    display: grid;
+    gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------- */
+/* 分隔线样式 */
+/* ------------------------------------------------------------- */
+
+.divider {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(0.5em);
+    flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------- */
+/* 头部样式 */
+/* ------------------------------------------------------------- */
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: nowrap;
+}
+
+/* 导航栏样式 */
+#navbar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(0.5em);
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    overflow: auto;
+    font-weight: bold;
+}
+
+#navbar h1 {
+    font-family: "This-July";
+    letter-spacing: 0.1em;
+    font-size: 1.5em;
+    font-size: 1em;
+    padding-left: 0.5em;
+}
+
+#navbar ul {
+    display: flex;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+nav li {
+    list-style: none;
+    user-select: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+}
+
+#navbar li:hover,
+#navbar li:hover a,
+#sidebar nav ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    transition: 0.2s ease-in-out;
+}
+
+#navbar li:hover a {
+    background: none;
+    border: none;
+    backdrop-filter: none;
+}
+
+#navbar li a {
+    color: #FFF;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- */
+/* 搜索容器样式 */
+/* ------------------------------------------------------------- */
+
+#search-container {
+    position: relative;
+    margin-left: 4.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#search-container label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    user-select: none;
+    cursor: text;
+    transform: translateY(-50%);
+    transition: 0.2s ease-in;
+}
+
+#search-container input {
+    background: var(--background-light);
+    border-radius: 0.6rem;
+    padding: 0.7rem;
+    color: #FFF;
+    border: 1px solid var(--border-color);
+    transition: 0.2s ease-in;
+    box-shadow: var(--box-shadow);
+}
+
+#search-container input:focus {
+    outline: none;
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--primary-color) 0 0 5px 1px;
+}
+
+#search-container label i {
+    transition: 0.2s ease-in;
+}
+
+#search-container input:focus+label i,
+#search-container input:not(:placeholder-shown)+label i {
+    color: var(--primary-color);
+}
+
+#search-container input:focus+label,
+#search-container input:not(:placeholder-shown)+label {
+    transform: translate(-150%, -50%);
+}
+
+#search-container input:not(:placeholder-shown) {
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--primary-color) 0 0 5px 1px;
+}
+
+#search-container button {
+    padding: 0.7rem;
+    font-size: 1.1em;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border-color);
+    color: #FFF;
+    background: var(--background-light);
+    box-shadow: var(--box-shadow);
+    transform: rotateZ(90deg);
+}
+
+#search-container button:active {
+    transform: translateY(3%) rotateZ(90deg);
+    transition: 0.1s ease-in;
+}
+
+/* ------------------------------------------------------------- */
+/* 卡片样式 */
+/* ------------------------------------------------------------- */
+
+.card {
+    background: var(--background-light);
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(0.5em);
+    overflow: auto;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.card-header h2 {
+    flex-grow: 1;
+}
+
+.card-header p {
+    padding-right: 1em;
+    font-size: 0.8em;
+}
+
+.card-content p {
+    display: block;
+    color: inherit;
+    font-size: medium;
+}
+
+.card-footer {
+    position: relative;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.6em;
+    display: flex;
+}
+
+.card-footer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFF;
+}
+
+.card-footer span {
+    font-size: 0.8em;
+    flex: 1;
+}
+
+.card-footer p {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    font-size: 0.6em;
+}
+
+.card-footer span {
+    font-size: 0.8em;
+}
+
+.article-tag {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.article-tag .tag {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100rem;
+    font-size: 0.8em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* ------------------------------------------------------------- */
+/* 返回顶部按钮样式 */
+/* ------------------------------------------------------------- */
+
+#back-to-top {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    z-index: 999;
+    background: var(--background-light);
+    backdrop-filter: blur(0.5em);
+    padding: 1rem;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    height: 50px;
+    width: 50px;
+    display: grid;
+    place-content: center;
+    visibility: hidden;
+}
+
+/* ------------------------------------------------------------- */
+/* 侧边栏切换按钮样式 */
+/* ------------------------------------------------------------- */
+
+#sidebar-toggle {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    color: #FFF;
+    font-size: 1.5em;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(0.5em);
+    display: none;
+    place-content: center;
+    margin-left: 0.5rem;
+}
+
+/* ------------------------------------------------------------- */
+/* 交互元素样式 */
+/* ------------------------------------------------------------- */
+
+#back-to-top:active,
+#sidebar-close:active,
+#sidebar-toggle:active {
+    transform: translateY(4%);
+    box-shadow: #00000020 inset 0 0 5px 0px;
+    transition: 0.1s ease-in;
+}
+
+/* ------------------------------------------------------------- */
+/* 用户信息样式 */
+/* ------------------------------------------------------------- */
+
+.user-info {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+}
+
+.user-info h1 {
+    font-size: 10cqw;
+}
+
+/* ------------------------------------------------------------- */
+/* 首页样式 */
+/* ------------------------------------------------------------- */
+
+#home-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #0b151a;
+    height: calc(100dvh - (var(--nav-height) + 2rem));
+}
+
+.home-div-content {
+    width: 100%;
+    padding: 1rem;
+    flex: 1;
+    container-type: inline-size;
+    overflow: hidden;
+}
+
+.home-div-content h1 {
+    position: relative;
+    font-family: "This-July";
+    font-size: 11cqw;
+    color: #FFF;
+    text-shadow: 0.12em 0.12em 0 #204350;
+    letter-spacing: 0.2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -50%);
+}
+
+.home-div-content h1::after,
+.home-div-content h1::before {
+    content: "";
+    height: 100%;
+    width: 25%;
+    border-radius: 0 0 0.3em 0;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 8px solid #FFF;
+    border-right: 8px solid #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-75%, -15%);
+}
+
+.home-div-content h1::before {
+    transform: translate(-210%, -70%);
+    border-radius: 0.3em 0 0 0;
+    border-top: 8px dashed #FFF;
+    border-left: 8px dashed #FFF;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+.home-div-user-down-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8;
+    animation: floatAnimation 1.5s infinite alternate;
+    padding-bottom: 2.2rem;
+}
+
+.home-div-user-down-text i {
+    font-size: 1;
+}
+
+/* ------------------------------------------------------------- */
+/* 卡片列表样式 */
+/* ------------------------------------------------------------- */
+
+#card-list {
+    border-top: 2px solid rgba(161, 161, 161, 0.4);
+}
+
+/* ------------------------------------------------------------- */
+/* 页脚样式 */
+/* ------------------------------------------------------------- */
+
+footer {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 1em;
+    font-size: 0.7em;
+}
+
+/* ------------------------------------------------------------- */
+/* 媒体查询 */
+/* ------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar-toggle {
+        display: grid;
+    }
+}
+
+/* ------------------------------------------------------------- */

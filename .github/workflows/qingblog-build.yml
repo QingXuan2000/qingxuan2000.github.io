@@ -1,0 +1,42 @@
+name: QingBlog Build
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  check-issue:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 设置Python环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🐍 安装Python依赖
+        run: pip install -r .github/scripts/requirements.txt
+
+      - name: 🚀 运行Python脚本
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_DATE: ${{ github.event.issue.created_at }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
+          ISSUE_ID: ${{ github.event.issue.number }}
+          TARGET_AUTHOR: "QingXuan2000"
+        run: python .github/scripts/check_issue.py
+
+      - name: 💾 提交更改
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📝 新增文章: ${{ github.event.issue.title }}"
+
+          file_pattern: '*'

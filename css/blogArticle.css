@@ -1,0 +1,262 @@
+/* ------------------------------------------------------------- */
+/* Blog 文章页面样式 */
+/* ------------------------------------------------------------- */
+
+/* 文章容器 */
+.article-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* 文章标题 */
+.article-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 文章元信息 */
+.article-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #a1a1a1;
+}
+
+/* 文章内容 */
+.article-content {
+    line-height: 1.8;
+}
+
+/* 段落 */
+.article-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* 标题 */
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    margin: 2rem 0 1rem;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.article-content h1 {
+    font-size: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.article-content h2 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.4rem;
+}
+
+.article-content h3 {
+    font-size: 1.5rem;
+}
+
+.article-content h4 {
+    font-size: 1.3rem;
+}
+
+.article-content h5 {
+    font-size: 1.1rem;
+}
+
+.article-content h6 {
+    font-size: 1rem;
+    color: #a1a1a1;
+}
+
+/* 图片 */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.article-content img:hover {
+    transform: scale(1.02);
+}
+
+/* 图片居中 */
+.article-content .image-center {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+/* 表格 */
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-content th,
+.article-content td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.article-content th {
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.article-content tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 代码块 */
+.article-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.article-content code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #f8f8f2;
+}
+
+.article-content pre code {
+    display: block;
+    line-height: 1.5;
+}
+
+/* 行内代码 */
+.article-content p code {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+    font-size: 0.9em;
+}
+
+/* 引用 */
+.article-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(56, 139, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-style: italic;
+}
+
+/* 列表 */
+.article-content ul,
+.article-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* 链接 */
+.article-content a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.article-content a:hover {
+    border-bottom: 1px solid var(--primary-color);
+    opacity: 0.8;
+}
+
+/* 分隔线 */
+.article-content hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+/* 强调 */
+.article-content strong {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.article-content em {
+    font-style: italic;
+    color: #a1a1a1;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .article-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .article-title {
+        font-size: 2rem;
+    }
+    
+    .article-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .article-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .article-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* 文章底部 */
+.article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: #a1a1a1;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------- */
