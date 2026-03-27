@@ -300,9 +300,7 @@ function initSidebar() {
     overlay.style.display = "block";
     sidebar.style.display = "flex";
 
-    if (body) {
-      body.style.overflow = "hidden";
-    }
+    body.style.overflow = "hidden";
   }
 
   // 隐藏侧边栏
@@ -317,9 +315,7 @@ function initSidebar() {
 
     setTimeout(function () {
       overlay.style.display = "none";
-      if (body) {
-        body.style.overflow = "auto";
-      }
+      body.style.overflow = "auto";
     }, 500);
   }
 }
@@ -343,8 +339,6 @@ function loading() {
   const loading = document.querySelector('.loading');
   const loadingDivs = document.querySelectorAll('.loading-div');
 
-  body.style.overflow = "hidden";
-
   setTimeout(function () {
     loadingDivs.forEach(function (div, index) {
       index = ++index;
@@ -361,7 +355,6 @@ function loading() {
 
   setTimeout(function () {
     loading.style.display = "none";
-    body.style.overflow = "auto";
   }, 3000);
 }
 
