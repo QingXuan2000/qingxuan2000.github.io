@@ -309,7 +309,6 @@ header {
     font-family: "This-July";
     letter-spacing: 0.1em;
     font-size: 1.5em;
-    font-size: 1em;
     padding-left: 0.5em;
 }
 
@@ -348,6 +347,10 @@ nav li {
     white-space: nowrap;
 }
 
+#navbar img {
+    padding: 0.2em;
+}
+
 /* ------------------------------------------------------------- */
 /* 搜索容器样式 */
 /* ------------------------------------------------------------- */
@@ -376,7 +379,6 @@ nav li {
     padding: 0.7rem;
     color: #FFF;
     border: 1px solid var(--border-color);
-    transition: 0.2s ease-in;
     box-shadow: var(--box-shadow);
 }
 
@@ -384,25 +386,25 @@ nav li {
     outline: none;
     border: 1px solid var(--primary-color);
     box-shadow: var(--primary-color) 0 0 5px 1px;
-}
-
-#search-container label i {
     transition: 0.2s ease-in;
 }
 
 #search-container input:focus+label i,
 #search-container input:not(:placeholder-shown)+label i {
     color: var(--primary-color);
+    transition: 0.2s ease-in;
 }
 
 #search-container input:focus+label,
 #search-container input:not(:placeholder-shown)+label {
     transform: translate(-150%, -50%);
+    transition: 0.2s ease-in;
 }
 
 #search-container input:not(:placeholder-shown) {
     border: 1px solid var(--primary-color);
     box-shadow: var(--primary-color) 0 0 5px 1px;
+    transition: 0.2s ease-in;
 }
 
 #search-container button {
@@ -464,13 +466,6 @@ nav li {
     display: flex;
 }
 
-.card-footer img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #FFF;
-}
-
 .card-footer span {
     font-size: 0.8em;
     flex: 1;
@@ -481,10 +476,6 @@ nav li {
     bottom: 0;
     right: 5px;
     font-size: 0.6em;
-}
-
-.card-footer span {
-    font-size: 0.8em;
 }
 
 .article-tag {
@@ -629,13 +620,13 @@ nav li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 0.8;
+    font-size: 0.8em;
     animation: floatAnimation 1.5s infinite alternate;
     padding-bottom: 2.2rem;
 }
 
 .home-div-user-down-text i {
-    font-size: 1;
+    font-size: 1em;
 }
 
 /* ------------------------------------------------------------- */
@@ -678,14 +669,12 @@ footer {
 .qingblog-logo {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
-
     animation: strokeAnimation 1.2s ease-in-out forwards;
 }
 
 .qingblog-logo-circle {
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
-
     animation: strokeAnimation 1.5s ease-in-out forwards;
 }
 

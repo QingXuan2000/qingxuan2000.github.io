@@ -215,26 +215,20 @@ function initSearch() {
   // 初始化搜索容器样式
   const searchDiv = document.getElementById("search-container");
   if (searchDiv) {
-    const searchHeight = searchDiv.querySelector("input")?.offsetHeight;
+    const searchHeight = searchDiv.querySelector("input").offsetHeight;
     const searchBtn = searchDiv.querySelector("button");
-    const headerNavHeight = document.getElementById("navbar")?.offsetHeight;
+    const headerNavHeight = document.getElementById("navbar").offsetHeight;
     const barsBtn = document.getElementById("sidebar-toggle");
     const exitBarsBtn = document.getElementById("sidebar-close");
 
-    if (searchHeight && searchBtn) {
-      searchBtn.style.height = searchHeight + "px";
-      searchBtn.style.width = searchHeight + "px";
-    }
+    searchBtn.style.height = searchHeight + "px";
+    searchBtn.style.width = searchHeight + "px";
 
-    if (headerNavHeight && barsBtn) {
-      barsBtn.style.height = headerNavHeight + "px";
-      barsBtn.style.width = headerNavHeight + "px";
-    }
+    barsBtn.style.height = headerNavHeight + "px";
+    barsBtn.style.width = headerNavHeight + "px";
 
-    if (searchHeight && exitBarsBtn) {
-      exitBarsBtn.style.height = searchHeight + "px";
-      exitBarsBtn.style.width = searchHeight + "px";
-    }
+    exitBarsBtn.style.height = searchHeight + "px";
+    exitBarsBtn.style.width = searchHeight + "px";
   }
 }
 
@@ -345,13 +339,13 @@ function loading() {
         index += 1;
 
         if (index % 2 === 0) {
-          div.style.animation = "loadingRightAnimation 1.8s forwards";
+          div.style.animation = "loadingRightAnimation 1.8s ease-out forwards";
         } else {
-          div.style.animation = "loadingLeftAnimation 1.8s forwards";
+          div.style.animation = "loadingLeftAnimation 1.8s ease-out forwards";
         };
       });
 
-      qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s forwards";
+      qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s ease-in-out forwards";
     }, 1600);
 
     setTimeout(function () {
