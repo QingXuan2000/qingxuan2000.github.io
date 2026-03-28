@@ -201,12 +201,13 @@
     <!-- ------------------------------------------------------------ -->
 
     <script>
+        const body = document.querySelector("body");
         const noloading = new URLSearchParams(window.location.search).get('noloading');
 
         if (noloading == "true") {
             document.querySelector('.loading').style.display = 'none';
         } else {
-            body.style.overflow = "hidden"
+            body.style.overflow = "hidden";
         }
     </script>
 
