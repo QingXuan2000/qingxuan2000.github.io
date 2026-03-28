@@ -339,26 +339,68 @@ function loading() {
   const loading = document.querySelector('.loading');
   const loadingDivs = document.querySelectorAll('.loading-div');
 
-  setTimeout(function () {
-    loadingDivs.forEach(function (div, index) {
-      index = ++index;
+  if (loading) {
+    body.style.overflow = "hidden"
 
-      if (index % 2 === 0) {
-        div.style.animation = "loadingUpAnimation 1.5s forwards";
-      } else {
-        div.style.animation = "loadingDownAnimation 1.5s forwards";
-      }
-    });
+    setTimeout(function () {
+      loadingDivs.forEach(function (div, index) {
+        index += 1;
 
-    qingBlogIcon.style.animation = "hideOverlayAnimation 1.5s forwards";
-  }, 1500);
+        if (index % 2 === 0) {
+          div.style.animation = "loadingRightAnimation 1.8s forwards";
+        } else {
+          div.style.animation = "loadingLeftAnimation 1.8s forwards";
+        };
+      });
 
-  setTimeout(function () {
-    loading.style.display = "none";
-  }, 3000);
+      qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s forwards";
+    }, 1500);
+
+    setTimeout(function () {
+      loading.style.display = "none";
+      body.style.overflow = "auto";
+    }, 3000);
+  }
 }
 
 // -------------------------------------------------------------
+
+// 初始化home页滚动功能
+function initHomeSwipe() {
+  const homeDiv = document.getElementById('home-div');
+  if (!homeDiv) return;
+
+  const homeDivHeight = homeDiv.offsetHeight + 36;
+  let isScrolling = false;
+  let currentHandler = handleScroll;
+
+  function switchHandler(newHandler) {
+    isScrolling = true;
+    window.removeEventListener("scroll", currentHandler);
+    setTimeout(() => {
+      isScrolling = false;
+      currentHandler = newHandler;
+      window.addEventListener("scroll", currentHandler);
+    }, 1000);
+  }
+
+  function handleScroll() {
+    if (isScrolling) return;
+    window.scrollTo({ top: homeDivHeight, behavior: 'smooth' });
+    switchHandler(homeScroll);
+  }
+
+  function homeScroll() {
+    if (isScrolling) return;
+    const windowScrollY = window.scrollY;
+    if (windowScrollY < homeDivHeight - 10) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      switchHandler(handleScroll);
+    }
+  }
+
+  window.addEventListener("scroll", currentHandler);
+}
 
 // 页面加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
@@ -367,6 +409,7 @@ window.addEventListener('DOMContentLoaded', function () {
   initBackToTop();
   initSidebar();
   initWebTitle();
+  initHomeSwipe();
   setNavHeightVar();
   loading();
 });

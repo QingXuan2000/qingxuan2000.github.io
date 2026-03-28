@@ -119,17 +119,17 @@
     }
 }
 
-/* LoadingUp动画 */
-@keyframes loadingUpAnimation {
+/* Loading Right动画 */
+@keyframes loadingRightAnimation {
     to {
-        transform: translateY(-110%);
+        transform: translateX(100%);
     }
 }
 
-/* LoadingDown动画 */
-@keyframes loadingDownAnimation {
+/* Loading Left动画 */
+@keyframes loadingLeftAnimation {
     to {
-        transform: translateY(110%);
+        transform: translateX(-100%);
     }
 }
 
@@ -644,6 +644,8 @@ nav li {
 
 #card-list {
     border-top: 2px solid rgba(161, 161, 161, 0.4);
+
+    min-height: calc(100vh - (2.4em));
 }
 
 /* ------------------------------------------------------------- */
@@ -680,9 +682,9 @@ footer {
     animation: strokeAnimation 1.2s ease-in-out forwards;
 }
 
-.qingblog-logo-block {
-    stroke-dasharray: 1845;
-    stroke-dashoffset: 1845;
+.qingblog-logo-circle {
+    stroke-dasharray: 1885;
+    stroke-dashoffset: 1885;
 
     animation: strokeAnimation 1.5s ease-in-out forwards;
 }
@@ -706,8 +708,8 @@ footer {
 .loading-div {
     flex: 1;
 
-    /* background: #0b151a; */
-    background: var(--bg-color);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.7em);
 
     transition: 0.5s ease-in-out;
 }
