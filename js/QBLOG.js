@@ -339,9 +339,9 @@ function loading() {
         index += 1;
 
         if (index % 2 === 0) {
-          div.style.animation = "loadingRightAnimation 1.8s ease-out forwards";
+          div.style.animation = "loadingRightAnimation 1.5s ease-out forwards";
         } else {
-          div.style.animation = "loadingLeftAnimation 1.8s ease-out forwards";
+          div.style.animation = "loadingLeftAnimation 1.5s ease-out forwards";
         };
       });
 
@@ -351,7 +351,7 @@ function loading() {
     setTimeout(function () {
       loading.style.display = "none";
       body.style.overflow = "auto";
-    }, 3200);
+    }, 3000);
   }
 }
 
