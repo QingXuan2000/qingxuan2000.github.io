@@ -352,12 +352,12 @@ function loading() {
       });
 
       qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s forwards";
-    }, 1700);
+    }, 1600);
 
     setTimeout(function () {
       loading.style.display = "none";
       body.style.overflow = "auto";
-    }, 3300);
+    }, 3200);
   }
 }
 
