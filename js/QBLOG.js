@@ -352,16 +352,16 @@ function loading() {
       });
 
       qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s forwards";
-    }, 1500);
+    }, 1700);
 
     setTimeout(function () {
       loading.style.display = "none";
       body.style.overflow = "auto";
-    }, 3000);
+    }, 3300);
   }
 }
 
-// 页面加载完成后初始化所有功能
+// DOM加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
   initNavbar();
   initSearch();

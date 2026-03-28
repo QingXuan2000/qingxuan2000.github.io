@@ -676,15 +676,15 @@ footer {
 /* ------------------------------------------------------------- */
 
 .qingblog-logo {
-    stroke-dasharray: 480;
-    stroke-dashoffset: 480;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
 
     animation: strokeAnimation 1.2s ease-in-out forwards;
 }
 
 .qingblog-logo-circle {
-    stroke-dasharray: 1885;
-    stroke-dashoffset: 1885;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
 
     animation: strokeAnimation 1.5s ease-in-out forwards;
 }
