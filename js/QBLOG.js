@@ -340,8 +340,6 @@ function loading() {
   const loadingDivs = document.querySelectorAll('.loading-div');
 
   if (loading) {
-    body.style.overflow = "hidden"
-
     setTimeout(function () {
       loadingDivs.forEach(function (div, index) {
         index += 1;
