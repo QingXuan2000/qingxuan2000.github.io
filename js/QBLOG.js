@@ -363,45 +363,6 @@ function loading() {
   }
 }
 
-// -------------------------------------------------------------
-
-// 初始化home页滚动功能
-function initHomeSwipe() {
-  const homeDiv = document.getElementById('home-div');
-  if (!homeDiv) return;
-
-  const homeDivHeight = homeDiv.offsetHeight + 36;
-  let isScrolling = false;
-  let currentHandler = handleScroll;
-
-  function switchHandler(newHandler) {
-    isScrolling = true;
-    window.removeEventListener("scroll", currentHandler);
-    setTimeout(() => {
-      isScrolling = false;
-      currentHandler = newHandler;
-      window.addEventListener("scroll", currentHandler);
-    }, 1000);
-  }
-
-  function handleScroll() {
-    if (isScrolling) return;
-    window.scrollTo({ top: homeDivHeight, behavior: 'smooth' });
-    switchHandler(homeScroll);
-  }
-
-  function homeScroll() {
-    if (isScrolling) return;
-    const windowScrollY = window.scrollY;
-    if (windowScrollY < homeDivHeight - 10) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      switchHandler(handleScroll);
-    }
-  }
-
-  window.addEventListener("scroll", currentHandler);
-}
-
 // 页面加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
   initNavbar();
@@ -409,7 +370,6 @@ window.addEventListener('DOMContentLoaded', function () {
   initBackToTop();
   initSidebar();
   initWebTitle();
-  initHomeSwipe();
   setNavHeightVar();
   loading();
 });
