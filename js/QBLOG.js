@@ -4,13 +4,14 @@ const themes = {
     '--text-color': 'rgba(255, 255, 255, 1)',
     '--text-shadow-color': 'rgba(32, 67, 80, 1)',
     '--text-secondary-color': 'rgba(161, 161, 161, 1)',
-    '--bg-color': 'linear-gradient(180deg, rgba(16, 29, 33, 1), rgba(12, 26, 32, 1), rgba(21, 35, 42, 1), rgba(12, 21, 24, 1))',
+    '--bg-color': 'linear-gradient(180deg, rgba(16, 29, 33, 1), rgba(12, 26, 32, 1), rgba(13, 21, 26, 1), rgba(12, 21, 24, 1))',
     '--hero-bg-color': 'rgba(11, 21, 26, 1)',
-    '--surface-color': 'rgba(0, 0, 0, 0.4)',
-    '--surface-border-color': 'rgba(0, 0, 0, 0.2)',
-    '--border-color': 'rgba(0, 0, 0, 0.0)',
-    '--box-shadow': 'rgba(0, 0, 0, 0.13) 0 0 10px 0px',
+    '--surface-color': 'linear-gradient(rgba(0, 0, 0, 0.4), transparent)',
+    '--surface-border-color': 'rgba(0, 0, 0, 0.1)',
+    '--border-color': 'rgba(0, 0, 0, 0.1)',
+    '--box-shadow': 'rgba(0, 0, 0, 0.2) 0 0 10px 0px',
     '--divider-color': 'rgba(255, 255, 255, 0.1)',
+    '--backdrop-blur': 'blur(0.5em)',
   },
   light: {
     '--text-color': 'rgba(44, 44, 44, 1)',
@@ -18,11 +19,12 @@ const themes = {
     '--text-secondary-color': 'rgba(85, 85, 85, 1)',
     '--bg-color': 'linear-gradient(180deg, rgba(217, 219, 223, 1), rgba(201, 203, 207, 1), rgba(200, 204, 207, 1), rgba(186, 190, 192, 1))',
     '--hero-bg-color': 'rgba(217, 218, 220, 1)',
-    '--surface-color': 'rgba(230, 230, 230, 0.4)',
-    '--surface-border-color': 'rgba(0, 0, 0, 0.2)',
-    '--border-color': 'rgba(0, 0, 0, 0.0)',
-    '--box-shadow': 'rgba(0, 0, 0, 0.08) 0 0 10px 0px',
+    '--surface-color': 'linear-gradient(rgba(230, 230, 230, 0.5), transparent)',
+    '--surface-border-color': 'rgba(255, 255, 255, 0.1)',
+    '--border-color': 'rgba(255, 255, 255, 0.1)',
+    '--box-shadow': 'rgba(0, 0, 0, 0.1) 0 0 10px 0px',
     '--divider-color': 'rgba(0, 0, 0, 0.1)',
+    '--backdrop-blur': 'blur(0.5em)',
   },
 }
 
@@ -287,7 +289,7 @@ function loading() {
 // 主题切换
 function themesToggle() {
   const toggle = document.getElementById('theme-toggle');
-  if (!toggle) return;
+  const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)').matches
 
   const icon = toggle.querySelector('i');
   const root = document.documentElement;
@@ -300,10 +302,14 @@ function themesToggle() {
     });
   }
 
-  applyTheme(localStorage.getItem('theme') || 'dark');
+  if (!localStorage.getItem('theme')) {
+    applyTheme(prefersColorScheme == true ? 'dark' : 'light');
+  } else {
+    applyTheme(localStorage.getItem('theme'));
+  };
 
   toggle.addEventListener('click', () => {
-    const newTheme = (localStorage.getItem('theme') || 'dark') === 'dark' ? 'light' : 'dark';
+    const newTheme = (localStorage.getItem('theme')) === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
     localStorage.setItem('theme', newTheme);
 

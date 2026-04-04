@@ -55,25 +55,25 @@ def add_card(file_path, title, time, content, id, labels):
         ul_start = html.rfind('<ul', 0, card_list_start)
         ul_end = html.find('</ul>', ul_start)
         card = f'''
-                    <li>
-                        <a href="../pages/{id}.html">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>{title}</h2>
-                                </div>
-                                <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                                <p>{content}</p>
-                                <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                                <div class="card-footer">
-                                    <div class="article-tag">
-                                        {tags_html}
-                                    </div>
-                                    <p>发布日期：{date}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                '''
+<li>
+    <a href="../pages/{id}.html">
+        <div class="card">
+            <div class="card-header">
+                <h2>{title}</h2>
+            </div>
+            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+            <p>{content}</p>
+            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+            <div class="card-footer">
+                <div class="article-tag">
+                    {tags_html}
+                </div>
+                <p>发布日期：{date}</p>
+            </div>
+        </div>
+    </a>
+</li>
+'''
         new_html = html[:ul_end] + card + html[ul_end:]
         html = new_html
         print(f"✅ 卡片已添加：{title}")
@@ -119,15 +119,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QingBlog - {title}</title>
-
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
-
-    <link rel="stylesheet" href="../css/font-awesome.css" />
-    <link rel="stylesheet" href="../css/QBLOG.css" />
-    <link rel="stylesheet" href="../css/blogArticle.css" />
-
-    <script src="../js/QBLOG.js"></script>
+    <title></title>
 </head>
 
 <body class="dark-theme">

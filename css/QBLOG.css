@@ -7,7 +7,7 @@
     --nav-height: 0px;
 
     /* 以下变量需到../js/QBLOG.js中设置 */
-    
+
     /* 主色调 */
     /* --primary-color: #388bff; */
 
@@ -32,6 +32,9 @@
 
     /* 分隔线 */
     /* --divider-color: rgba(255, 255, 255, 0.1); */
+
+    /* 模糊效果 */
+    /* --backdrop-blur: blur(0.5em); */
 }
 
 /* ------------------------------------------------------------- */
@@ -39,7 +42,7 @@
 /* ------------------------------------------------------------- */
 
 .glass {
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     background: var(--surface-color);
     border: 1px solid var(--border-color);
 }
@@ -52,7 +55,7 @@
     color: var(--text-color);
     font-size: 1.5em;
     box-shadow: var(--box-shadow);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     background: var(--surface-color);
     display: grid;
     place-content: center;
@@ -184,7 +187,7 @@ p, .hero-div-user-down-text {
     border-radius: 0.8rem;
     min-width: 14em;
     transform: translateX(110%);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
 }
 
 /* ------------------------------------------------------------- */
@@ -214,7 +217,7 @@ p, .hero-div-user-down-text {
     flex-direction: column;
     align-items: center;
     background: var(--surface-color);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     height: 100vh;
     width: 50vw;
     top: 0;
@@ -275,7 +278,7 @@ p, .hero-div-user-down-text {
 
 .divider {
     background: var(--divider-color);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     flex-shrink: 0;
 }
 
@@ -296,7 +299,7 @@ header {
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     box-shadow: var(--box-shadow);
     flex: 1;
     overflow: auto;
@@ -365,7 +368,7 @@ nav li {
     border-radius: 1rem;
     box-shadow: var(--box-shadow);
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(0.5em);
+    backdrop-filter: var(--backdrop-blur);
     overflow: auto;
 }
 
@@ -416,7 +419,7 @@ nav li {
 
 .article-tag .tag {
     background: var(--surface-color);
-    backdrop-filter: blur(10px);
+    backdrop-filter: var(--backdrop-blur);
     border: 1px solid var(--surface-border-color);
     color: var(--text-color);
     padding: 0.2rem 0.6rem;
@@ -619,8 +622,8 @@ footer {
 
 .loading-div {
     flex: 1;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(0.7em);
+    background: var(--surface-color);
+    backdrop-filter: var(--backdrop-blur);
     transition: 0.5s ease-in-out;
 }
 
