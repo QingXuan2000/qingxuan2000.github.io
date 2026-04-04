@@ -6,30 +6,32 @@
     /* 导航栏高度 */
     --nav-height: 0px;
 
+    /* 以下变量需到../js/QBLOG.js中设置 */
+    
     /* 主色调 */
-    --primary-color: #388bff;
+    /* --primary-color: #388bff; */
 
     /* 文字颜色 */
-    --text-color: #FFFFFF;
-    --text-shadow-color: #204350;
-    --text-secondary-color: #a1a1a1;
+    /* --text-color: #FFFFFF; */
+    /* --text-shadow-color: #204350; */
+    /* --text-secondary-color: #a1a1a1; */
 
     /* 背景颜色 */
-    --bg-color: linear-gradient(180deg, #101d21, #0c1a20, #15232a, #0c1518);
-    --hero-bg-color: #0b151a;
+    /* --bg-color: linear-gradient(180deg, #101d21, #0c1a20, #15232a, #0c1518); */
+    /* --hero-bg-color: #0b151a; */
 
     /* 毛玻璃背景 */
-    --surface-color: rgba(0, 0, 0, 0.1);
-    --surface-border-color: rgba(0, 0, 0, 0.2);
+    /* --surface-color: rgba(0, 0, 0, 0.1); */
+    /* --surface-border-color: rgba(0, 0, 0, 0.2); */
 
     /* 边框 */
-    --border-color: #ffffff30;
+    /* --border-color: #ffffff30; */
 
     /* 阴影 */
-    --box-shadow: #00000020 0 0 10px 0px;
+    /* --box-shadow: #00000020 0 0 10px 0px; */
 
     /* 分隔线 */
-    --divider-color: rgba(255, 255, 255, 0.1);
+    /* --divider-color: rgba(255, 255, 255, 0.1); */
 }
 
 /* ------------------------------------------------------------- */
@@ -211,7 +213,7 @@ p, .hero-div-user-down-text {
     display: none;
     flex-direction: column;
     align-items: center;
-    background: var(--hero-bg-color);
+    background: var(--surface-color);
     backdrop-filter: blur(0.5em);
     height: 100vh;
     width: 50vw;

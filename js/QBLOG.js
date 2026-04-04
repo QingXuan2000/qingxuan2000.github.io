@@ -1,29 +1,29 @@
 // 主题设置
 const themes = {
   dark: {
-    '--text-color': '#FFFFFF',
-    '--text-shadow-color': '#204350',
-    '--text-secondary-color': '#a1a1a1',
-    '--bg-color': 'linear-gradient(180deg, #101d21, #0c1a20, #15232a, #0c1518)',
-    '--hero-bg-color': '#0b151a',
-    '--surface-color': 'rgba(0, 0, 0, 0.1)',
+    '--text-color': 'rgba(255, 255, 255, 1)',
+    '--text-shadow-color': 'rgba(32, 67, 80, 1)',
+    '--text-secondary-color': 'rgba(161, 161, 161, 1)',
+    '--bg-color': 'linear-gradient(180deg, rgba(16, 29, 33, 1), rgba(12, 26, 32, 1), rgba(21, 35, 42, 1), rgba(12, 21, 24, 1))',
+    '--hero-bg-color': 'rgba(11, 21, 26, 1)',
+    '--surface-color': 'rgba(0, 0, 0, 0.4)',
     '--surface-border-color': 'rgba(0, 0, 0, 0.2)',
-    '--border-color': '#ffffff30',
-    '--box-shadow': '#00000020 0 0 10px 0px',
-    '--divider-color': 'rgba(255, 255, 255, 0.1)'
+    '--border-color': 'rgba(0, 0, 0, 0.0)',
+    '--box-shadow': 'rgba(0, 0, 0, 0.13) 0 0 10px 0px',
+    '--divider-color': 'rgba(255, 255, 255, 0.1)',
   },
   light: {
-    '--text-color': '#2c2c2c',
-    '--text-shadow-color': '#909090',
-    '--text-secondary-color': '#555555',
-    '--bg-color': 'linear-gradient(180deg, #e8eaee, #c9cbcf, #c8cccf, #babec0)',
-    '--hero-bg-color': '#e8eaed',
-    '--surface-color': 'rgba(245, 245, 245, 0.8)',
-    '--surface-border-color': 'rgba(0, 0, 0, 0.15)',
-    '--border-color': '#d0d0d0',
-    '--box-shadow': '#00000015 0 0 10px 0px',
-    '--divider-color': 'rgba(0, 0, 0, 0.15)'
-  }
+    '--text-color': 'rgba(44, 44, 44, 1)',
+    '--text-shadow-color': 'rgba(144, 144, 144, 1)',
+    '--text-secondary-color': 'rgba(85, 85, 85, 1)',
+    '--bg-color': 'linear-gradient(180deg, rgba(217, 219, 223, 1), rgba(201, 203, 207, 1), rgba(200, 204, 207, 1), rgba(186, 190, 192, 1))',
+    '--hero-bg-color': 'rgba(217, 218, 220, 1)',
+    '--surface-color': 'rgba(230, 230, 230, 0.4)',
+    '--surface-border-color': 'rgba(0, 0, 0, 0.2)',
+    '--border-color': 'rgba(0, 0, 0, 0.0)',
+    '--box-shadow': 'rgba(0, 0, 0, 0.08) 0 0 10px 0px',
+    '--divider-color': 'rgba(0, 0, 0, 0.1)',
+  },
 }
 
 // 网页标题切换功能
