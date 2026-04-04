@@ -1,6 +1,7 @@
 // 主题设置
 const themes = {
   dark: {
+    '--primary-color': '#388bff',
     '--text-color': 'rgba(255, 255, 255, 1)',
     '--text-shadow-color': 'rgba(32, 67, 80, 1)',
     '--text-secondary-color': 'rgba(161, 161, 161, 1)',
@@ -9,11 +10,12 @@ const themes = {
     '--surface-color': 'linear-gradient(rgba(25, 45, 55, 0.4), transparent)',
     '--surface-border-color': 'rgba(245, 245, 245, 0.1)',
     '--border-color': 'rgba(245, 245, 245, 0.1)',
-    '--box-shadow': 'rgba(0, 0, 0, 0.4) 0 4px 20px 0px',
+    '--box-shadow-color': 'rgba(0, 0, 0, 0.4)',
     '--divider-color': 'rgba(255, 255, 255, 0.1)',
     '--backdrop-blur': 'blur(0.7em)',
   },
   light: {
+    '--primary-color': '#388bff',
     '--text-color': 'rgba(44, 44, 44, 1)',
     '--text-shadow-color': 'rgba(144, 144, 144, 1)',
     '--text-secondary-color': 'rgba(85, 85, 85, 1)',
@@ -22,13 +24,13 @@ const themes = {
     '--surface-color': 'linear-gradient(rgba(240, 240, 240, 0.4), transparent)',
     '--surface-border-color': 'rgba(255, 255, 255, 0.1)',
     '--border-color': 'rgba(255, 255, 255, 0.1)',
-    '--box-shadow': 'rgba(0, 0, 0, 0.15) 0 4px 20px 0px',
+    '--box-shadow-color': 'rgba(0, 0, 0, 0.15)',
     '--divider-color': 'rgba(0, 0, 0, 0.1)',
     '--backdrop-blur': 'blur(0.7em)',
   },
 }
 
-// 网页标题切换功能
+// 标题切换
 function initWebTitle() {
   const webTitleTextList = [
     "QingBlog - QingXuanJun的个人博客 💻",
@@ -288,10 +290,10 @@ function loading() {
 
 // 主题切换
 function themesToggle() {
+  const body = document.querySelector('body');
   const toggle = document.getElementById('theme-toggle');
   const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)').matches
 
-  const icon = toggle.querySelector('i');
   const root = document.documentElement;
 
   function applyTheme(theme) {
@@ -303,9 +305,11 @@ function themesToggle() {
   }
 
   if (!localStorage.getItem('theme')) {
-    applyTheme(prefersColorScheme == true ? 'dark' : 'light');
+    applyTheme(prefersColorScheme === true ? 'dark' : 'light');
+    toggle.innerHTML = `<i class="fa fa-${prefersColorScheme === true ? 'moon' : 'sun'}-o"></i>`
   } else {
     applyTheme(localStorage.getItem('theme'));
+    toggle.innerHTML = `<i class="fa fa-${localStorage.getItem('theme') === 'dark' ? 'moon' : 'sun'}-o"></i>`
   };
 
   toggle.addEventListener('click', () => {
@@ -313,7 +317,7 @@ function themesToggle() {
     applyTheme(newTheme);
     localStorage.setItem('theme', newTheme);
 
-    icon.style.transform = `rotateZ(${newTheme === 'light' ? '180deg' : '0deg'})`
+    toggle.innerHTML = `<i class="fa fa-${newTheme === 'light' ? 'sun' : 'moon'}-o"></i>`
     showAlert('green', `<i class="fa fa-${newTheme === 'light' ? 'sun' : 'moon'}-o"></i>&nbsp;已切换到${newTheme === 'light' ? '浅色' : '深色'}主题！`);
   });
 }

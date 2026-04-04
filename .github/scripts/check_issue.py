@@ -203,7 +203,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
         </nav>
 
         <div id="theme-toggle" class="nav-button btn-active">
-            <i class="fa fa-adjust" aria-hidden="true"></i>
+            <i class="fa fa-sun-o"></i>
         </div>
 
         <div id="sidebar-toggle" class="nav-button btn-active">
