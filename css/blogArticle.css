@@ -210,7 +210,7 @@
 .article-content hr {
     border: none;
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--surface-color);
     margin: 2rem 0;
 }
 

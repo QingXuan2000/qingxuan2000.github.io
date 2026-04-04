@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,11 @@
     <title></title>
 </head>
 
-<body>
+<body class="dark-theme">
     <div class="overlay"></div>
 
     <div id="sidebar">
-        <div id="sidebar-close">
+        <div id="sidebar-close" class="nav-button btn-active">
             <i class="fa fa-remove" aria-hidden="true"></i>
         </div>
 
@@ -23,7 +23,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
@@ -49,15 +49,31 @@
     </div>
 
     <header>
-        <nav id="navbar">
-            <img src="../img/QingBlog Logo.svg" alt="Logo" class="logo" />
+        <nav id="navbar" class="glass">
+            <svg class="logo" width="40" height="40" viewBox="0 0 620 620" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle class="qingblog-logo-circle" cx="310" cy="310" r="250" />
+                <circle class="qingblog-logo-circle" cx="310" cy="310" r="300" />
+                <path class="qingblog-logo" d="M315 70L315 550" />
+                <line class="qingblog-logo" x1="124" y1="213" x2="264" y2="213" />
+                <line class="qingblog-logo" x1="104" y1="310" x2="284" y2="310" />
+                <line class="qingblog-logo" x1="124" y1="407" x2="264" y2="407" />
+                <line class="qingblog-logo" x1="365" y1="115" x2="365" y2="245" />
+                <line class="qingblog-logo" x1="365" y1="286" x2="365" y2="386" />
+                <line class="qingblog-logo" x1="365" y1="427" x2="365" y2="507" />
+                <line class="qingblog-logo" x1="423" y1="490" x2="423" y2="380" />
+                <line class="qingblog-logo" x1="474" y1="440" x2="474" y2="330" />
+                <line class="qingblog-logo" x1="423" y1="345" x2="423" y2="255" />
+                <line class="qingblog-logo" x1="423" y1="220" x2="423" y2="140" />
+                <line class="qingblog-logo" x1="474" y1="285" x2="474" y2="205" />
+            </svg>
             <h1>QingBlog</h1>
 
             <div class="divider" style="width: 2px; margin: 0 0.5rem 0 1rem; border-radius: 100em;"></div>
 
             <ul>
                 <li>
-                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <li>
@@ -69,24 +85,21 @@
                             aria-hidden="true"></i>&nbsp;GitHub</a>
                 </li>
             </ul>
-
-            <div id="search-container">
-                <input id="search" type="search" placeholder="" />
-                <label for="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;搜索</label>
-                <button onclick="find(document.getElementById('search').value)"><i class="fa fa-level-down"
-                        aria-hidden="true"></i></button>
-            </div>
         </nav>
 
-        <div id="sidebar-toggle">
+        <div id="theme-toggle" class="nav-button btn-active">
+            <i class="fa fa-adjust" aria-hidden="true"></i>
+        </div>
+
+        <div id="sidebar-toggle" class="nav-button btn-active">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
     </header>
 
     <ul id="card-list">
-        
-            <li>
-                    <li>
+
+        <li>
+        <li>
             <a href="../pages/1.html">
                 <div class="card">
                     <div class="card-header">
@@ -95,9 +108,10 @@
                     <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
                     <p>Hello World!
 
-<br />
+                        <br />
 
-My name is QingXuanJun!</p>
+                        My name is QingXuanJun!
+                    </p>
                     <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
                     <div class="card-footer">
                         <div class="article-tag">
@@ -110,42 +124,43 @@ My name is QingXuanJun!</p>
         </li>
 
         <li>
-                    <li>
+        <li>
             <a href="../pages/2.html">
                 <div class="card">
                     <div class="card-header">
-                        <h2>关于“我”</h2>
+                        <h2>关于"我"</h2>
                     </div>
                     <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
                     <p>## 😋***Readme Text***
-<br />
-***I'm QingXuanJun | 我是轻玄君***
-<br />
-***以下是关于我的个人自述哦！***😙
-<br />
-***Here's a little self-introduction! ***😙
-<br />
----
-<b...</p>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <div class="card-footer">
-                        <div class="article-tag">
-                            <div class="tag"><span>个人</span></div>
-                        </div>
-                        <p>发布日期：2026年03月27日 17:29</p>
-                    </div>
+                        <br />
+                        ***I'm QingXuanJun | 我是轻玄君***
+                        <br />
+                        ***以下是关于我的个人自述哦！***😙
+                        <br />
+                        ***Here's a little self-introduction! ***😙
+                        <br />
+                        ---
+                        <b...< /p>
+                            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+                            <div class="card-footer">
+                                <div class="article-tag">
+                                    <div class="tag"><span>个人</span></div>
+                                </div>
+                                <p>发布日期：2026年03月27日 17:29</p>
+                            </div>
                 </div>
             </a>
         </li>
 
-</ul>
+    </ul>
 
-    <div id="back-to-top">
+    <div id="back-to-top" class="glass btn-active">
         <i class="fa fa-chevron-up"></i>
     </div>
 
     <footer>
-        <p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p>
+        <p>© 2025-2026 QingXuanJun & QingXuan2000. All
+            rights reserved.</p>
     </footer>
 
     <!-- ------------------------------------------------------------ -->

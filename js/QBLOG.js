@@ -1,3 +1,31 @@
+// 主题设置
+const themes = {
+  dark: {
+    '--text-color': '#FFFFFF',
+    '--text-shadow-color': '#204350',
+    '--text-secondary-color': '#a1a1a1',
+    '--bg-color': 'linear-gradient(180deg, #101d21, #0c1a20, #15232a, #0c1518)',
+    '--hero-bg-color': '#0b151a',
+    '--surface-color': 'rgba(0, 0, 0, 0.1)',
+    '--surface-border-color': 'rgba(0, 0, 0, 0.2)',
+    '--border-color': '#ffffff30',
+    '--box-shadow': '#00000020 0 0 10px 0px',
+    '--divider-color': 'rgba(255, 255, 255, 0.1)'
+  },
+  light: {
+    '--text-color': '#2c2c2c',
+    '--text-shadow-color': '#909090',
+    '--text-secondary-color': '#555555',
+    '--bg-color': 'linear-gradient(180deg, #e8eaee, #c9cbcf, #c8cccf, #babec0)',
+    '--hero-bg-color': '#e8eaed',
+    '--surface-color': 'rgba(245, 245, 245, 0.8)',
+    '--surface-border-color': 'rgba(0, 0, 0, 0.15)',
+    '--border-color': '#d0d0d0',
+    '--box-shadow': '#00000015 0 0 10px 0px',
+    '--divider-color': 'rgba(0, 0, 0, 0.15)'
+  }
+}
+
 // 网页标题切换功能
 function initWebTitle() {
   const webTitleTextList = [
@@ -122,118 +150,6 @@ function showAlert(color, message) {
 
 // -------------------------------------------------------------
 
-// 导航栏相关功能
-function initNavbar() {
-  const nav = document.getElementById('navbar');
-  if (!nav) return;
-
-  const logo = nav.querySelector('.logo');
-  const divider = nav.querySelector('.divider');
-
-  if (!logo || !divider) return;
-
-  logo.style.display = "none";
-
-  const firstLiHeight = nav.querySelector('ul li')?.offsetHeight;
-  if (firstLiHeight) {
-    logo.style.height = firstLiHeight + "px";
-    divider.style.height = (firstLiHeight - 10) + "px";
-  }
-
-  logo.style.display = "block";
-}
-
-// -------------------------------------------------------------
-
-// 搜索功能
-function find(q) {
-  if (!q) {
-    showAlert("red", "<i class=\"fa fa-exclamation-triangle\"></i>&nbsp;不能搜索空值");
-    return false;
-  }
-
-  // 清除之前的搜索结果
-  document.querySelectorAll('mark.h').forEach(m => m.replaceWith(m.textContent));
-  document.body.normalize();
-
-  // 创建正则表达式
-  const r = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-
-  // 收集所有文本节点
-  const textNodes = [];
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
-  while (walker.nextNode()) {
-    if (walker.currentNode.parentElement?.closest('mark.h,script,style,noscript,textarea')) continue;
-    textNodes.push(walker.currentNode);
-  }
-
-  let foundCount = 0;
-
-  // 遍历文本节点进行搜索
-  for (let i = textNodes.length - 1; i >= 0; i--) {
-    const node = textNodes[i];
-    if (!r.test(node.textContent)) continue;
-    r.lastIndex = 0;
-
-    const fragment = document.createDocumentFragment();
-    let lastIndex = 0;
-    node.textContent.replace(r, (match, p, offset) => {
-      fragment.append(node.textContent.slice(lastIndex, offset), document.createElement('mark'));
-      fragment.lastChild.className = 'h';
-      fragment.lastChild.textContent = match;
-      lastIndex = offset + match.length;
-      foundCount++;
-      return match;
-    });
-
-    if (lastIndex < node.textContent.length) fragment.append(node.textContent.slice(lastIndex));
-    node.parentNode.replaceChild(fragment, node);
-  }
-
-  if (foundCount > 0) {
-    showAlert("green", `<i class=\"fa fa-check-circle\"></i>&nbsp;找到 ${foundCount} 处匹配`);
-    return true;
-  } else {
-    showAlert("orange", "<i class=\"fa fa-info-circle\"></i>&nbsp;未找到匹配内容");
-    return false;
-  }
-}
-
-// -------------------------------------------------------------
-
-// 初始化搜索功能
-function initSearch() {
-  const searchInput = document.getElementById("search");
-  if (searchInput) {
-    searchInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        find(this.value);
-      }
-    });
-  }
-
-  // 初始化搜索容器样式
-  const searchDiv = document.getElementById("search-container");
-  if (searchDiv) {
-    const searchHeight = searchDiv.querySelector("input").offsetHeight;
-    const searchBtn = searchDiv.querySelector("button");
-    const headerNavHeight = document.getElementById("navbar").offsetHeight;
-    const barsBtn = document.getElementById("sidebar-toggle");
-    const exitBarsBtn = document.getElementById("sidebar-close");
-
-    searchBtn.style.height = searchHeight + "px";
-    searchBtn.style.width = searchHeight + "px";
-
-    barsBtn.style.height = headerNavHeight + "px";
-    barsBtn.style.width = headerNavHeight + "px";
-
-    exitBarsBtn.style.height = searchHeight + "px";
-    exitBarsBtn.style.width = searchHeight + "px";
-  }
-}
-
-// -------------------------------------------------------------
-
 // 初始化返回顶部按钮
 function initBackToTop() {
   const backToTopBtn = document.getElementById("back-to-top");
@@ -316,7 +232,7 @@ function initSidebar() {
 
 // -------------------------------------------------------------
 
-// 设置导航栏高度变量
+// 设置高度变量
 function setNavHeightVar() {
   const nav = document.getElementById('navbar');
   if (nav) {
@@ -328,41 +244,83 @@ function setNavHeightVar() {
 // -------------------------------------------------------------
 
 function loading() {
-  const body = document.body;
-  const qingBlogIcon = document.querySelector('.loading-icon');
-  const loading = document.querySelector('.loading');
-  const loadingDivs = document.querySelectorAll('.loading-div');
+  const firstLoading = localStorage.getItem('firstLoading') || "true";
 
-  if (loading) {
-    setTimeout(function () {
-      loadingDivs.forEach(function (div, index) {
-        index += 1;
+  if (firstLoading !== "false") {
+    const body = document.body;
+    const qingBlogIcon = document.querySelector('.loading-icon');
+    const loading = document.querySelector('.loading');
+    const loadingDivs = document.querySelectorAll('.loading-div');
 
-        if (index % 2 === 0) {
-          div.style.animation = "loadingRightAnimation 1.5s ease-out forwards";
-        } else {
-          div.style.animation = "loadingLeftAnimation 1.5s ease-out forwards";
-        };
-      });
+    if (loading) {
+      body.style.overflow = "hidden";
 
-      qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s ease-in-out forwards";
-    }, 1600);
+      setTimeout(function () {
+        loadingDivs.forEach(function (div, index) {
+          index += 1;
 
-    setTimeout(function () {
-      loading.style.display = "none";
-      body.style.overflow = "auto";
-    }, 3000);
+          if (index % 2 === 0) {
+            div.style.animation = "loadingRightAnimation 1.5s ease-out forwards";
+          } else {
+            div.style.animation = "loadingLeftAnimation 1.5s ease-out forwards";
+          };
+        });
+
+        qingBlogIcon.style.animation = "hideOverlayAnimation 0.5s ease-in-out forwards";
+      }, 1600);
+
+      setTimeout(function () {
+        loading.style.display = "none";
+        body.style.overflow = "auto";
+
+        localStorage.setItem('firstLoading', 'false');
+      }, 3000);
+    }
+  } else {
+    const loading = document.querySelector('.loading');
+    if (loading) loading.style.display = "none";
   }
 }
 
+// -------------------------------------------------------------
+
+// 主题切换
+function themesToggle() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+
+  const icon = toggle.querySelector('i');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    const themeConfig = themes[theme];
+
+    Object.entries(themeConfig).forEach(function ([key, value]) {
+      root.style.setProperty(key, value);
+    });
+  }
+
+  applyTheme(localStorage.getItem('theme') || 'dark');
+
+  toggle.addEventListener('click', () => {
+    const newTheme = (localStorage.getItem('theme') || 'dark') === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    icon.style.transform = `rotateZ(${newTheme === 'light' ? '180deg' : '0deg'})`
+    showAlert('green', `<i class="fa fa-${newTheme === 'light' ? 'sun' : 'moon'}-o"></i>&nbsp;已切换到${newTheme === 'light' ? '浅色' : '深色'}主题！`);
+  });
+}
+
+// -------------------------------------------------------------
+
 // DOM加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
-  initNavbar();
-  initSearch();
   initBackToTop();
   initSidebar();
   initWebTitle();
   setNavHeightVar();
+  themesToggle();
   loading();
 });
 

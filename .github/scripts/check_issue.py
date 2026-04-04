@@ -127,11 +127,11 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
     <script src="../js/QBLOG.js"></script>
 </head>
 
-<body>
+<body class="dark-theme">
     <div class="overlay"></div>
 
     <div id="sidebar">
-        <div id="sidebar-close">
+        <div id="sidebar-close" class="nav-button btn-active">
             <i class="fa fa-remove" aria-hidden="true"></i>
         </div>
 
@@ -143,7 +143,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
         <nav>
             <ul>
                 <li>
-                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
@@ -169,15 +169,31 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
     </div>
 
     <header>
-        <nav id="navbar">
-            <img src="../img/QingBlog Logo.svg" alt="Logo" class="logo" />
+        <nav id="navbar" class="glass">
+            <svg class="logo" width="40" height="40" viewBox="0 0 620 620" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle class="qingblog-logo-circle" cx="310" cy="310" r="250" />
+                <circle class="qingblog-logo-circle" cx="310" cy="310" r="300" />
+                <path class="qingblog-logo" d="M315 70L315 550" />
+                <line class="qingblog-logo" x1="124" y1="213" x2="264" y2="213" />
+                <line class="qingblog-logo" x1="104" y1="310" x2="284" y2="310" />
+                <line class="qingblog-logo" x1="124" y1="407" x2="264" y2="407" />
+                <line class="qingblog-logo" x1="365" y1="115" x2="365" y2="245" />
+                <line class="qingblog-logo" x1="365" y1="286" x2="365" y2="386" />
+                <line class="qingblog-logo" x1="365" y1="427" x2="365" y2="507" />
+                <line class="qingblog-logo" x1="423" y1="490" x2="423" y2="380" />
+                <line class="qingblog-logo" x1="474" y1="440" x2="474" y2="330" />
+                <line class="qingblog-logo" x1="423" y1="345" x2="423" y2="255" />
+                <line class="qingblog-logo" x1="423" y1="220" x2="423" y2="140" />
+                <line class="qingblog-logo" x1="474" y1="285" x2="474" y2="205" />
+            </svg>
             <h1>QingBlog</h1>
 
             <div class="divider" style="width: 2px; margin: 0 0.5rem 0 1rem; border-radius: 100em;"></div>
 
             <ul>
                 <li>
-                    <a href="../index.html?noloading=true"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <li>
@@ -189,16 +205,13 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
                             aria-hidden="true"></i>&nbsp;GitHub</a>
                 </li>
             </ul>
-
-            <div id="search-container">
-                <input id="search" type="search" placeholder="" />
-                <label for="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;搜索</label>
-                <button onclick="find(document.getElementById('search').value)"><i class="fa fa-level-down"
-                        aria-hidden="true"></i></button>
-            </div>
         </nav>
 
-        <div id="sidebar-toggle">
+        <div id="theme-toggle" class="nav-button btn-active">
+            <i class="fa fa-adjust" aria-hidden="true"></i>
+        </div>
+
+        <div id="sidebar-toggle" class="nav-button btn-active">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
     </header>
@@ -224,7 +237,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
         </div>
     </div>
 
-    <div id="back-to-top">
+    <div id="back-to-top" class="glass btn-active">
         <i class="fa fa-chevron-up"></i>
     </div>
 

@@ -119,11 +119,14 @@ cd QingBlog
 :root {
     --bg-color: linear-gradient(180deg, #122126, #0f2027, #17272e, #0c1518);
     --text-color: #FFFFFF;
+    --text-secondary-color: #a1a1a1;
     --nav-height: 0px;
     --primary-color: #388bff;
     --border-color: #ffffff30;
-    --background-light: rgba(255, 255, 255, 0.1);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-border-color: rgba(255, 255, 255, 0.2);
     --box-shadow: #00000020 inset 0 0 10px 0px;
+    --hero-bg-color: #0b151a;
 }
 ```
 
