@@ -28,24 +28,25 @@ def add_card(file_path, title, time, content, id, labels):
         card_start = html.find(f'<a href="{card_link}">')
         card_end = html.find('</li>', card_start)
         card_end += 5
-        new_card = f'''        <li>
-            <a href="{card_link}">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>{title}</h2>
-                    </div>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <p>{content}</p>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <div class="card-footer">
-                        <div class="article-tag">
-                            {tags_html}
-                        </div>
-                        <p>发布日期：{date}</p>
-                    </div>
+        new_card = f'''
+<li>
+    <a href="{card_link}">
+        <div class="card">
+            <div class="card-header">
+                <h2>{title}</h2>
+            </div>
+            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+            <p>{content}</p>
+            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+            <div class="card-footer">
+                <div class="article-tag">
+                    {tags_html}
                 </div>
-            </a>
-        </li>
+                <p>发布日期：{date}</p>
+            </div>
+        </div>
+    </a>
+</li>
 '''
         html = html[:card_start] + new_card + html[card_end:]
         print(f"✅ 卡片已更新：{title}")
@@ -53,25 +54,26 @@ def add_card(file_path, title, time, content, id, labels):
         card_list_start = html.find('class="card-list"')
         ul_start = html.rfind('<ul', 0, card_list_start)
         ul_end = html.find('</ul>', ul_start)
-        card = f'''        <li>
-            <a href="../pages/{id}.html">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>{title}</h2>
-                    </div>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <p>{content}</p>
-                    <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
-                    <div class="card-footer">
-                        <div class="article-tag">
-                            {tags_html}
-                        </div>
-                        <p>发布日期：{date}</p>
-                    </div>
-                </div>
-            </a>
-        </li>
-'''
+        card = f'''
+                    <li>
+                        <a href="../pages/{id}.html">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>{title}</h2>
+                                </div>
+                                <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+                                <p>{content}</p>
+                                <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+                                <div class="card-footer">
+                                    <div class="article-tag">
+                                        {tags_html}
+                                    </div>
+                                    <p>发布日期：{date}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                '''
         new_html = html[:ul_end] + card + html[ul_end:]
         html = new_html
         print(f"✅ 卡片已添加：{title}")
@@ -110,7 +112,8 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
         for label in labels[:3]:
             tags_html += f'<div class="tag"><span>{label}</span></div>'
 
-    article_template = f'''<!DOCTYPE html>
+    article_template = f'''
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -255,20 +258,20 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
     <!-- ------------------------------------------------------------ -->
 
     <style>
-        .card-header {{
+        .card-header {
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 10px;
-        }}
+        }
 
-        .card-header p {{
+        .card-header p {
             justify-content: center;
-        }}
+        }
 
-        .card-content {{
+        .card-content {
             min-height: calc(100dvh - (var(--nav-height) + 26rem));
-        }}
+        }
     </style>
 
     <!-- ------------------------------------------------------------ -->
