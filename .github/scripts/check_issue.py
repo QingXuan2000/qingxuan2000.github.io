@@ -258,20 +258,20 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
     <!-- ------------------------------------------------------------ -->
 
     <style>
-        .card-header {
+        .card-header {{
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 10px;
-        }
+        }}
 
-        .card-header p {
+        .card-header p {{
             justify-content: center;
-        }
+        }}
 
-        .card-content {
+        .card-content {{
             min-height: calc(100dvh - (var(--nav-height) + 26rem));
-        }
+        }}
     </style>
 
     <!-- ------------------------------------------------------------ -->
