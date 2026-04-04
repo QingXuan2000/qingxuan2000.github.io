@@ -7,11 +7,11 @@ const themes = {
     '--bg-color': 'linear-gradient(180deg, rgba(10, 18, 28, 1), rgba(11, 21, 26, 1), rgba(8, 16, 24, 1), rgba(4, 7, 12, 1))',
     '--hero-bg-color': 'rgba(11, 21, 26, 1)',
     '--surface-color': 'linear-gradient(rgba(25, 45, 55, 0.4), transparent)',
-    '--surface-border-color': 'rgba(0, 0, 0, 0.1)',
-    '--border-color': 'rgba(0, 0, 0, 0.1)',
+    '--surface-border-color': 'rgba(245, 245, 245, 0.1)',
+    '--border-color': 'rgba(245, 245, 245, 0.1)',
     '--box-shadow': 'rgba(0, 0, 0, 0.2) 0 0 10px 0px',
     '--divider-color': 'rgba(255, 255, 255, 0.1)',
-    '--backdrop-blur': 'blur(0.5em)',
+    '--backdrop-blur': 'blur(0.7em)',
   },
   light: {
     '--text-color': 'rgba(44, 44, 44, 1)',
@@ -24,7 +24,7 @@ const themes = {
     '--border-color': 'rgba(255, 255, 255, 0.1)',
     '--box-shadow': 'rgba(0, 0, 0, 0.1) 0 0 10px 0px',
     '--divider-color': 'rgba(0, 0, 0, 0.1)',
-    '--backdrop-blur': 'blur(0.5em)',
+    '--backdrop-blur': 'blur(0.7em)',
   },
 }
 
