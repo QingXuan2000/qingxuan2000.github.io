@@ -665,7 +665,15 @@ body.light-theme .loading-div {
         display: grid;
     }
 
-    #navbar ul li {
+    #navbar {
+        justify-content: center;
+    }
+
+    #navbar .divider {
+        display: none;
+    }
+
+    #navbar ul {
         display: none;
     }
 }
