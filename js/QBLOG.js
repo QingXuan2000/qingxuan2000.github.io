@@ -19,7 +19,7 @@ const themes = {
     '--text-color': 'rgba(44, 44, 44, 1)',
     '--text-shadow-color': 'rgba(144, 144, 144, 1)',
     '--text-secondary-color': 'rgba(85, 85, 85, 1)',
-    '--bg-color': 'linear-gradient(180deg, rgba(235, 236, 238, 1), rgba(228, 229, 231, 1), rgba(217, 218, 220, 1), rgba(208, 209, 211, 1))',
+    '--bg-color': 'linear-gradient(180deg, rgba(233, 233, 237, 1), rgba(224, 225, 228, 1), rgba(220, 220, 220, 1), rgba(148, 146, 146, 1))',
     '--hero-bg-color': 'rgba(217, 218, 220, 1)',
     '--surface-color': 'linear-gradient(rgba(240, 240, 240, 0.4), transparent)',
     '--surface-border-color': 'rgba(255, 255, 255, 0.1)',
@@ -242,6 +242,7 @@ function setNavHeightVar() {
   if (nav) {
     const height = nav.offsetHeight;
     document.documentElement.style.setProperty('--nav-height', `${height}px`);
+    return height;
   }
 }
 

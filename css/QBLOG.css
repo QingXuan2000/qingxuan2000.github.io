@@ -104,7 +104,7 @@
 #sidebar-close:hover,
 #sidebar-toggle:hover,
 #theme-toggle:hover,
-#card-list .card:hover,
+#card-list-box #card-list .card:hover,
 .article-tag .tag:hover {
     box-shadow:
         0 6px 12px var(--box-shadow-color),
@@ -115,7 +115,7 @@
 #sidebar-close:active,
 #sidebar-toggle:active,
 #theme-toggle:active,
-#card-list .card:active,
+#card-list-box #card-list .card:active,
 #navbar li:active,
 #sidebar nav ul li:active {
     box-shadow:
@@ -293,6 +293,7 @@ p,
     padding: 1rem;
     border-radius: 0.8rem;
     min-width: 14em;
+    opacity: 0;
     transform: translateX(110%);
     backdrop-filter: var(--backdrop-blur);
 }
@@ -398,6 +399,10 @@ header {
     align-items: center;
     padding: 1rem;
     flex-wrap: nowrap;
+
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 
 #navbar {
@@ -639,9 +644,23 @@ nav li {
 /* 卡片列表样式 */
 /* ------------------------------------------------------------- */
 
-#card-list {
-    border-top: 2px solid rgba(161, 161, 161, 0.4);
+#card-list-box {
+    display: flex;
+    justify-content: center;
+
+    border-top: 2px solid var(--divider-color);
+}
+
+#card-list-box #card-list {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
     min-height: calc(100vh - (2.4em));
+
+    width: 794px;
+}
+
+#card-list-box #card-list li {
+    list-style: none;
 }
 
 /* ------------------------------------------------------------- */
@@ -743,6 +762,12 @@ body.light-theme .loading-div {
 /* ------------------------------------------------------------- */
 /* 媒体查询 */
 /* ------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    #card-list-box #card-list {
+        width: 100%;
+    }
+}
 
 @media (max-width: 768px) {
     #sidebar-toggle {
