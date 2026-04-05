@@ -516,7 +516,6 @@ function contextMenu(option) {
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 
-    menu.style.visibility = 'hidden';
     menu.classList.add('show');
 
     const menuWidth = menu.offsetWidth;
@@ -539,6 +538,14 @@ function contextMenu(option) {
     menu.style.top = y + 'px';
     menu.style.visibility = 'visible';
   });
+
+  menu.addEventListener('click', function (e) {
+    e.stopPropagation();
+  })
+
+  document.addEventListener('click', function () {
+    menu.classList.remove('show');
+  })
 
   if (option === "copy") {
     const userSelectText = window.getSelection().toString();
