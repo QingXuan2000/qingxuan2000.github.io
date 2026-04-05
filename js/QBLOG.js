@@ -1,7 +1,7 @@
 // 主题设置
 const themes = {
   dark: {
-    '--primary-color': '#388bff',
+    '--primary-color': '#d9d9deb8',
     '--text-color': 'rgba(255, 255, 255, 1)',
     '--text-shadow-color': 'rgba(32, 67, 80, 1)',
     '--text-secondary-color': 'rgba(161, 161, 161, 1)',
@@ -15,7 +15,7 @@ const themes = {
     '--backdrop-blur': 'blur(0.7em)',
   },
   light: {
-    '--primary-color': '#388bff',
+    '--primary-color': '#2c2c2db8',
     '--text-color': 'rgba(44, 44, 44, 1)',
     '--text-shadow-color': 'rgba(144, 144, 144, 1)',
     '--text-secondary-color': 'rgba(85, 85, 85, 1)',
@@ -122,7 +122,11 @@ const componentBox = `
                 </li>
 
                 <li>
-                    <a href="../pages.html"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                    <a href="../pages/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                </li>
+
+                <li>
+                    <a href="../tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
                 </li>
 
                 <li>
@@ -162,7 +166,13 @@ const componentBox = `
                 <div class="divider" style="width: 100%; height: 1px;"></div>
 
                 <li>
-                    <a href="../pages.html"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                    <a href="../pages/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                </li>
+
+                <div class="divider" style="width: 100%; height: 1px;"></div>
+
+                <li>
+                    <a href="../tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
