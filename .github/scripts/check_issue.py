@@ -31,9 +31,11 @@ class Config:
 # ==================== 工具函数 ====================
 
 def format_github_date(iso_date: str) -> str:
-    """将 ISO 格式日期转换为中文友好格式"""
+    """将 ISO 格式日期转换为 UTC+8 中文友好格式"""
+    from datetime import timezone, timedelta
     dt = datetime.fromisoformat(iso_date.replace("Z", "+00:00"))
-    return dt.strftime("%Y年%m月%d日 %H:%M")
+    dt_utc8 = dt.astimezone(timezone(timedelta(hours=8)))
+    return dt_utc8.strftime("%Y年%m月%d日 %H:%M")
 
 
 def truncate_content(content: str, max_length: int = 150) -> str:

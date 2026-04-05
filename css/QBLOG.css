@@ -510,8 +510,8 @@ nav li {
 
 .card-footer p {
     position: absolute;
-    bottom: 0;
-    right: 5px;
+    bottom: -1em;
+    right: -0.5em;
     font-size: 0.6em;
 }
 
