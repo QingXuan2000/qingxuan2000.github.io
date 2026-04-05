@@ -95,7 +95,7 @@ const componentBox = `
 
     <header>
         <nav id="navbar" class="glass">
-            <svg class="loading-logo" width="40" height="40" viewBox="0 0 620 620" fill="none"
+            <svg class="loading-logo" width="35" height="35" viewBox="0 0 620 620" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <circle class="qingblog-loading-icon-circle" cx="310" cy="310" r="250" />
                 <circle class="qingblog-loading-icon-circle" cx="310" cy="310" r="300" />
