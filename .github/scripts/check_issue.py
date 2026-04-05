@@ -294,15 +294,21 @@ class TagManager:
         return html[:tag_cloud_end] + new_tag_html + html[tag_cloud_end:]
     
     def sync_card_to_tags(self, issue_id: str, title: str, date: str, 
-                         content: str, labels: List[str], operation: str = "add") -> None:
-        """同步卡片到所有标签页面"""
-        for label in labels:
+                         content: str, target_labels: List[str], 
+                         all_labels: List[str], operation: str = "add") -> None:
+        """同步卡片到指定标签页面
+        
+        Args:
+            target_labels: 要同步到的目标标签页面列表
+            all_labels: 文章的所有标签（用于卡片显示）
+        """
+        for label in target_labels:
             tag_file_path = os.path.join(self.tags_dir, f"{label}.html")
             
             if operation == "add":
                 self.create_tag_page(label)
                 processor = HTMLProcessor(tag_file_path)
-                processor.add_or_update_card(title, date, content, issue_id, labels)
+                processor.add_or_update_card(title, date, content, issue_id, all_labels)
                 processor.save()
                 print(f"✅ 卡片已添加到标签页：{label}")
             elif operation == "remove":
@@ -510,7 +516,7 @@ class BlogGenerator:
         
         # 从标签页面删除并更新标签云
         if old_labels:
-            self.tag_manager.sync_card_to_tags(issue_id, "", "", "", old_labels, "remove")
+            self.tag_manager.sync_card_to_tags(issue_id, "", "", "", old_labels, [], "remove")
             self.tag_manager.update_tag_cloud(old_labels, increment=False)
         
         print("=" * 50)
@@ -573,7 +579,7 @@ class BlogGenerator:
             if self.labels:
                 self.tag_manager.sync_card_to_tags(
                     issue_id, self.config.ISSUE_TITLE, formatted_date,
-                    truncated_body, self.labels, "add"
+                    truncated_body, self.labels, self.labels, "add"
                 )
                 self.tag_manager.update_tag_cloud(self.labels, increment=True)
         else:
@@ -582,14 +588,14 @@ class BlogGenerator:
             
             # 删除不需要的标签
             if to_remove:
-                self.tag_manager.sync_card_to_tags(issue_id, "", "", "", to_remove, "remove")
+                self.tag_manager.sync_card_to_tags(issue_id, "", "", "", to_remove, [], "remove")
                 self.tag_manager.update_tag_cloud(to_remove, increment=False)
             
             # 添加新标签
             if to_add:
                 self.tag_manager.sync_card_to_tags(
                     issue_id, self.config.ISSUE_TITLE, formatted_date,
-                    truncated_body, to_add, "add"
+                    truncated_body, to_add, self.labels, "add"
                 )
                 self.tag_manager.update_tag_cloud(to_add, increment=True)
             
@@ -597,7 +603,7 @@ class BlogGenerator:
             if to_keep:
                 self.tag_manager.sync_card_to_tags(
                     issue_id, self.config.ISSUE_TITLE, formatted_date,
-                    truncated_body, to_keep, "add"
+                    truncated_body, to_keep, self.labels, "add"
                 )
     
     def run(self) -> None:
