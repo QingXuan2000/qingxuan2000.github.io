@@ -134,7 +134,7 @@
     box-sizing: border-box;
 }
 
-*::-webkit-scrollbar {
+*:not(.article-content pre):not(.article-content pre code)::-webkit-scrollbar {
     display: none;
 }
 
@@ -539,6 +539,7 @@ nav li {
     visibility: hidden;
     display: grid;
     place-content: center;
+    box-shadow: var(--box-shadow-color) 0 4px 20px 0px;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -660,7 +661,7 @@ footer {
 /* SVG Logo动画 */
 /* ------------------------------------------------------------- */
 
-.qingblog-logo {
+.qingblog-loading-icon {
     stroke: var(--text-color);
     stroke-width: 20;
     stroke-linecap: round;
@@ -670,7 +671,7 @@ footer {
     animation: strokeAnimation 1.2s ease-in-out forwards;
 }
 
-.qingblog-logo-circle {
+.qingblog-loading-icon-circle {
     stroke: var(--text-color);
     stroke-width: 20;
     stroke-linejoin: round;
@@ -679,6 +680,11 @@ footer {
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
     animation: strokeAnimation 1.5s ease-in-out forwards;
+}
+
+.qingblog-logo {
+    stroke: var(--text-color);
+    fill: var(--text-color);
 }
 
 /* ------------------------------------------------------------- */

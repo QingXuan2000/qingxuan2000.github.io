@@ -324,6 +324,22 @@ function themesToggle() {
 
 // -------------------------------------------------------------
 
+function preCopy() {
+  document.querySelectorAll('.copy-btn').forEach(function(copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      const parents = this.parentElement;
+
+      const code = parents.querySelector('code').textContent;
+      
+      navigator.clipboard.writeText(code);
+
+      showAlert('green', '<i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;复制成功！');
+    })
+  })
+}
+
+// -------------------------------------------------------------
+
 // DOM加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
   initBackToTop();
@@ -332,6 +348,7 @@ window.addEventListener('DOMContentLoaded', function () {
   setNavHeightVar();
   themesToggle();
   loading();
+  preCopy();
 });
 
 // 监听窗口大小变化

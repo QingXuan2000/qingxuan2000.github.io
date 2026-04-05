@@ -84,11 +84,15 @@ def add_card(file_path, title, time, content, id, labels):
 def md_to_html(md_text: str) -> str:
     extensions = [
         "extra", "toc", "sane_lists", "codehilite",
-        "nl2br", "footnotes"
+        "nl2br", "footnotes", "fenced_code"
     ]
-    
+
     extension_configs = {
-        "codehilite": {"linenums": False, "css_class": "codehilite"}
+        "codehilite": {
+            "linenums": False,
+            "css_class": "codehilite",
+            "use_pygments": False
+        }
     }
 
     html_text = markdown.markdown(
@@ -97,6 +101,22 @@ def md_to_html(md_text: str) -> str:
         extension_configs=extension_configs,
         output_format="html5"
     )
+
+    # 为代码块添加复制按钮
+    import re
+
+    # 匹配 <pre><code>...</code></pre> 结构
+    def add_copy_button(match):
+        pre_content = match.group(0)
+        # 在 <pre> 标签后插入复制按钮
+        copy_btn = '<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>&nbsp;Copy</span>'
+        # 在 <pre> 和第一个子元素之间插入按钮
+        pre_tag_end = pre_content.find('>') + 1
+        return pre_content[:pre_tag_end] + '\n                ' + copy_btn + pre_content[pre_tag_end:]
+
+    # 匹配 <pre> 标签及其内容
+    html_text = re.sub(r'<pre[^>]*>.*?</pre>', add_copy_button, html_text, flags=re.DOTALL)
+
     return html_text
 
 def generate_article_page(issue_id, title, author, publish_time, content, labels):
@@ -165,22 +185,22 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
 
     <header>
         <nav id="navbar" class="glass">
-            <svg class="logo" width="40" height="40" viewBox="0 0 620 620" fill="none"
+            <svg class="loading-logo" width="620" height="620" viewBox="0 0 620 620" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
-                <circle class="qingblog-logo-circle" cx="310" cy="310" r="250" />
-                <circle class="qingblog-logo-circle" cx="310" cy="310" r="300" />
-                <path class="qingblog-logo" d="M315 70L315 550" />
-                <line class="qingblog-logo" x1="124" y1="213" x2="264" y2="213" />
-                <line class="qingblog-logo" x1="104" y1="310" x2="284" y2="310" />
-                <line class="qingblog-logo" x1="124" y1="407" x2="264" y2="407" />
-                <line class="qingblog-logo" x1="365" y1="115" x2="365" y2="245" />
-                <line class="qingblog-logo" x1="365" y1="286" x2="365" y2="386" />
-                <line class="qingblog-logo" x1="365" y1="427" x2="365" y2="507" />
-                <line class="qingblog-logo" x1="423" y1="490" x2="423" y2="380" />
-                <line class="qingblog-logo" x1="474" y1="440" x2="474" y2="330" />
-                <line class="qingblog-logo" x1="423" y1="345" x2="423" y2="255" />
-                <line class="qingblog-logo" x1="423" y1="220" x2="423" y2="140" />
-                <line class="qingblog-logo" x1="474" y1="285" x2="474" y2="205" />
+                <circle class="qingblog-loading-icon-circle" cx="310" cy="310" r="250" />
+                <circle class="qingblog-loading-icon-circle" cx="310" cy="310" r="300" />
+                <path class="qingblog-loading-icon" d="M315 70L315 550" />
+                <line class="qingblog-loading-icon" x1="124" y1="213" x2="264" y2="213" />
+                <line class="qingblog-loading-icon" x1="104" y1="310" x2="284" y2="310" />
+                <line class="qingblog-loading-icon" x1="124" y1="407" x2="264" y2="407" />
+                <line class="qingblog-loading-icon" x1="365" y1="115" x2="365" y2="245" />
+                <line class="qingblog-loading-icon" x1="365" y1="286" x2="365" y2="386" />
+                <line class="qingblog-loading-icon" x1="365" y1="427" x2="365" y2="507" />
+                <line class="qingblog-loading-icon" x1="423" y1="490" x2="423" y2="380" />
+                <line class="qingblog-loading-icon" x1="474" y1="440" x2="474" y2="330" />
+                <line class="qingblog-loading-icon" x1="423" y1="345" x2="423" y2="255" />
+                <line class="qingblog-loading-icon" x1="423" y1="220" x2="423" y2="140" />
+                <line class="qingblog-loading-icon" x1="474" y1="285" x2="474" y2="205" />
             </svg>
             <h1>QingBlog</h1>
 
@@ -220,7 +240,7 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
 
         <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
 
-        <div class="card-content">
+        <div class="card-content article-content">
             {content_html}
         </div>
 
@@ -242,29 +262,12 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
 
     <!-- ------------------------------------------------------------ -->
 
+    <link rel="stylesheet" href="../css/blogArticle.css">
+
     <link rel="stylesheet" href="../css/QBLOG.css" />
     <script src="../js/QBLOG.js"></script>
 
     <link rel="stylesheet" href="../css/font-awesome.min.css" />
-
-    <!-- ------------------------------------------------------------ -->
-
-    <style>
-        .card-header {{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-        }}
-
-        .card-header p {{
-            justify-content: center;
-        }}
-
-        .card-content {{
-            min-height: calc(100dvh - (var(--nav-height) + 26rem));
-        }}
-    </style>
 
     <!-- ------------------------------------------------------------ -->
 
