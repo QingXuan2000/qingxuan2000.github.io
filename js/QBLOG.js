@@ -568,6 +568,20 @@ function contextMenu(option) {
 
 // -------------------------------------------------------------
 
+function clickTagToTagPage() {
+  document.querySelectorAll('.tag').forEach(function (tag) {
+    tag.addEventListener('click', function (clickTag) {
+      clickTag.preventDefault();
+
+      const clickTagText = tag.querySelector('span').textContent;
+
+      location.href = `../tags/${clickTagText}.html`
+    })
+  })
+}
+
+// -------------------------------------------------------------
+
 // DOM加载完成后初始化所有功能
 window.addEventListener('DOMContentLoaded', function () {
   initBackToTop();
@@ -579,6 +593,7 @@ window.addEventListener('DOMContentLoaded', function () {
   preCopy();
   removeHeaderBackground();
   contextMenu();
+  clickTagToTagPage();
 });
 
 // 监听窗口大小变化
