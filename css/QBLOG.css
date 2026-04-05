@@ -703,11 +703,6 @@ footer {
     animation: strokeAnimation 1.5s ease-in-out forwards;
 }
 
-.qingblog-logo {
-    stroke: var(--text-color);
-    fill: var(--text-color);
-}
-
 /* ------------------------------------------------------------- */
 /* Loading动画 */
 /* ------------------------------------------------------------- */

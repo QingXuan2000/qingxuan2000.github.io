@@ -2,7 +2,7 @@ name: QingBlog Build
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, deleted]
 
 jobs:
   check-issue:
@@ -31,12 +31,13 @@ jobs:
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
           ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
           ISSUE_ID: ${{ github.event.issue.number }}
+          ISSUE_ACTION: ${{ github.event.action }}
           TARGET_AUTHOR: "QingXuan2000"
         run: python .github/scripts/check_issue.py
 
       - name: 💾 提交更改
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📝 新增文章: ${{ github.event.issue.title }}"
+          commit_message: "📝 ${{ github.event.action == 'deleted' && '删除文章' || '更新文章' }}: ${{ github.event.issue.title }}"
 
           file_pattern: '*'

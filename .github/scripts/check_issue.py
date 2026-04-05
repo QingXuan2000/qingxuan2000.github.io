@@ -2,6 +2,7 @@ import os
 import json
 from datetime import datetime
 import markdown
+import re
 
 title = os.getenv("ISSUE_TITLE", "")
 body = os.getenv("ISSUE_BODY", "") or "(无内容)"
@@ -10,7 +11,52 @@ author = os.getenv("ISSUE_AUTHOR", "")
 labels_json = os.getenv("ISSUE_LABELS", "[]")
 target_author = os.getenv("TARGET_AUTHOR", "")
 issue_id = os.getenv("ISSUE_ID", "")
+issue_action = os.getenv("ISSUE_ACTION", "opened")
 workspace = os.getenv("GITHUB_WORKSPACE") + "/"
+
+def remove_card(file_path, issue_id):
+    """删除指定ID的文章卡片"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        html = f.read()
+
+    card_link = f"../pages/{issue_id}.html"
+    if card_link in html:
+        # 找到卡片所在的<li>标签
+        card_start = html.find(f'<a href="{card_link}">')
+        if card_start == -1:
+            card_link = f"./pages/{issue_id}.html"
+            card_start = html.find(f'<a href="{card_link}">')
+        
+        if card_start != -1:
+            # 找到<li>的开始位置
+            li_start = html.rfind('<li>', 0, card_start)
+            # 找到</li>的结束位置
+            li_end = html.find('</li>', card_start)
+            if li_end != -1:
+                li_end += 5
+                # 删除整个<li>
+                html = html[:li_start] + html[li_end:]
+                print(f"✅ 卡片已删除：ID {issue_id}")
+            else:
+                print(f"⚠️ 未找到卡片结束标签：ID {issue_id}")
+        else:
+            print(f"⚠️ 未找到卡片链接：ID {issue_id}")
+    else:
+        print(f"ℹ️ 卡片不存在：ID {issue_id}")
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+def delete_article(issue_id):
+    """删除文章文件"""
+    file_path = os.path.join(workspace, "pages", f"{issue_id}.html")
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print(f"✅ 文章已删除：{file_path}")
+        return True
+    else:
+        print(f"ℹ️ 文章文件不存在：{file_path}")
+        return False
 
 def add_card(file_path, title, time, content, id, labels):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -103,18 +149,12 @@ def md_to_html(md_text: str) -> str:
     )
 
     # 为代码块添加复制按钮
-    import re
-
-    # 匹配 <pre><code>...</code></pre> 结构
     def add_copy_button(match):
         pre_content = match.group(0)
-        # 在 <pre> 标签后插入复制按钮
         copy_btn = '<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>&nbsp;Copy</span>'
-        # 在 <pre> 和第一个子元素之间插入按钮
         pre_tag_end = pre_content.find('>') + 1
         return pre_content[:pre_tag_end] + '\n                ' + copy_btn + pre_content[pre_tag_end:]
 
-    # 匹配 <pre> 标签及其内容
     html_text = re.sub(r'<pre[^>]*>.*?</pre>', add_copy_button, html_text, flags=re.DOTALL)
 
     return html_text
@@ -193,12 +233,10 @@ def generate_article_page(issue_id, title, author, publish_time, content, labels
     file_path = os.path.join(pages_dir, f"{issue_id}.html")
     
     if os.path.exists(file_path):
-        # 更新现有文件
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(article_template)
         print(f"✅ 文章已更新：{file_path}")
     else:
-        # 创建新文件
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(article_template)
         print(f"✅ 文章已生成：{file_path}")
@@ -210,17 +248,39 @@ def format_github_date_compact(iso_date: str) -> str:
 def main():
     labels = json.loads(labels_json)
     is_target_author = author == target_author
-    formatted_date = format_github_date_compact(date_str)
 
     print(f"作者: {author}")
-    print(f"标签: {labels}")
     print(f"目标作者: {target_author}")
     print(f"作者匹配: {is_target_author}")
+    print(f"操作类型: {issue_action}")
 
-    if is_target_author:
-        print("\n" + "=" * 50)
-        print("✅ Issue详细信息如下：")
+    if not is_target_author:
+        print("❌ 跳过：作者不匹配")
+        return
+
+    print("\n" + "=" * 50)
+    print(f"✅ Issue操作：{issue_action}")
+    print("=" * 50)
+
+    if issue_action == "deleted":
+        # 删除操作
+        print(f"\n🗑️ 删除文章：ID {issue_id}")
+        
+        # 删除文章文件
+        delete_article(issue_id)
+        
+        # 从index.html中删除卡片
+        remove_card(workspace + 'index.html', issue_id)
+        
+        # 从pages.html中删除卡片
+        remove_card(workspace + 'pages.html', issue_id)
+        
         print("=" * 50)
+        print("✅ 删除操作完成")
+        
+    else:
+        # 创建或编辑操作
+        formatted_date = format_github_date_compact(date_str)
 
         print(f"\n📌 标题：{title}")
         print(f"\n📝 内容：\n{body}")
@@ -255,9 +315,6 @@ def main():
             issue_id,
             labels=labels
         )
-
-    else:
-        print("❌ 跳过生成")
 
 if __name__ == "__main__":
     main()
