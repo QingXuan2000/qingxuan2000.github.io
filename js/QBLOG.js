@@ -19,7 +19,7 @@ const themes = {
     '--text-color': 'rgba(44, 44, 44, 1)',
     '--text-shadow-color': 'rgba(144, 144, 144, 1)',
     '--text-secondary-color': 'rgba(85, 85, 85, 1)',
-    '--bg-color': 'linear-gradient(180deg, rgba(233, 233, 237, 1), rgba(224, 225, 228, 1), rgba(220, 220, 220, 1), rgba(148, 146, 146, 1))',
+    '--bg-color': 'linear-gradient(180deg, rgba(233, 233, 237, 1), rgba(224, 225, 228, 1), rgba(220, 220, 220, 1), rgba(215, 213, 213, 1))',
     '--hero-bg-color': 'rgba(217, 218, 220, 1)',
     '--surface-color': 'linear-gradient(rgba(240, 240, 240, 0.4), transparent)',
     '--surface-border-color': 'rgba(255, 255, 255, 0.1)',
@@ -326,17 +326,37 @@ function themesToggle() {
 // -------------------------------------------------------------
 
 function preCopy() {
-  document.querySelectorAll('.copy-btn').forEach(function(copyBtn) {
-    copyBtn.addEventListener('click', function() {
+  document.querySelectorAll('.copy-btn').forEach(function (copyBtn) {
+    copyBtn.addEventListener('click', function () {
       const parents = this.parentElement;
 
       const code = parents.querySelector('code').textContent;
-      
+
       navigator.clipboard.writeText(code);
 
       showAlert('green', '<i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;复制成功！');
     })
   })
+}
+
+// -------------------------------------------------------------
+
+function removeHeaderBackground() {
+  const heroDiv = document.getElementById('hero-div');
+
+  if (!heroDiv) return
+
+  const header = document.querySelector('header');
+
+  // 监听滚动事件
+  window.addEventListener("scroll", function () {
+    const scrollTop = window.scrollY;
+    if (scrollTop > (setNavHeightVar() + setNavHeightVar())) {
+      header.style.background = "none";
+    } else {
+      header.style.background = "var(--hero-bg-color)";
+    }
+  });
 }
 
 // -------------------------------------------------------------
@@ -350,6 +370,7 @@ window.addEventListener('DOMContentLoaded', function () {
   themesToggle();
   loading();
   preCopy();
+  removeHeaderBackground();
 });
 
 // 监听窗口大小变化
