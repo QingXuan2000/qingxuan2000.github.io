@@ -26,16 +26,17 @@ class Config:
     ISSUE_ID = os.getenv("ISSUE_ID", "")
     ISSUE_ACTION = os.getenv("ISSUE_ACTION", "opened")
     WORKSPACE = os.getenv("GITHUB_WORKSPACE", "") + "/"
+    UTC_OFFSET = int(os.getenv("UTC_OFFSET", "8"))
 
 
 # ==================== 工具函数 ====================
 
-def format_github_date(iso_date: str) -> str:
-    """将 ISO 格式日期转换为 UTC+8 中文友好格式"""
+def format_github_date(iso_date: str, utc_offset: int = 8) -> str:
+    """将 ISO 格式日期转换为指定 UTC 偏移量的中文友好格式"""
     from datetime import timezone, timedelta
     dt = datetime.fromisoformat(iso_date.replace("Z", "+00:00"))
-    dt_utc8 = dt.astimezone(timezone(timedelta(hours=8)))
-    return dt_utc8.strftime("%Y年%m月%d日 %H:%M")
+    dt_local = dt.astimezone(timezone(timedelta(hours=utc_offset)))
+    return dt_local.strftime("%Y年%m月%d日 %H:%M")
 
 
 def truncate_content(content: str, max_length: int = 150) -> str:
@@ -487,7 +488,7 @@ class BlogGenerator:
     
     def log_issue_info(self) -> None:
         """打印 Issue 基本信息"""
-        formatted_date = format_github_date(self.config.ISSUE_DATE)
+        formatted_date = format_github_date(self.config.ISSUE_DATE, self.config.UTC_OFFSET)
         
         print(f"\n📌 标题：{self.config.ISSUE_TITLE}")
         print(f"\n📝 内容：\n{self.config.ISSUE_BODY}")
@@ -539,7 +540,7 @@ class BlogGenerator:
     def handle_creation_or_update(self) -> None:
         """处理文章创建或更新"""
         issue_id = self.config.ISSUE_ID
-        formatted_date = format_github_date(self.config.ISSUE_DATE)
+        formatted_date = format_github_date(self.config.ISSUE_DATE, self.config.UTC_OFFSET)
         truncated_body = truncate_content(self.config.ISSUE_BODY)
         
         self.log_issue_info()

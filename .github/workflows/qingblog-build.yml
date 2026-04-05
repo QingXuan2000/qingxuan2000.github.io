@@ -33,6 +33,7 @@ jobs:
           ISSUE_ID: ${{ github.event.issue.number }}
           ISSUE_ACTION: ${{ github.event.action }}
           TARGET_AUTHOR: "QingXuan2000"
+          UTC_OFFSET: "8"
         run: python .github/scripts/check_issue.py
 
       - name: 💾 提交更改
