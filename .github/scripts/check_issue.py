@@ -20,7 +20,16 @@ def remove_card(file_path, issue_id):
     with open(file_path, 'r', encoding='utf-8') as f:
         html = f.read()
 
+    file_path_norm = file_path.replace('\\', '/')
+    if 'tags/' in file_path_norm:
+        correct_link = f"../pages/{issue_id}.html"
+    elif 'pages/' in file_path_norm and 'index.html' in file_path_norm:
+        correct_link = f"./{issue_id}.html"
+    else:
+        correct_link = f"./pages/{issue_id}.html"
+    
     card_link_patterns = [
+        correct_link,
         f"../pages/{issue_id}.html",
         f"./pages/{issue_id}.html",
         f"./{issue_id}.html"
@@ -75,12 +84,28 @@ def add_card(file_path, title, time, content, id, labels):
         for label in labels[:3]:
             tags_html += f'<div class="tag"><span>{label}</span></div>'
 
-    card_link = f"./{id}.html"
-    if card_link in html:
-        card_start = html.find(f'<a href="{card_link}">')
-        card_end = html.find('</li>', card_start)
-        card_end += 5
-        new_card = f'''
+    file_path_norm = file_path.replace('\\', '/')
+    if 'tags/' in file_path_norm:
+        card_link = f"../pages/{id}.html"
+    elif 'pages/' in file_path_norm and 'index.html' in file_path_norm:
+        card_link = f"./{id}.html"
+    else:
+        card_link = f"./pages/{id}.html"
+    
+    card_link_patterns = [
+        card_link,
+        f"../pages/{id}.html",
+        f"./pages/{id}.html",
+        f"./{id}.html"
+    ]
+    
+    found = False
+    for pattern in card_link_patterns:
+        if pattern in html:
+            card_start = html.find(f'<a href="{pattern}">')
+            card_end = html.find('</li>', card_start)
+            card_end += 5
+            new_card = f'''
 <li>
     <a href="{card_link}">
         <div class="card">
@@ -100,15 +125,18 @@ def add_card(file_path, title, time, content, id, labels):
     </a>
 </li>
 '''
-        html = html[:card_start] + new_card + html[card_end:]
-        print(f"✅ 卡片已更新：{title}")
-    else:
+            html = html[:card_start] + new_card + html[card_end:]
+            print(f"✅ 卡片已更新：{title}")
+            found = True
+            break
+    
+    if not found:
         card_list_start = html.find('class="card-list"')
         ul_start = html.rfind('<ul', 0, card_list_start)
         ul_end = html.find('</ul>', ul_start)
         card = f'''
 <li>
-    <a href="./{id}.html">
+    <a href="{card_link}">
         <div class="card">
             <div class="card-header">
                 <h2>{title}</h2>
@@ -197,12 +225,7 @@ def create_tag_page(tag_name):
 
 
 def update_tag_cloud(tags, increment=True):
-    """更新标签云
-    
-    Args:
-        tags: 标签列表
-        increment: True=增加计数, False=减少计数
-    """
+
     tag_index_path = os.path.join(workspace, "tags", "index.html")
     
     if not os.path.exists(tag_index_path):
@@ -281,7 +304,7 @@ def remove_card_from_tag_pages(issue_id, labels):
 
 
 def get_article_labels(issue_id):
-    """获取文章的标签（从已有文件中解析）"""
+    """获取文章的标签"""
     article_path = os.path.join(workspace, "pages", f"{issue_id}.html")
     
     if not os.path.exists(article_path):
