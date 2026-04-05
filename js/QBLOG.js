@@ -10,7 +10,7 @@ const themes = {
     '--surface-color': 'linear-gradient(rgba(25, 45, 55, 0.4), transparent)',
     '--surface-border-color': 'rgba(245, 245, 245, 0.1)',
     '--border-color': 'rgba(245, 245, 245, 0.1)',
-    '--box-shadow-color': 'rgba(15, 15, 15, 0.2)',
+    '--box-shadow-color': 'rgba(0, 0, 0, 0.4)',
     '--divider-color': 'rgba(255, 255, 255, 0.3)',
     '--backdrop-blur': 'blur(0.7em)',
   },

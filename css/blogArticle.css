@@ -109,6 +109,15 @@
 /* 卡片样式 */
 /* ------------------------------------------------------------- */
 
+.card-box {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 980px;
+}
+
 .card-header {
     display: flex;
     flex-direction: column;

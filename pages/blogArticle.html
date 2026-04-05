@@ -96,16 +96,17 @@
         </div>
     </header>
 
-    <div class="card">
-        <div class="card-header">
-            <h1>{title}</h1>
-            <p>作者：{author}</p>
-            <p>发布日期：{date}</p>
-        </div>
+    <div class="card-box">
+        <div class="card">
+            <div class="card-header">
+                <h1>{title}</h1>
+                <p>作者：{author}</p>
+                <p>发布日期：{date}</p>
+            </div>
 
-        <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
+            <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
 
-        <div class="card-content article-content">
+            <div class="card-content article-content">
 
             <!-- 标题测试 -->
             <h1>一级标题 (H1)</h1>
@@ -395,10 +396,11 @@ print(fibonacci(10))  # 55</code></pre>
 
         </div>
 
-        <div class="card-footer article-footer">
-            <div class="article-tag">
-                <span>文章标签：</span>
-                {tags_html}
+            <div class="card-footer article-footer">
+                <div class="article-tag">
+                    <span>文章标签：</span>
+                    {tags_html}
+                </div>
             </div>
         </div>
     </div>
