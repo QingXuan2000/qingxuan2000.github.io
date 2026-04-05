@@ -627,21 +627,6 @@
 }
 
 /* ------------------------------------------------------------- */
-/* 响应式表格 */
-/* ------------------------------------------------------------- */
-
-@media (max-width: 768px) {
-    .article-content table {
-        font-size: var(--article-font-base);
-    }
-
-    .article-content th,
-    .article-content td {
-        padding: var(--article-padding-lg) var(--article-padding-xl);
-    }
-}
-
-/* ------------------------------------------------------------- */
 /* 图片和图表 */
 /* ------------------------------------------------------------- */
 
@@ -757,8 +742,19 @@
         padding-left: var(--article-padding-4xl);
     }
 
-    .article-content pre {
-        padding: var(--article-padding-xl);
+    .article-content th,
+    .article-content td {
+        padding: var(--article-padding-lg) var(--article-padding-xl);
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* 响应式表格 */
+/* ------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .article-content table {
+        font-size: var(--article-font-base);
     }
 
     .article-content th,
