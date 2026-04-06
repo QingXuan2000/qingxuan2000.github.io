@@ -839,6 +839,281 @@
 }
 
 /* ------------------------------------------------------------- */
+/* pymdownx 扩展样式 */
+/* ------------------------------------------------------------- */
+
+/* 删除线、下标、上标 */
+.article-content del {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.article-content sub {
+    font-size: var(--article-font-xs);
+    vertical-align: sub;
+}
+
+.article-content sup {
+    font-size: var(--article-font-xs);
+    vertical-align: super;
+}
+
+/* 高亮标记 */
+.article-content mark {
+    color: var(--text-color);
+    background: rgba(255, 217, 0, 0.397);
+    padding: var(--article-padding-sm) var(--article-padding-md);
+    border-radius: var(--article-radius-sm);
+}
+
+/* pymdownx.mark 高亮 */
+.article-content .mark {
+    background: rgba(255, 217, 0, 0.397);
+    padding: var(--article-padding-sm) var(--article-padding-md);
+    border-radius: var(--article-radius-sm);
+}
+
+/* 键盘按键样式 */
+.article-content .keys kbd {
+    display: inline-block;
+    padding: var(--article-padding-xs) var(--article-padding-md);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: var(--article-font-sm);
+    color: var(--text-color);
+    background: var(--surface-color);
+    border: var(--article-border-width-sm) solid var(--border-color);
+    border-radius: var(--article-radius-md);
+    box-shadow: 0 2px 0 var(--border-color);
+    margin: 0 var(--article-spacing-xs);
+}
+
+/* 任务列表 */
+.article-content .task-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.article-content .task-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--article-spacing-sm);
+    margin-bottom: var(--article-spacing-sm);
+}
+
+.article-content .task-list-item input[type="checkbox"] {
+    margin-top: 0.3em;
+    cursor: pointer;
+}
+
+/* 折叠详情 */
+.article-content details {
+    margin: var(--article-margin-xl) 0;
+    padding: var(--article-padding-xl);
+    background: var(--surface-color);
+    border-radius: var(--article-radius-lg);
+    border: var(--article-border-width-sm) solid var(--border-color);
+}
+
+.article-content details summary {
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+.article-content details summary:hover {
+    color: var(--primary-color);
+}
+
+.article-content details[open] summary {
+    margin-bottom: var(--article-spacing-md);
+}
+
+/* 标签页 */
+.article-content .tabbed-set {
+    margin: var(--article-margin-xl) 0;
+    border: var(--article-border-width-sm) solid var(--border-color);
+    border-radius: var(--article-radius-lg);
+    overflow: hidden;
+}
+
+.article-content .tabbed-labels {
+    display: flex;
+    background: var(--surface-color);
+    border-bottom: var(--article-border-width-sm) solid var(--border-color);
+}
+
+.article-content .tabbed-label {
+    padding: var(--article-padding-md) var(--article-padding-xl);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: var(--article-transition-fast);
+}
+
+.article-content .tabbed-label:hover {
+    color: var(--primary-color);
+}
+
+.article-content .tabbed-label.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.article-content .tabbed-content {
+    padding: var(--article-padding-xl);
+}
+
+/* 进度条 */
+.article-content .progress {
+    height: 20px;
+    background: var(--surface-color);
+    border-radius: var(--article-radius-lg);
+    overflow: hidden;
+    margin: var(--article-margin-md) 0;
+}
+
+.article-content .progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+/* 表情符号 */
+.article-content .emoji {
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+/* Mermaid 图表容器 */
+.article-content .mermaid {
+    text-align: center;
+    margin: var(--article-margin-xl) 0;
+}
+
+/* 行内代码高亮 */
+.article-content .inlinehilite {
+    background: var(--surface-color);
+    padding: var(--article-padding-xs) var(--article-padding-sm);
+    border-radius: var(--article-radius-sm);
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* 智能链接 */
+.article-content .magiclink {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.article-content .magiclink:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------- */
+/* 数学公式 (mdx_math) */
+/* ------------------------------------------------------------- */
+
+.article-content .math {
+    font-family: 'KaTeX_Math', 'Times New Roman', serif;
+    font-style: italic;
+}
+
+.article-content .math.inline {
+    display: inline;
+    padding: 0 var(--article-padding-xs);
+}
+
+.article-content .math.block {
+    display: block;
+    text-align: center;
+    margin: var(--article-margin-xl) 0;
+    padding: var(--article-padding-xl);
+    background: var(--surface-color);
+    border-radius: var(--article-radius-lg);
+    overflow-x: auto;
+}
+
+/* ------------------------------------------------------------- */
+/* 删除线和插入 (markdown_del_ins) */
+/* ------------------------------------------------------------- */
+
+.article-content ins {
+    text-decoration: underline;
+    color: #00c853;
+    background: rgba(0, 200, 83, 0.1);
+    padding: 0 var(--article-padding-xs);
+}
+
+/* ------------------------------------------------------------- */
+/* 高亮标记 (markdown_mark) */
+/* ------------------------------------------------------------- */
+
+.article-content .markdown-mark {
+    background: linear-gradient(120deg, rgba(255, 217, 0, 0.4) 0%, rgba(255, 217, 0, 0.2) 100%);
+    padding: var(--article-padding-xs) var(--article-padding-sm);
+    border-radius: var(--article-radius-sm);
+}
+
+/* ------------------------------------------------------------- */
+/* 自动链接 (markdown_urlize) */
+/* ------------------------------------------------------------- */
+
+.article-content a.urlized {
+    color: var(--primary-color);
+    word-break: break-all;
+}
+
+/* ------------------------------------------------------------- */
+/* pymdownx.blocks 通用容器 */
+/* ------------------------------------------------------------- */
+
+.article-content .pymdownx-block {
+    margin: var(--article-margin-xl) 0;
+    padding: var(--article-padding-xl);
+    border-radius: var(--article-radius-lg);
+    background: var(--surface-color);
+    border: var(--article-border-width-sm) solid var(--border-color);
+}
+
+/* ------------------------------------------------------------- */
+/* pymdownx.snippets 代码片段 */
+/* ------------------------------------------------------------- */
+
+.article-content .snippet {
+    position: relative;
+    margin: var(--article-margin-xl) 0;
+}
+
+.article-content .snippet-header {
+    display: flex;
+    align-items: center;
+    gap: var(--article-spacing-sm);
+    padding: var(--article-padding-sm) var(--article-padding-md);
+    background: var(--surface-color);
+    border: var(--article-border-width-sm) solid var(--border-color);
+    border-bottom: none;
+    border-radius: var(--article-radius-lg) var(--article-radius-lg) 0 0;
+    font-size: var(--article-font-sm);
+    color: var(--text-secondary-color);
+}
+
+.article-content .snippet-content {
+    margin: 0;
+    border-radius: 0 0 var(--article-radius-lg) var(--article-radius-lg);
+}
+
+/* ------------------------------------------------------------- */
+/* pymdownx.pathconverter 路径转换 */
+/* ------------------------------------------------------------- */
+
+.article-content a.path-converted {
+    color: var(--primary-color);
+}
+
+.article-content a.path-converted:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------- */
 /* 页脚 */
 /* ------------------------------------------------------------- */
 
