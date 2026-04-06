@@ -146,6 +146,11 @@
 }
 
 @font-face {
+    font-family: "AlimamaFangYuanTiVF-Thin";
+    src: url(../fonts/AlimamaFangYuanTiVF-Thin.ttf);
+}
+
+@font-face {
     font-family: "This-July";
     src: url("../fonts/This-July.ttf");
 }
@@ -159,7 +164,7 @@
     margin: 0;
     box-sizing: border-box;
 
-    font-family: "SmileySans-Oblique";
+    font-family: "AlimamaFangYuanTiVF-Thin";
 }
 
 *:not(.article-content pre):not(.article-content pre code)::-webkit-scrollbar {
