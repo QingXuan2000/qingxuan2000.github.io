@@ -9,7 +9,7 @@ import os
 import json
 import re
 from datetime import datetime
-from typing import List, Dict, Optional, Tuple
+from typing import List, Optional, Tuple
 import markdown
 
 
@@ -331,9 +331,20 @@ class TagManager:
 
 def convert_markdown_to_html(md_text: str) -> str:
     """将 Markdown 转换为 HTML，添加代码复制按钮"""
+    # 所有官方支持的扩展
+    # extra 已包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
     extensions = [
-        "extra", "toc", "sane_lists", "codehilite",
-        "nl2br", "footnotes", "fenced_code"
+        "extra",           # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
+        "toc",             # 目录生成
+        "sane_lists",      # 更合理的列表处理
+        "codehilite",      # 代码高亮
+        "nl2br",           # 换行转 <br>
+        "smarty",          # 智能标点转换
+        "admonition",      # 警告/提示框
+        "meta",            # 元数据处理
+        "wikilinks",       # Wiki 链接 [[Page]]
+        "legacy_attrs",    # 旧版属性语法
+        "legacy_em",       # 旧版强调语法
     ]
     
     extension_configs = {
@@ -341,6 +352,9 @@ def convert_markdown_to_html(md_text: str) -> str:
             "linenums": False,
             "css_class": "codehilite",
             "use_pygments": False
+        },
+        "toc": {
+            "permalink": True  # 为标题添加锚点链接
         }
     }
     
