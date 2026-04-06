@@ -187,12 +187,8 @@ def md_to_html(md: str) -> str:
         "pymdownx.details", "pymdownx.emoji", "pymdownx.tasklist",
         "pymdownx.magiclink", "pymdownx.keys", "pymdownx.mark",
         "pymdownx.tilde", "pymdownx.caret", "pymdownx.inlinehilite", "pymdownx.progressbar",
-        # 其他第三方扩展
+        # 其他第三方扩展 (已测试可用的)
         "mdx_math",           # 数学公式 (pip install python-markdown-math)
-        "markdown_checklist", # 任务列表增强 (pip install markdown-checklist)
-        "markdown_del_ins",   # 删除线和插入 (pip install markdown-del-ins)
-        "markdown_mark",      # 高亮标记 (pip install markdown-mark)
-        "markdown_urlize",    # 自动链接 (pip install markdown-urlize)
     ]
     configs = {
         "codehilite": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
