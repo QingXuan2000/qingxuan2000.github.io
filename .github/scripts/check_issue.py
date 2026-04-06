@@ -179,7 +179,7 @@ class TagManager:
 
 def md_to_html(md: str) -> str:
     extensions = [
-        "extra", "toc", "sane_lists", "codehilite", "nl2br", "smarty",
+        "extra", "toc", "sane_lists", "nl2br", "smarty",
         "admonition", "meta", "wikilinks", "legacy_attrs", "legacy_em",
         # pymdownx 扩展
         "pymdownx.highlight",
@@ -207,10 +207,18 @@ def md_to_html(md: str) -> str:
         "pymdownx.pathconverter",
     ]
     configs = {
-        "codehilite": {"linenums": False, "css_class": "codehilite", "use_pygments": True},
         "toc": {"permalink": True},
         "pymdownx.highlight": {"linenums": False, "css_class": "codehilite", "use_pygments": True},
-        "pymdownx.superfences": {},
+        "pymdownx.superfences": {
+            "custom_fences": [
+                {
+                    "name": "mermaid",
+                    "class": "mermaid",
+                    "format": "!!!unused!!!"
+                }
+            ],
+            "highlight_code": True
+        },
         "pymdownx.inlinehilite": {},
         "pymdownx.emoji": {},
         "pymdownx.tasklist": {"custom_checkbox": True, "clickable_checkbox": True},
