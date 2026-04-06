@@ -1007,7 +1007,9 @@
 }
 
 .article-content .task-list-item:has(input[checked])::after {
-   content: "✓";
+   content: "\f00c";
+   font-family: "Font Awesome 6 Free";
+
    position: absolute;
    left: 0.7em;
    top: 0.3em;
