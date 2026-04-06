@@ -334,7 +334,7 @@ def convert_markdown_to_html(md_text: str) -> str:
     # 所有官方支持的扩展
     # extra 已包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
     extensions = [
-        "extra",           # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
+        "extra",           # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables, 删除线 ~~text~~
         "toc",             # 目录生成
         "sane_lists",      # 更合理的列表处理
         "codehilite",      # 代码高亮
@@ -345,7 +345,6 @@ def convert_markdown_to_html(md_text: str) -> str:
         "wikilinks",       # Wiki 链接 [[Page]]
         "legacy_attrs",    # 旧版属性语法
         "legacy_em",       # 旧版强调语法
-        "del",             # 删除线 ~~text~~
     ]
     
     extension_configs = {
