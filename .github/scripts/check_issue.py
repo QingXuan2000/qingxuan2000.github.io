@@ -177,45 +177,35 @@ class TagManager:
 
 # ==================== Markdown 处理 ====================
 
-def escape_special_chars(md: str) -> str:
-    """最先处理字符转义，防止特殊字符被错误解析"""
-    # 保护代码块和行内代码中的内容
-    code_blocks = []
-    inline_codes = []
-
-    # 提取代码块
-    def save_code_block(match):
-        code_blocks.append(match.group(0))
-        return f"\x00CODE_BLOCK_{len(code_blocks)-1}\x00"
-
-    # 提取行内代码
-    def save_inline_code(match):
-        inline_codes.append(match.group(0))
-        return f"\x00INLINE_CODE_{len(inline_codes)-1}\x00"
-
-    # 保护代码块 (```...```)
-    md = re.sub(r'```[\s\S]*?```', save_code_block, md)
-    # 保护行内代码 (`...`)
-    md = re.sub(r'`[^`]+`', save_inline_code, md)
-
-    # 转义 HTML 特殊字符
-    md = md.replace('&', '&amp;')
-    md = md.replace('<', '&lt;')
-    md = md.replace('>', '&gt;')
-
-    # 恢复代码块和行内代码
-    for i, code in enumerate(code_blocks):
-        md = md.replace(f"\x00CODE_BLOCK_{i}\x00", code)
-    for i, code in enumerate(inline_codes):
-        md = md.replace(f"\x00INLINE_CODE_{i}\x00", code)
-
-    return md
-
+def escape_special_chars(text: str) -> str:
+    """预先转义特殊字符，确保它们被正确处理"""
+    # 转义大于号（不在 HTML 标签中的）
+    # 使用正则表达式匹配不在标签内的大于号
+    import re
+    # 先保护已有的 HTML 标签
+    html_tags = re.findall(r'<[^>]+>', text)
+    placeholders = {}
+    for i, tag in enumerate(html_tags):
+        placeholder = f"\x00HTML_TAG_{i}\x00"
+        placeholders[placeholder] = tag
+        text = text.replace(tag, placeholder, 1)
+    
+    # 现在转义大于号
+    text = text.replace(">", "\x00GT\x00")
+    
+    # 恢复 HTML 标签
+    for placeholder, tag in placeholders.items():
+        text = text.replace(placeholder, tag, 1)
+    
+    # 将剩余的大于号转义
+    text = text.replace("\x00GT\x00", "&gt;")
+    
+    return text
 
 def md_to_html(md: str) -> str:
-    # 最先处理字符转义
+    # 首先转义特殊字符
     md = escape_special_chars(md)
-
+    
     extensions = [
         "extra", "toc", "sane_lists", "codehilite", "nl2br", "smarty",
         "admonition", "meta", "wikilinks", "legacy_attrs", "legacy_em",
