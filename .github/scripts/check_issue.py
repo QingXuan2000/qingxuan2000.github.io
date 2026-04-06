@@ -207,9 +207,9 @@ def md_to_html(md: str) -> str:
         "pymdownx.pathconverter",
     ]
     configs = {
-        "codehilite": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
+        "codehilite": {"linenums": False, "css_class": "codehilite", "use_pygments": True},
         "toc": {"permalink": True},
-        "pymdownx.highlight": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
+        "pymdownx.highlight": {"linenums": False, "css_class": "codehilite", "use_pygments": True},
         "pymdownx.superfences": {},
         "pymdownx.inlinehilite": {},
         "pymdownx.emoji": {},
@@ -217,7 +217,7 @@ def md_to_html(md: str) -> str:
         "pymdownx.betterem": {},
         "pymdownx.progressbar": {},
         "pymdownx.striphtml": {},
-        "pymdownx.tabbed": {},
+        "pymdownx.tabbed": {"alternate_style": True},
         "pymdownx.arithmatex": {"generic": True},
         "pymdownx.snippets": {},
         "pymdownx.pathconverter": {},
