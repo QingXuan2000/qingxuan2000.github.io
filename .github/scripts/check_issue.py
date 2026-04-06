@@ -329,72 +329,50 @@ class TagManager:
 
 # ==================== Markdown 处理 ====================
 
-def protect_code_blocks(md_text: str) -> Tuple[str, List[str]]:
+def escape_html(text: str) -> str:
+    """转义 HTML 特殊字符"""
+    return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
+def process_code_blocks(md_text: str) -> str:
     """
-    保护代码块内容，将其替换为占位符，防止被其他解析规则处理
-    
-    Returns:
-        (处理后的文本, 代码块列表)
+    处理代码块，将其直接转换为 HTML，防止被其他 Markdown 解析规则干扰
     """
     import re
-    code_blocks = []
     
     # 匹配围栏代码块 ```language\ncode\n```
     # 支持在引用块内的代码块 (> ```)
-    pattern = r'(^|\n)([ ]*>[ ]*)?```[\w]*\n(.*?)\n([ ]*>[ ]*)?```'
+    pattern = r'(^|\n)([ ]*>[ ]*)?```([\w]*)\n(.*?)\n([ ]*>[ ]*)?```'
     
     def replace_code_block(match):
         prefix = match.group(1) or ''  # 换行符或空
         quote_prefix = match.group(2) or ''  # 引用块前缀 (> )
-        code_content = match.group(3)  # 代码内容
-        end_quote_prefix = match.group(4) or ''  # 结束标记的引用前缀
+        language = match.group(3) or ''  # 语言标识
+        code_content = match.group(4)  # 代码内容
         
-        # 保存代码块
-        code_blocks.append({
-            'content': code_content,
-            'quote_prefix': quote_prefix
-        })
+        # 转义代码内容中的 HTML 特殊字符
+        escaped_code = escape_html(code_content)
         
-        # 返回占位符，保持引用块结构
-        return f"{prefix}{quote_prefix}__CODE_BLOCK_{len(code_blocks) - 1}__"
+        # 生成 HTML 代码块
+        lang_class = f' class="language-{language}"' if language else ''
+        code_html = f'<pre><code{lang_class}>{escaped_code}</code></pre>'
+        
+        # 如果在引用块内，包装在 blockquote 中
+        if quote_prefix:
+            return f'{prefix}{quote_prefix}{code_html}'
+        else:
+            return f'{prefix}{code_html}'
     
     # 使用 DOTALL 标志匹配多行
-    protected_text = re.sub(pattern, replace_code_block, md_text, flags=re.DOTALL)
+    result = re.sub(pattern, replace_code_block, md_text, flags=re.DOTALL)
     
-    return protected_text, code_blocks
-
-
-def restore_code_blocks(md_text: str, code_blocks: List[str]) -> str:
-    """恢复代码块占位符为实际的代码块"""
-    import re
-    
-    def replace_placeholder(match):
-        index = int(match.group(1))
-        if 0 <= index < len(code_blocks):
-            block_info = code_blocks[index]
-            code = block_info['content']
-            quote_prefix = block_info['quote_prefix']
-            
-            # 恢复代码块，保持围栏格式
-            if quote_prefix:
-                # 在引用块内，每行添加引用前缀
-                lines = code.split('\n')
-                quoted_lines = [f"> {line}" if line.strip() else ">" for line in lines]
-                return f"{quote_prefix}```\n" + '\n'.join(quoted_lines) + f"\n{quote_prefix}```"
-            else:
-                return f"```\n{code}\n```"
-        return match.group(0)
-    
-    return re.sub(r'__CODE_BLOCK_(\d+)__', replace_placeholder, md_text)
+    return result
 
 
 def convert_markdown_to_html(md_text: str) -> str:
     """将 Markdown 转换为 HTML，添加代码复制按钮"""
-    # 保护代码块，防止被其他解析规则处理
-    protected_text, code_blocks = protect_code_blocks(md_text)
-    
-    # 恢复代码块
-    md_text = restore_code_blocks(protected_text, code_blocks)
+    # 先处理代码块，将其转换为 HTML，防止被其他 Markdown 解析规则干扰
+    md_text = process_code_blocks(md_text)
 
     # 所有官方支持的扩展
     # extra 已包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
