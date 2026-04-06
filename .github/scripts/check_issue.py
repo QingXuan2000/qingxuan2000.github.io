@@ -226,7 +226,7 @@ def md_to_html(md: str) -> str:
 
     soup = BeautifulSoup(html, 'html.parser')
     for pre in soup.select('td.code pre'):
-        copy_btn = BeautifulSoup('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>Copy</span>', 'html.parser')
+        copy_btn = BeautifulSoup('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>&nbsp;Copy</span>', 'html.parser')
         pre.insert(0, copy_btn)
     return str(soup)
 
@@ -279,7 +279,11 @@ class ArticleManager:
 <div class="article-footer"><div class="article-tag"><span>文章标签：</span>{tags}</div></div></div></div>
 <footer><p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p></footer>
 <link rel="stylesheet" href="../css/blogArticle.css"><link rel="stylesheet" href="../css/QBLOG.css" />
-<script src="../js/QBLOG.js"></script><link rel="stylesheet" href="../css/font-awesome.min.css" /></body></html>''')
+<script src="../js/QBLOG.js"></script><link rel="stylesheet" href="../css/font-awesome.min.css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>window.MathJax = {{ tex: {{ inlineMath: [['$', '$'], ['\\\\(', '\\\\)']], displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']] }}, svg: {{ fontCache: 'global' }} }};</script>
+</body></html>''')
         
         print(f"✅ 文章已{'更新' if is_update else '生成'}：{self._path(issue_id)}")
 
