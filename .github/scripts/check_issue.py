@@ -225,8 +225,8 @@ def md_to_html(md: str) -> str:
     html = markdown.markdown(md, extensions=extensions, extension_configs=configs, output_format="html5")
 
     soup = BeautifulSoup(html, 'html.parser')
-    for pre in soup.find_all('pre'):
-        copy_btn = BeautifulSoup('<span class="copy-btn">Copy</span>', 'html.parser')
+    for pre in soup.select('td.code pre'):
+        copy_btn = BeautifulSoup('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>Copy</span>', 'html.parser')
         pre.insert(0, copy_btn)
     return str(soup)
 

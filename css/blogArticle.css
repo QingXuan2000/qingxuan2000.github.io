@@ -1028,6 +1028,107 @@
     }
 }
 
+/* ------------------------------------------------------------- */
+/* Tabbed 标签页样式 (pymdownx.tabbed) */
+/* ------------------------------------------------------------- */
+
+.article-content .tabbed-set {
+    margin: var(--article-margin-2xl) 0;
+    border-radius: var(--article-radius-lg);
+    background: var(--surface-color);
+    border: var(--article-border-width-sm) solid var(--border-color);
+    overflow: hidden;
+}
+
+/* 隐藏 radio 按钮 */
+.article-content .tabbed-set > input {
+    display: none;
+}
+
+/* 标签导航栏 */
+.article-content .tabbed-labels {
+    display: flex;
+    background: var(--surface-color);
+    border-bottom: var(--article-border-width-sm) solid var(--border-color);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.article-content .tabbed-labels::-webkit-scrollbar {
+    display: none;
+}
+
+/* 标签按钮 */
+.article-content .tabbed-labels label {
+    padding: var(--article-padding-lg) var(--article-padding-2xl);
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.article-content .tabbed-labels label:hover {
+    color: var(--text-color);
+    background: var(--hover-color);
+}
+
+/* 选中状态的标签 - 使用 :has() 选择器 */
+.article-content .tabbed-set:has(> input:nth-of-type(1):checked) .tabbed-labels label:nth-of-type(1),
+.article-content .tabbed-set:has(> input:nth-of-type(2):checked) .tabbed-labels label:nth-of-type(2),
+.article-content .tabbed-set:has(> input:nth-of-type(3):checked) .tabbed-labels label:nth-of-type(3),
+.article-content .tabbed-set:has(> input:nth-of-type(4):checked) .tabbed-labels label:nth-of-type(4),
+.article-content .tabbed-set:has(> input:nth-of-type(5):checked) .tabbed-labels label:nth-of-type(5) {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* 默认选中第一个标签 */
+.article-content .tabbed-set:not(:has(> input:checked)) .tabbed-labels label:nth-of-type(1) {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* 标签内容区域 */
+.article-content .tabbed-content {
+    padding: var(--article-padding-xl);
+}
+
+/* 标签内容块 */
+.article-content .tabbed-block {
+    display: none;
+}
+
+/* 显示选中的内容块 - 使用 :has() 选择器 */
+.article-content .tabbed-set:has(> input:nth-of-type(1):checked) .tabbed-content .tabbed-block:nth-of-type(1),
+.article-content .tabbed-set:has(> input:nth-of-type(2):checked) .tabbed-content .tabbed-block:nth-of-type(2),
+.article-content .tabbed-set:has(> input:nth-of-type(3):checked) .tabbed-content .tabbed-block:nth-of-type(3),
+.article-content .tabbed-set:has(> input:nth-of-type(4):checked) .tabbed-content .tabbed-block:nth-of-type(4),
+.article-content .tabbed-set:has(> input:nth-of-type(5):checked) .tabbed-content .tabbed-block:nth-of-type(5) {
+    display: block;
+}
+
+/* 默认显示第一个内容块 */
+.article-content .tabbed-set:not(:has(> input:checked)) .tabbed-content .tabbed-block:nth-of-type(1) {
+    display: block;
+}
+
+/* 标签页内的代码块样式调整 */
+.article-content .tabbed-block .codehilite,
+.article-content .tabbed-block .codehilitetable {
+    margin: var(--article-margin-md) 0;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .article-content .tabbed-labels label {
+        padding: var(--article-padding-md) var(--article-padding-lg);
+        font-size: var(--article-font-sm);
+    }
+}
+
 /* 响应式表格 */
 
 @media (max-width: 768px) {
