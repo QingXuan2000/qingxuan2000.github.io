@@ -1,3 +1,9 @@
 markdown
 pygments
 beautifulsoup4
+pymdown-extensions
+python-markdown-math
+markdown-checklist
+markdown-del-ins
+markdown-mark
+markdown-urlize
