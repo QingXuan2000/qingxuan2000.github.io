@@ -208,7 +208,7 @@ def md_to_html(md: str) -> str:
     ]
     configs = {
         "codehilite": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
-        "toc": {"permalink": True},
+        "toc": {"permalink": " ¶"},
         "pymdownx.highlight": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
         "pymdownx.superfences": {},
         "pymdownx.inlinehilite": {},
