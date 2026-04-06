@@ -15,13 +15,13 @@
             </div>
             <div class="divider" style="height: 1px; width: 100%; margin: 1rem 0 1rem 0;"></div>
             <div class="card-content article-content">
-                <h1 id="markdown">Markdown 功能测试文档<a class="headerlink" href="#markdown" title="Permanent link">¶</a></h1>
+                <h1 id="markdown-to-html">Markdown to HTML功能测试文档<a class="headerlink" href="#markdown-to-html" title="Permanent link">¶</a></h1>
 <p>本文档用于测试 <code>check_issue.py</code> 中的 Markdown 转 <abbr title="HyperText Markup Language">HTML</abbr> 功能，包含所有支持的 Markdown 元素。</p>
 <hr/>
 <h2 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <div class="toc">
 <ul>
-<li><a href="#markdown">Markdown 功能测试文档</a><ul>
+<li><a href="#markdown-to-html">Markdown to HTML功能测试文档</a><ul>
 <li><a href="#_1">目录</a></li>
 <li><a href="#1-headings">1. 标题 (Headings)</a></li>
 </ul>
@@ -87,12 +87,9 @@
 <li><a href="#_11">引用块内的标题</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_12">引用块内的代码</a><ul>
 <li><a href="#19">19. 数学公式（如果支持）</a></li>
 <li><a href="#20-diff">20. 代码 diff 展示</a></li>
-<li><a href="#_13">总结</a></li>
+<li><a href="#_12">总结</a></li>
 </ul>
 </li>
 </ul>
@@ -153,93 +150,50 @@
 <h3 id="_6">行内代码<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <p>使用 <code>print("Hello World")</code> 输出问候语。</p>
 <h3 id="fenced_code">围栏代码块（fenced_code 扩展）<a class="headerlink" href="#fenced_code" title="Permanent link">¶</a></h3>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gh">#</span> Python 代码示例
+<pre><span class="copy-btn">Copy</span><code class="language-python"># Python 代码示例
 def hello_world():
     """这是一个文档字符串"""
     message = "Hello, World!"
     print(message)
     return message
 
-<span class="gh">#</span> 调用函数
-result = hello_world()
-</code></pre></div></td></tr></table></div>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="n">JavaScript</span><span class="w"> </span><span class="err">代码示例</span>
-<span class="n">function</span><span class="w"> </span><span class="n">calculateSum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="err">`</span><span class="n">Sum</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="p">{</span><span class="n">result</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
+# 调用函数
+result = hello_world()</code></pre>
+<pre><span class="copy-btn">Copy</span><code class="language-javascript">// JavaScript 代码示例
+function calculateSum(a, b) {
+    const result = a + b;
+    console.log(`Sum: ${result}`);
+    return result;
+}
 
-<span class="n">calculateSum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
-</code></pre></div></td></tr></table></div>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c">/* CSS 样式示例 */</span>
-<span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ddd</span><span class="p">;</span>
-<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+calculateSum(10, 20);</code></pre>
+<pre><span class="copy-btn">Copy</span><code class="language-css">/* CSS 样式示例 */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}</code></pre>
 <h3 id="codehilite">带行号的代码块（codehilite 扩展）<a class="headerlink" href="#codehilite" title="Permanent link">¶</a></h3>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
-<span class="sd">"""</span>
-<span class="sd">GitHub Issues 博客生成器</span>
+<pre><span class="copy-btn">Copy</span><code class="language-python">#!/usr/bin/env python3
+"""
+GitHub Issues 博客生成器
 
-<span class="sd">功能：监听 GitHub Issues 事件，自动生成静态博客页面</span>
-<span class="sd">"""</span>
+功能：监听 GitHub Issues 事件，自动生成静态博客页面
+"""
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">markdown</span>
+import os
+import json
+import re
+from datetime import datetime
+from typing import List, Optional, Tuple
+import markdown
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""环境配置类"""</span>
-    <span class="n">ISSUE_TITLE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ISSUE_TITLE"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
-    <span class="n">ISSUE_BODY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ISSUE_BODY"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"(无内容)"</span>
-</code></pre></div></td></tr></table></div>
+class Config:
+    """环境配置类"""
+    ISSUE_TITLE = os.getenv("ISSUE_TITLE", "")
+    ISSUE_BODY = os.getenv("ISSUE_BODY") or "(无内容)"</code></pre>
 <hr/>
 <h2 id="6-tables">6. 表格（tables 扩展）<a class="headerlink" href="#6-tables" title="Permanent link">¶</a></h2>
 <h3 id="_7">简单表格<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
@@ -394,12 +348,8 @@ tags: [markdown, test, blog]</p>
 <blockquote>
 <h3 id="_11">引用块内的标题<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
 <p>引用块内的段落，包含 <strong>粗体</strong> 和 <em>斜体</em>。</p>
-<blockquote>
-<p>```</p>
-<h1 id="_12">引用块内的代码<a class="headerlink" href="#_12" title="Permanent link">¶</a></h1>
-<p>print(“Hello from blockquote!”)<br/>
-```</p>
-</blockquote>
+<p><pre><span class="copy-btn">Copy</span><code class="language-python">&gt; # 引用块内的代码<br/>
+&gt; print(“Hello from blockquote!”)</code></pre></p>
 <ul>
 <li>列表项 1</li>
 <li>列表项 2</li>
@@ -414,18 +364,13 @@ tags: [markdown, test, blog]</p>
 $$</p>
 <hr/>
 <h2 id="20-diff">20. 代码 diff 展示<a class="headerlink" href="#20-diff" title="Permanent link">¶</a></h2>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>+ 新增的行
+<pre><span class="copy-btn">Copy</span><code class="language-diff">+ 新增的行
 - 删除的行
 ! 重要的更改
 # 注释
-  未更改的行
-</code></pre></div></td></tr></table></div>
+  未更改的行</code></pre>
 <hr/>
-<h2 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<h2 id="_12">总结<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
 <p>本文档涵盖了 <code>check_issue.py</code> 中使用的所有 Markdown 扩展功能：</p>
 <ol>
 <li>✅ <strong>extra</strong> - 包含 abbr, attr<em>list, def</em>list, fenced<em>code, footnotes, md</em>in_html, tables</li>
