@@ -187,7 +187,6 @@ def md_to_html(md: str) -> str:
         "pymdownx.details", "pymdownx.emoji", "pymdownx.tasklist",
         "pymdownx.magiclink", "pymdownx.keys", "pymdownx.mark",
         "pymdownx.tilde", "pymdownx.caret", "pymdownx.inlinehilite", "pymdownx.progressbar",
-        "pymdownx.blocks", "pymdownx.snippets", "pymdownx.pathconverter",
         # 其他第三方扩展
         "mdx_math",           # 数学公式 (pip install python-markdown-math)
         "markdown_checklist", # 任务列表增强 (pip install markdown-checklist)
