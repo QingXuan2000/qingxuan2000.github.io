@@ -353,52 +353,6 @@
 }
 
 /* ------------------------------------------------------------- */
-/* 代码块基础样式（无行号） */
-/* ------------------------------------------------------------- */
-
-.article-content .codehilite {
-    width: 100%;
-    margin: var(--article-margin-2xl) 0;
-    border-radius: var(--article-radius-xl);
-    overflow: hidden;
-    background: var(--article-code-bg);
-    border: var(--article-border-width-sm) solid var(--article-code-border);
-    box-shadow: var(--article-shadow-lg);
-    position: relative;
-    display: block;
-}
-
-.article-content .codehilite::before {
-    content: '';
-    display: block;
-    height: 32px;
-    background: var(--article-terminal-header-bg);
-    border-radius: var(--article-radius-xl) var(--article-radius-xl) 0 0;
-    border-bottom: var(--article-border-width-sm) solid var(--article-terminal-header-border);
-}
-
-.article-content .codehilite::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 12px;
-    width: 12px;
-    height: 12px;
-    background: var(--article-terminal-btn-close);
-    border-radius: 50%;
-    box-shadow:
-        20px 0 0 var(--article-terminal-btn-minimize),
-        40px 0 0 var(--article-terminal-btn-maximize);
-}
-
-.article-content .codehilite pre {
-    margin: 0;
-    padding: var(--article-padding-3xl);
-    background: transparent;
-    box-shadow: none;
-}
-
-/* ------------------------------------------------------------- */
 /* 代码块行号样式 */
 /* ------------------------------------------------------------- */
 
