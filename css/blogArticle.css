@@ -969,21 +969,52 @@
 
 /* 任务列表 */
 .article-content .task-list {
-    list-style: none;
-    padding-left: 0;
-    pointer-events: none;
+   list-style: none;
+   padding: 0;
+   margin: 0;
 }
 
 .article-content .task-list-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--article-spacing-sm);
-    margin-bottom: var(--article-spacing-sm);
+   display: flex;
+   align-items: flex-start;
+   gap: var(--article-spacing-sm);
+   margin-bottom: var(--article-spacing-sm);
+   position: relative;
+   padding-left: 1.5em;
 }
 
 .article-content .task-list-item input[type="checkbox"] {
-    margin-top: 0.3em;
-    cursor: pointer;
+   display: none;
+   position: relative;
+}
+
+.article-content .task-list-item::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   top: 0.3em;
+   width: 1.3em;
+   height: 1.3em;
+   border-radius: 50%;
+   background: var(--hero-bg-color);
+   border: 2px solid var(--border-color, #ccc);
+   box-sizing: border-box;
+}
+
+.article-content .task-list-item:has(input[checked])::before {
+   background: var(--hero-bg-color);
+   border-color: var(--primary-color);
+}
+
+.article-content .task-list-item:has(input[checked])::after {
+   content: "✓";
+   position: absolute;
+   left: 0.7em;
+   top: 0.3em;
+   transform: translate(-50%, 0);
+   color: var(--text-color);
+   font-size: 0.9em;
+   font-weight: bold;
 }
 
 /* 折叠详情 */
