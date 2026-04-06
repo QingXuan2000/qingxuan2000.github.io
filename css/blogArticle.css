@@ -727,6 +727,118 @@
 }
 
 /* ------------------------------------------------------------- */
+/* 警告/提示框 */
+/* ------------------------------------------------------------- */
+
+.article-content .admonition {
+    margin: var(--article-margin-2xl) 0;
+    padding: var(--article-padding-xl) var(--article-padding-4xl);
+    border-radius: var(--article-radius-lg);
+    border-left: var(--article-border-width-lg) solid;
+    background: var(--surface-color);
+    backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--article-shadow-md);
+}
+
+.article-content .admonition p {
+    text-indent: 0;
+    margin-bottom: var(--article-spacing-md);
+}
+
+.article-content .admonition p:last-child {
+    margin-bottom: 0;
+}
+
+.article-content .admonition-title {
+    font-weight: 600;
+    font-size: var(--article-font-lg);
+    margin-bottom: var(--article-spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--article-spacing-sm);
+}
+
+/* Note - 注意 */
+.article-content .admonition.note {
+    border-left-color: #448aff;
+    background: rgba(68, 138, 255, 0.05);
+}
+
+.article-content .admonition.note .admonition-title {
+    color: #448aff;
+}
+
+.article-content .admonition.note .admonition-title::before {
+    content: '\f05a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Warning - 警告 */
+.article-content .admonition.warning {
+    border-left-color: #ff9100;
+    background: rgba(255, 145, 0, 0.05);
+}
+
+.article-content .admonition.warning .admonition-title {
+    color: #ff9100;
+}
+
+.article-content .admonition.warning .admonition-title::before {
+    content: '\f071';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Tip - 提示 */
+.article-content .admonition.tip {
+    border-left-color: #00c853;
+    background: rgba(0, 200, 83, 0.05);
+}
+
+.article-content .admonition.tip .admonition-title {
+    color: #00c853;
+}
+
+.article-content .admonition.tip .admonition-title::before {
+    content: '\f0eb';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Danger - 危险 */
+.article-content .admonition.danger {
+    border-left-color: #ff1744;
+    background: rgba(255, 23, 68, 0.05);
+}
+
+.article-content .admonition.danger .admonition-title {
+    color: #ff1744;
+}
+
+.article-content .admonition.danger .admonition-title::before {
+    content: '\f06a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Info - 信息 */
+.article-content .admonition.info {
+    border-left-color: #00b8d4;
+    background: rgba(0, 184, 212, 0.05);
+}
+
+.article-content .admonition.info .admonition-title {
+    color: #00b8d4;
+}
+
+.article-content .admonition.info .admonition-title::before {
+    content: '\f129';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* ------------------------------------------------------------- */
 /* 页脚 */
 /* ------------------------------------------------------------- */
 
