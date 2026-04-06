@@ -4,7 +4,9 @@
 <p>作者：QingXuan2000</p><p>发布日期：2026年04月05日 21:34</p></div>
 <div class="divider" style="height:1px;width:100%;margin:1rem 0"></div>
 <div class="card-content article-content"><h1 id="markdown">Markdown 全面测试文档<a class="headerlink" href="#markdown" title="Permanent link"> ¶</a></h1>
-<p>&gt; 本文档用于测试博客系统的 Markdown 转 <abbr title="Hyper Text Markup Language">HTML</abbr> 功能，包含所有标准元素和扩展元素</p>
+<blockquote>
+<p>本文档用于测试博客系统的 Markdown 转 <abbr title="Hyper Text Markup Language">HTML</abbr> 功能，包含所有标准元素和扩展插件元素</p>
+</blockquote>
 <hr/>
 <div class="toc">
 <ul>
@@ -197,7 +199,7 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span></pre></div></td><td class="code"><div><pre><span class="copy-btn"><i aria-hidden="true" class="fa fa-copy"></i> Copy</span><span></span><code><span class="c1">// JavaScript 代码示例</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -319,15 +321,21 @@
 </table>
 <hr/>
 <h2 id="6">6. 引用块<a class="headerlink" href="#6" title="Permanent link"> ¶</a></h2>
-<p>&gt; 这是一个引用块。<br/>
-&gt; 可以包含多行内容。</p>
-<p>&gt; 嵌套引用：<br/>
-&gt;&gt; 这是第二层引用。<br/>
-&gt;&gt;&gt; 这是第三层引用。</p>
-<p>&gt; 引用块内也可以使用其他 Markdown 元素：<br/>
-&gt; - 列表项<br/>
-&gt; - <strong>粗体文本</strong><br/>
-&gt; - <code>代码</code></p>
+<blockquote>
+<p>这是一个引用块。<br/>
+可以包含多行内容。</p>
+<p>嵌套引用：</p>
+<blockquote>
+<p>这是第二层引用。</p>
+<blockquote>
+<p>这是第三层引用。</p>
+</blockquote>
+</blockquote>
+<p>引用块内也可以使用其他 Markdown 元素：<br/>
+- 列表项<br/>
+- <strong>粗体文本</strong><br/>
+- <code>代码</code></p>
+</blockquote>
 <hr/>
 <h2 id="7-arithmatex">7. 数学公式 (Arithmatex 扩展)<a class="headerlink" href="#7-arithmatex" title="Permanent link"> ¶</a></h2>
 <h3 id="71">7.1 行内公式<a class="headerlink" href="#71" title="Permanent link"> ¶</a></h3>
