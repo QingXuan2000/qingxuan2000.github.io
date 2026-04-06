@@ -267,10 +267,12 @@ class TagManager:
         new_count = current_count + 1 if increment else current_count - 1
         
         if new_count <= 0:
-            # 删除标签
-            tag_full_start = html.rfind('            ', 0, tag_start)
-            html = html[:tag_full_start] + html[tag_end + 4:]
-            print(f"✅ 标签已移除：{tag}")
+            # 删除标签 - 找到包含此标签的 <li> 标签并删除
+            li_start = html.rfind('<li>', 0, tag_start)
+            li_end = html.find('</li>', tag_end)
+            if li_start != -1 and li_end != -1:
+                html = html[:li_start] + html[li_end + 5:]  # +5 是为了包含 </li>
+                print(f"✅ 标签已移除：{tag}")
         else:
             # 更新计数
             new_tag_html = tag_html.replace(
@@ -284,14 +286,17 @@ class TagManager:
     
     def _add_new_tag_to_cloud(self, html: str, tag: str) -> str:
         """向标签云添加新标签"""
-        tag_cloud_start = html.find('<div class="tag-cloud">')
-        tag_cloud_end = html.find('</div>', tag_cloud_start)
+        tag_cloud_start = html.find('<ul class="tag-cloud">')
+        tag_cloud_end = html.find('</ul>', tag_cloud_start)
         
         new_tag_html = f"""
-            <a href="./{tag}.html" class="tag-item">
-                <span class="tag-name">{tag}</span>
-                <span class="tag-count">1</span>
-            </a>"""
+            <li>
+                <a href="./{tag}.html" class="tag-item">
+                    <span class="tag-name">{tag}</span>
+                    <span class="tag-count">1</span>
+                </a>
+            </li>
+"""
         
         print(f"✅ 标签已添加：{tag}")
         return html[:tag_cloud_end] + new_tag_html + html[tag_cloud_end:]
