@@ -177,35 +177,7 @@ class TagManager:
 
 # ==================== Markdown 处理 ====================
 
-def escape_special_chars(text: str) -> str:
-    """预先转义特殊字符，确保它们被正确处理"""
-    # 转义大于号（不在 HTML 标签中的）
-    # 使用正则表达式匹配不在标签内的大于号
-    import re
-    # 先保护已有的 HTML 标签
-    html_tags = re.findall(r'<[^>]+>', text)
-    placeholders = {}
-    for i, tag in enumerate(html_tags):
-        placeholder = f"\x00HTML_TAG_{i}\x00"
-        placeholders[placeholder] = tag
-        text = text.replace(tag, placeholder, 1)
-    
-    # 现在转义大于号
-    text = text.replace(">", "\x00GT\x00")
-    
-    # 恢复 HTML 标签
-    for placeholder, tag in placeholders.items():
-        text = text.replace(placeholder, tag, 1)
-    
-    # 将剩余的大于号转义
-    text = text.replace("\x00GT\x00", "&gt;")
-    
-    return text
-
 def md_to_html(md: str) -> str:
-    # 首先转义特殊字符
-    md = escape_special_chars(md)
-    
     extensions = [
         "extra", "toc", "sane_lists", "codehilite", "nl2br", "smarty",
         "admonition", "meta", "wikilinks", "legacy_attrs", "legacy_em",
