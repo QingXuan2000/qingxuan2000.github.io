@@ -3,143 +3,38 @@
 <body><div class="card-box"><div class="card"><div class="card-header"><h1>Markdown to HTML function Test</h1>
 <p>作者：QingXuan2000</p><p>发布日期：2026年04月05日 21:34</p></div>
 <div class="divider" style="height:1px;width:100%;margin:1rem 0"></div>
-<div class="card-content article-content"><h1 id="markdown">Markdown 全扩展功能测试文档<a class="headerlink" href="#markdown" title="Permanent link">¶</a></h1>
-<p>本文档用于测试已安装的 Markdown 扩展功能，包含官方扩展、pymdownx 扩展和第三方扩展。</p>
+<div class="card-content article-content"><h1 id="markdown">Markdown 功能测试文档<a class="headerlink" href="#markdown" title="Permanent link">¶</a></h1>
+<p>这是一个用于测试 <code>md_to_html</code> 函数的完整 Markdown 文档，涵盖所有支持的扩展功能。</p>
 <hr/>
-<h2 id="_1">测试目录<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<div class="toc">
-<ul>
-<li><a href="#markdown">Markdown 全扩展功能测试文档</a><ul>
-<li><a href="#_1">测试目录</a></li>
-<li><a href="#1">1. 基础语法</a><ul>
-<li><a href="#11">1.1 标题</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#h1">一级标题 (H1)</a><ul>
-<li><a href="#h2">二级标题 (H2)</a><ul>
-<li><a href="#h3">三级标题 (H3)</a><ul>
-<li><a href="#h4">四级标题 (H4)</a><ul>
-<li><a href="#h5">五级标题 (H5)</a><ul>
-<li><a href="#h6">六级标题 (H6)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#12">1.2 段落和文本样式</a></li>
-<li><a href="#13">1.3 上标和下标</a></li>
-</ul>
-</li>
-<li><a href="#2">2. 列表扩展</a><ul>
-<li><a href="#21">2.1 无序列表</a></li>
-<li><a href="#22">2.2 有序列表</a></li>
-<li><a href="#23-pymdownxtasklist">2.3 任务列表 (pymdownx.tasklist)</a></li>
-</ul>
-</li>
-<li><a href="#3">3. 链接和图片</a><ul>
-<li><a href="#31">3.1 普通链接</a></li>
-<li><a href="#32-markdown_urlize">3.2 自动链接 (markdown_urlize)</a></li>
-<li><a href="#33-wiki-wikilinks">3.3 Wiki 链接 (wikilinks)</a></li>
-<li><a href="#34">3.4 图片</a></li>
-<li><a href="#35-attr_list">3.5 带属性的图片 (attr_list)</a></li>
-</ul>
-</li>
-<li><a href="#4">4. 代码块</a><ul>
-<li><a href="#41">4.1 行内代码</a></li>
-<li><a href="#42-pymdownxinlinehilite">4.2 行内代码高亮 (pymdownx.inlinehilite)</a></li>
-<li><a href="#43">4.3 围栏代码块</a></li>
-<li><a href="#44-codehilite">4.4 带行号的代码块 (codehilite)</a></li>
-<li><a href="#45-mermaid-pymdownxsuperfences">4.5 Mermaid 图表 (pymdownx.superfences)</a></li>
-</ul>
-</li>
-<li><a href="#5-tables">5. 表格 (tables)</a><ul>
-<li><a href="#51">5.1 简单表格</a></li>
-<li><a href="#52">5.2 对齐表格</a></li>
-</ul>
-</li>
-<li><a href="#6">6. 引用块</a></li>
-<li><a href="#7-footnotes">7. 脚注 (footnotes)</a></li>
-<li><a href="#8-abbr">8. 缩写 (abbr)</a></li>
-<li><a href="#9-def_list">9. 定义列表 (def_list)</a></li>
-<li><a href="#10-attr_list">10. 属性列表 (attr_list)</a><ul>
-<li><a href="#custom-id">带属性的标题</a></li>
-<li><a href="#_2">带属性的链接</a></li>
-</ul>
-</li>
-<li><a href="#11-admonition">11. 警告/提示框 (admonition)</a></li>
-<li><a href="#12-pymdownxdetails">12. 折叠详情 (pymdownx.details)</a></li>
-<li><a href="#13-pymdownxtabbed">13. 标签页 (pymdownx.tabbed)</a></li>
-<li><a href="#14-pymdownxemoji">14. 表情符号 (pymdownx.emoji)</a></li>
-<li><a href="#15-mdx_math">15. 数学公式 (mdx_math)</a><ul>
-<li><a href="#151">15.1 行内公式</a></li>
-<li><a href="#152">15.2 块级公式</a></li>
-</ul>
-</li>
-<li><a href="#16-pymdownxkeys">16. 键盘按键 (pymdownx.keys)</a></li>
-<li><a href="#17">17. 高亮标记</a><ul>
-<li><a href="#171-pymdownxmark">17.1 pymdownx.mark</a></li>
-<li><a href="#172-markdown_mark">17.2 markdown_mark</a></li>
-</ul>
-</li>
-<li><a href="#18">18. 删除线和插入</a><ul>
-<li><a href="#181-pymdownxtilde">18.1 删除线 (pymdownx.tilde)</a></li>
-<li><a href="#182-markdowndelins">18.2 插入 (markdowndelins)</a></li>
-</ul>
-</li>
-<li><a href="#19-pymdownxprogressbar">19. 进度条 (pymdownx.progressbar)</a></li>
-<li><a href="#20-pymdownxmagiclink">20. 智能链接 (pymdownx.magiclink)</a></li>
-<li><a href="#21-meta">21. 元数据 (meta)</a></li>
-<li><a href="#22-html-mdinhtml">22. HTML 内嵌 (mdinhtml)</a><ul>
-<li><a href="#html-markdown">HTML 容器内的 Markdown</a></li>
-</ul>
-</li>
-<li><a href="#23-smarty">23. 智能标点 (smarty)</a></li>
-<li><a href="#24-nl2br">24. 换行处理 (nl2br)</a></li>
-<li><a href="#25-diff">25. 代码 diff 展示</a></li>
-<li><a href="#26">26. 复杂嵌套示例</a><ul>
-<li><a href="#_3">引用块内的标题</a></li>
-</ul>
-</li>
-<li><a href="#_4">文档总结</a><ul>
-<li><a href="#python-markdown-11">Python-Markdown 官方扩展 (11个)</a></li>
-<li><a href="#pymdownx-15">pymdownx 扩展 (15个)</a></li>
-<li><a href="#5">其他第三方扩展 (5个)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<hr/>
-<h2 id="1">1. 基础语法<a class="headerlink" href="#1" title="Permanent link">¶</a></h2>
+<h2 id="1">1. 基础格式<a class="headerlink" href="#1" title="Permanent link">¶</a></h2>
 <h3 id="11">1.1 标题<a class="headerlink" href="#11" title="Permanent link">¶</a></h3>
-<h1 id="h1">一级标题 (H1)<a class="headerlink" href="#h1" title="Permanent link">¶</a></h1>
-<h2 id="h2">二级标题 (H2)<a class="headerlink" href="#h2" title="Permanent link">¶</a></h2>
-<h3 id="h3">三级标题 (H3)<a class="headerlink" href="#h3" title="Permanent link">¶</a></h3>
-<h4 id="h4">四级标题 (H4)<a class="headerlink" href="#h4" title="Permanent link">¶</a></h4>
-<h5 id="h5">五级标题 (H5)<a class="headerlink" href="#h5" title="Permanent link">¶</a></h5>
-<h6 id="h6">六级标题 (H6)<a class="headerlink" href="#h6" title="Permanent link">¶</a></h6>
-<h3 id="12">1.2 段落和文本样式<a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
-<p>这是一个普通段落。Markdown 支持多种文本样式：</p>
-<p><strong>粗体文本</strong> 使用两个星号<br/>
-<em>斜体文本</em> 使用一个星号<br/>
-<strong><em>粗斜体文本</em></strong> 使用三个星号<br/>
-<del>删除线文本</del> 使用波浪线 (pymdownx.tilde)<br/>
-<code>行内代码</code> 使用反引号</p>
-<h3 id="13">1.3 上标和下标<a class="headerlink" href="#13" title="Permanent link">¶</a></h3>
-<p>上标：x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup> (pymdownx.caret)</p>
-<p>下标：H<sub>2</sub>O, CO<sub>2</sub> (pymdownx.tilde)</p>
+<h1 id="_1">一级标题<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<h2 id="_2">二级标题<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h3 id="_3">三级标题<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<h4 id="_4">四级标题<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<h5 id="_5">五级标题<a class="headerlink" href="#_5" title="Permanent link">¶</a></h5>
+<h6 id="_6">六级标题<a class="headerlink" href="#_6" title="Permanent link">¶</a></h6>
+<h3 id="12">1.2 文本样式<a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>粗体文本</strong></li>
+<li><em>斜体文本</em></li>
+<li><strong><em>粗斜体文本</em></strong></li>
+<li><del>删除线文本</del></li>
+<li><code>行内代码</code></li>
+</ul>
+<h3 id="13">1.3 段落与换行<a class="headerlink" href="#13" title="Permanent link">¶</a></h3>
+<p>这是第一段文字。</p>
+<p>这是第二段文字，通过空行分隔。</p>
+<p>这是第三行，<br/>
+通过两个空格实现换行。</p>
 <hr/>
-<h2 id="2">2. 列表扩展<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
+<h2 id="2">2. 列表<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
 <h3 id="21">2.1 无序列表<a class="headerlink" href="#21" title="Permanent link">¶</a></h3>
 <ul>
 <li>项目一</li>
 <li>项目二</li>
-<li>嵌套项目 2.1</li>
-<li>嵌套项目 2.2</li>
+<li>子项目 2.1</li>
+<li>子项目 2.2</li>
 <li>项目三</li>
 </ul>
 <h3 id="22">2.2 有序列表<a class="headerlink" href="#22" title="Permanent link">¶</a></h3>
@@ -150,128 +45,85 @@
 <li>子步骤 2.2</li>
 <li>第三步</li>
 </ol>
-<h3 id="23-pymdownxtasklist">2.3 任务列表 (pymdownx.tasklist)<a class="headerlink" href="#23-pymdownxtasklist" title="Permanent link">¶</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input checked="" type="checkbox"/><span class="task-list-indicator"></span></label> 已完成任务</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> 未完成任务</li>
-<li class="task-list-item"><label class="task-list-control"><input checked="" type="checkbox"/><span class="task-list-indicator"></span></label> 另一个已完成任务</li>
-</ul>
+<h3 id="23">2.3 混合列表<a class="headerlink" href="#23" title="Permanent link">¶</a></h3>
+<ol>
+<li>主要任务<br/>
+   - 子任务 A<br/>
+   - 子任务 B</li>
+<li>次要任务<br/>
+   - 子任务 C</li>
+</ol>
 <hr/>
-<h2 id="3">3. 链接和图片<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
+<h2 id="3">3. 链接与图片<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
 <h3 id="31">3.1 普通链接<a class="headerlink" href="#31" title="Permanent link">¶</a></h3>
-<p><a href="https://github.com">外部链接 - GitHub</a><br/>
-<a href="./index.html">相对链接 - 首页</a><br/>
-<a href="#markdown-全扩展功能测试文档">锚点链接 - 回到顶部</a></p>
-<h3 id="32-markdown_urlize">3.2 自动链接 (markdown_urlize)<a class="headerlink" href="#32-markdown_urlize" title="Permanent link">¶</a></h3>
-<p>直接写 URL 会自动转换为链接：<a href="https://github.com/QingXuan2000">https://github.com/QingXuan2000</a></p>
-<h3 id="33-wiki-wikilinks">3.3 Wiki 链接 (wikilinks)<a class="headerlink" href="#33-wiki-wikilinks" title="Permanent link">¶</a></h3>
-<p><a class="wikilink" href="/HomePage/">HomePage</a><br/>
-[[Another Page|显示文本]]</p>
+<p><a href="https://github.com">访问 GitHub</a></p>
+<h3 id="32">3.2 引用式链接<a class="headerlink" href="#32" title="Permanent link">¶</a></h3>
+<p><a href="https://google.com" title="Google 搜索">Google</a> 和 <a href="https://bing.com" title="Bing 搜索">Bing</a> 是搜索引擎。</p>
+<h3 id="33">3.3 自动链接<a class="headerlink" href="#33" title="Permanent link">¶</a></h3>
+<p><a href="https://www.example.com">https://www.example.com</a></p>
 <h3 id="34">3.4 图片<a class="headerlink" href="#34" title="Permanent link">¶</a></h3>
-<p><img alt="替代文本" src="https://via.placeholder.com/400x200" title="图片标题"/></p>
-<h3 id="35-attr_list">3.5 带属性的图片 (attr_list)<a class="headerlink" href="#35-attr_list" title="Permanent link">¶</a></h3>
-<p><img alt="Logo" class="rounded" height="100" src="https://via.placeholder.com/100x100" width="100"/></p>
+<p><img alt="Markdown Logo" src="https://markdown-here.com/img/icon256.png" title="Markdown 图标"/></p>
+<h3 id="35">3.5 带链接的图片<a class="headerlink" href="#35" title="Permanent link">¶</a></h3>
+<p><a href="https://github.com"><img alt="GitHub Logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"/></a></p>
 <hr/>
-<h2 id="4">4. 代码块<a class="headerlink" href="#4" title="Permanent link">¶</a></h2>
+<h2 id="4">4. 代码<a class="headerlink" href="#4" title="Permanent link">¶</a></h2>
 <h3 id="41">4.1 行内代码<a class="headerlink" href="#41" title="Permanent link">¶</a></h3>
-<p>使用 <code>print("Hello World")</code> 输出问候语。</p>
-<h3 id="42-pymdownxinlinehilite">4.2 行内代码高亮 (pymdownx.inlinehilite)<a class="headerlink" href="#42-pymdownxinlinehilite" title="Permanent link">¶</a></h3>
-<p>使用 <code class="codehilite"><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span></code> 或 <code>`#!js console.log("Hello")`</code> 显示带语言标识的代码。</p>
-<h3 id="43">4.3 围栏代码块<a class="headerlink" href="#43" title="Permanent link">¶</a></h3>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p>使用 <code>print("Hello World")</code> 输出文本。</p>
+<h3 id="42">4.2 代码块<a class="headerlink" href="#42" title="Permanent link">¶</a></h3>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="copy-btn">Copy</span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span class="copy-btn">Copy</span><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""这是一个 Python 函数"""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, World!"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="43">4.3 带行号的代码块<a class="headerlink" href="#43" title="Permanent link">¶</a></h3>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="copy-btn">Copy</span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Python 代码示例</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">"""这是一个文档字符串"""</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="s2">"Hello, World!"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">message</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span class="copy-btn">Copy</span><span></span><code><span class="c1">// JavaScript 示例</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">name</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="c1"># 调用函数</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">hello_world</span><span class="p">()</span>
+<span class="nx">greet</span><span class="p">(</span><span class="s2">"World"</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="44-codehilite">4.4 带行号的代码块 (codehilite)<a class="headerlink" href="#44-codehilite" title="Permanent link">¶</a></h3>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
-<span class="sd">"""</span>
-<span class="sd">GitHub Issues 博客生成器</span>
-<span class="sd">功能：监听 GitHub Issues 事件，自动生成静态博客页面</span>
-<span class="sd">"""</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">markdown</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""环境配置类"""</span>
-    <span class="n">ISSUE_TITLE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ISSUE_TITLE"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
-    <span class="n">ISSUE_BODY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ISSUE_BODY"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"(无内容)"</span>
+<h3 id="44">4.4 缩进代码块<a class="headerlink" href="#44" title="Permanent link">¶</a></h3>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="copy-btn">Copy</span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span class="copy-btn">Copy</span><span></span><code>这是一个缩进代码块
+每行前面有4个空格
 </code></pre></div></td></tr></table></div>
-<h3 id="45-mermaid-pymdownxsuperfences">4.5 Mermaid 图表 (pymdownx.superfences)<a class="headerlink" href="#45-mermaid-pymdownxsuperfences" title="Permanent link">¶</a></h3>
-<p><code>mermaid
-graph TD
-    A[开始] --&gt; B{判断}
-    B --&gt;|条件1| C[处理1]
-    B --&gt;|条件2| D[处理2]
-    C --&gt; E[结束]
-    D --&gt; E</code></p>
 <hr/>
-<h2 id="5-tables">5. 表格 (tables)<a class="headerlink" href="#5-tables" title="Permanent link">¶</a></h2>
-<h3 id="51">5.1 简单表格<a class="headerlink" href="#51" title="Permanent link">¶</a></h3>
+<h2 id="5">5. 表格<a class="headerlink" href="#5" title="Permanent link">¶</a></h2>
+<h3 id="51">5.1 基础表格<a class="headerlink" href="#51" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>功能</th>
-<th>描述</th>
-<th>状态</th>
+<th>姓名</th>
+<th>年龄</th>
+<th>城市</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>创建文章</td>
-<td>从 Issue 生成博客文章</td>
-<td>✅ 完成</td>
+<td>张三</td>
+<td>25</td>
+<td>北京</td>
 </tr>
 <tr>
-<td>更新文章</td>
-<td>修改现有文章内容</td>
-<td>✅ 完成</td>
+<td>李四</td>
+<td>30</td>
+<td>上海</td>
 </tr>
 <tr>
-<td>删除文章</td>
-<td>移除文章和标签关联</td>
-<td>✅ 完成</td>
-</tr>
-<tr>
-<td>标签管理</td>
-<td>自动创建和更新标签</td>
-<td>✅ 完成</td>
+<td>王五</td>
+<td>28</td>
+<td>广州</td>
 </tr>
 </tbody>
 </table>
@@ -286,123 +138,209 @@ graph TD
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">内容 1</td>
-<td style="text-align: center;">内容 2</td>
-<td style="text-align: right;">内容 3</td>
+<td style="text-align: left;">内容1</td>
+<td style="text-align: center;">内容2</td>
+<td style="text-align: right;">内容3</td>
 </tr>
 <tr>
-<td style="text-align: left;">数据 A</td>
-<td style="text-align: center;">数据 B</td>
-<td style="text-align: right;">数据 C</td>
+<td style="text-align: left;">内容4</td>
+<td style="text-align: center;">内容5</td>
+<td style="text-align: right;">内容6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53">5.3 复杂表格<a class="headerlink" href="#53" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>描述</th>
+<th style="text-align: center;">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td>用户认证功能</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>注册</td>
+<td>新用户注册</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>支付</td>
+<td>在线支付集成</td>
+<td style="text-align: center;">🚧</td>
 </tr>
 </tbody>
 </table>
 <hr/>
 <h2 id="6">6. 引用块<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<h3 id="61">6.1 简单引用<a class="headerlink" href="#61" title="Permanent link">¶</a></h3>
 <blockquote>
-<p>这是一个引用块。<br/>
-可以包含多行内容。</p>
-<p><strong>嵌套引用</strong></p>
+<p>这是一段引用文字。<br/>
+可以包含多行。</p>
+</blockquote>
+<h3 id="62">6.2 嵌套引用<a class="headerlink" href="#62" title="Permanent link">¶</a></h3>
 <blockquote>
-<p>这是嵌套的引用块。<br/>
-可以有多层嵌套。</p>
+<p>第一层引用</p>
+<blockquote>
+<p>第二层引用</p>
+<blockquote>
+<p>第三层引用</p>
 </blockquote>
 </blockquote>
+</blockquote>
+<h3 id="63">6.3 引用中的其他元素<a class="headerlink" href="#63" title="Permanent link">¶</a></h3>
+<blockquote>
+<h3 id="_7">引用中的标题<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<ul>
+<li>列表项 1</li>
+<li>列表项 2</li>
+</ul>
+<p>```python</p>
+<h1 id="_8">引用中的代码<a class="headerlink" href="#_8" title="Permanent link">¶</a></h1>
+<p>print(“Hello”)<br/>
+```</p>
+</blockquote>
 <hr/>
-<h2 id="7-footnotes">7. 脚注 (footnotes)<a class="headerlink" href="#7-footnotes" title="Permanent link">¶</a></h2>
-<p>这是一个带有脚注的句子<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。</p>
-<p>这是另一个脚注示例<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
+<h2 id="7">7. 水平分割线<a class="headerlink" href="#7" title="Permanent link">¶</a></h2>
 <hr/>
-<h2 id="8-abbr">8. 缩写 (abbr)<a class="headerlink" href="#8-abbr" title="Permanent link">¶</a></h2>
-<p><abbr title="HyperText Markup Language">HTML</abbr> 和 <abbr title="Cascading Style Sheets">CSS</abbr> 是构建网页的基础技术。<abbr title="Application Programming Interface">API</abbr> 允许不同的软件系统相互通信。</p>
 <hr/>
-<h2 id="9-def_list">9. 定义列表 (def_list)<a class="headerlink" href="#9-def_list" title="Permanent link">¶</a></h2>
-<dl>
-<dt>Markdown</dt>
-<dd>一种轻量级标记语言，用于格式化文本。</dd>
-<dt>Python</dt>
-<dd>一种高级编程语言，强调代码的可读性。</dd>
-<dd>支持多种编程范式，包括面向对象和函数式编程。</dd>
-</dl>
 <hr/>
-<h2 id="10-attr_list">10. 属性列表 (attr_list)<a class="headerlink" href="#10-attr_list" title="Permanent link">¶</a></h2>
-<h3 class="heading-class" id="custom-id">带属性的标题<a class="headerlink" href="#custom-id" title="Permanent link">¶</a></h3>
-<h3 id="_2">带属性的链接<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<p><a class="btn btn-primary" href="https://example.com" target="_blank">访问官网</a></p>
 <hr/>
-<h2 id="11-admonition">11. 警告/提示框 (admonition)<a class="headerlink" href="#11-admonition" title="Permanent link">¶</a></h2>
+<h2 id="8-html">8. HTML 嵌入<a class="headerlink" href="#8-html" title="Permanent link">¶</a></h2>
+<p>可以直接使用 HTML 标签：</p>
+<div style="padding: 10px; border: 1px solid #ccc;">
+<p>这是一个 HTML div 块</p>
+</div>
+<hr/>
+<h2 id="9-pymdownx">9. pymdownx 扩展功能<a class="headerlink" href="#9-pymdownx" title="Permanent link">¶</a></h2>
+<h3 id="91-highlight">9.1 高亮 (Highlight)<a class="headerlink" href="#91-highlight" title="Permanent link">¶</a></h3>
+<p>```python linenums=”1”</p>
+<h1 id="python">带行号的 Python 代码<a class="headerlink" href="#python" title="Permanent link">¶</a></h1>
+<p>class Person:<br/>
+    def <strong>init</strong>(self, name):<br/>
+        self.name = name</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="copy-btn">Copy</span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span class="copy-btn">Copy</span><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">greet</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">f</span><span class="s2">"Hello, {self.name}!"</span>
+</code></pre></div></td></tr></table></div>
+<p>```</p>
+<h3 id="92-details">9.2 Details / 折叠块<a class="headerlink" href="#92-details" title="Permanent link">¶</a></h3>
+<details class="note">
+<summary>点击展开详情</summary>
+<p>这是折叠块的内容。<br/>
+可以包含多行和<strong>格式</strong>。</p>
+</details>
+<details class="warning" open="">
+<summary>默认展开的警告</summary>
+<p>这是一个默认展开的警告块。</p>
+</details>
+<h3 id="93-emoji">9.3 Emoji 表情<a class="headerlink" href="#93-emoji" title="Permanent link">¶</a></h3>
+<p><img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f604.png" title=":smile:"/> <img alt="❤️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2764.png" title=":heart:"/> <img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":thumbsup:"/> <img alt="🚀" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f680.png" title=":rocket:"/> <img alt="⭐️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2b50.png" title=":star:"/> <img alt="🔥" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f525.png" title=":fire:"/></p>
+<p><img alt="🇨🇳" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f1e8-1f1f3.png" title=":cn:"/> <img alt="🇺🇸" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f1fa-1f1f8.png" title=":us:"/> <img alt="🇯🇵" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f1ef-1f1f5.png" title=":jp:"/> :uk:</p>
+<h3 id="94">9.4 任务列表<a class="headerlink" href="#94" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" type="checkbox"/><span class="task-list-indicator"></span></label> 已完成任务</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> 未完成任务</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" type="checkbox"/><span class="task-list-indicator"></span></label> 另一个已完成任务</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> 子任务 A</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" type="checkbox"/><span class="task-list-indicator"></span></label> 子任务 B</li>
+</ul>
+<h3 id="95-magiclink">9.5 MagicLink（自动链接）<a class="headerlink" href="#95-magiclink" title="Permanent link">¶</a></h3>
+<p>访问 github.com 或发送邮件到 <a href="mailto:example@email.com">example@email.com</a></p>
+<h3 id="96-keys">9.6 Keys（键盘按键）<a class="headerlink" href="#96-keys" title="Permanent link">¶</a></h3>
+<p>按下 <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-delete">Del</kbd></span> 重启电脑。</p>
+<p>复制快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span></p>
+<p>保存快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span></p>
+<h3 id="97-mark">9.7 Mark（高亮标记）<a class="headerlink" href="#97-mark" title="Permanent link">¶</a></h3>
+<p>这是 <mark>高亮标记</mark> 的文本。</p>
+<h3 id="98-tilde">9.8 Tilde（下标）<a class="headerlink" href="#98-tilde" title="Permanent link">¶</a></h3>
+<p>化学公式：H<sub>2</sub>O</p>
+<h3 id="99-caret">9.9 Caret（上标）<a class="headerlink" href="#99-caret" title="Permanent link">¶</a></h3>
+<p>数学公式：E=mc<sup>2</sup></p>
+<hr/>
+<h2 id="10-admonition">10. Admonition（提示框）<a class="headerlink" href="#10-admonition" title="Permanent link">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">注意</p>
-<p>这是一个提示框，用于显示重要信息。</p>
+<p>这是一个提示框，用于提供额外信息。</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>这是一个警告框，用于提醒用户注意潜在问题。</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">提示</p>
-<p>这是一个技巧提示，包含有用的建议。</p>
+<p>这是一个警告框，用于提醒用户注意。</p>
 </div>
 <div class="admonition danger">
 <p class="admonition-title">危险</p>
-<p>这是一个危险警告，表示可能造成严重后果的操作。</p>
+<p>这是一个危险提示框，用于警告严重问题。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>这是一个技巧提示框，用于提供有用建议。</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">信息</p>
-<p>这是一个信息框，用于提供额外的上下文。</p>
+<p>这是一个信息提示框。</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">成功</p>
+<p>这是一个成功提示框。</p>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">失败</p>
+<p>这是一个失败提示框。</p>
+</div>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>这是一个 Bug 提示框。</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">引用</p>
+<p>这是一个引用提示框。</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">摘要</p>
+<p>这是一个摘要提示框。</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p>这是一个示例提示框。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">问题</p>
+<p>这是一个问题提示框。</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">暗示</p>
+<p>这是一个暗示提示框。</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>这是一个小心提示框。</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">错误</p>
+<p>这是一个错误提示框。</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>这是一个注意提示框。</p>
 </div>
 <hr/>
-<h2 id="12-pymdownxdetails">12. 折叠详情 (pymdownx.details)<a class="headerlink" href="#12-pymdownxdetails" title="Permanent link">¶</a></h2>
-<details class="note">
-<summary>点击展开详情</summary>
-<p>这是折叠的内容，可以包含：</p>
-<ul>
-<li>列表项</li>
-<li><strong>粗体文本</strong></li>
-<li><code>代码</code></li>
-</ul>
-</details>
-<details class="tip" open="">
-<summary>默认展开</summary>
-<p>这个详情块默认是展开的。</p>
-</details>
-<hr/>
-<h2 id="13-pymdownxtabbed">13. 标签页 (pymdownx.tabbed)<a class="headerlink" href="#13-pymdownxtabbed" title="Permanent link">¶</a></h2>
-<div class="tabbed-set" data-tabs="1:3"><input checked="" id="__tabbed_1_1" name="__tabbed_1" type="radio"/><label for="__tabbed_1_1">Python</label><div class="tabbed-content">
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, Python!"</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio"/><label for="__tabbed_1_2">JavaScript</label><div class="tabbed-content">
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">hello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hello, JavaScript!"</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-</div>
-<input id="__tabbed_1_3" name="__tabbed_1" type="radio"/><label for="__tabbed_1_3"><abbr title="Cascading Style Sheets">CSS</abbr></label><div class="tabbed-content">
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">.</span><span class="nc">hello</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-</div>
-</div>
-<hr/>
-<h2 id="14-pymdownxemoji">14. 表情符号 (pymdownx.emoji)<a class="headerlink" href="#14-pymdownxemoji" title="Permanent link">¶</a></h2>
-<p><img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f604.png" title=":smile:"/> <img alt="❤️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2764.png" title=":heart:"/> <img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":thumbsup:"/> <img alt="🔥" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f525.png" title=":fire:"/> <img alt="🚀" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f680.png" title=":rocket:"/></p>
-<p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/26a0.png" title=":warning:"/> <img alt="💡" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f4a1.png" title=":bulb:"/> <img alt="📖" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f4d6.png" title=":book:"/> <img alt="🔗" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f517.png" title=":link:"/> :code:</p>
-<hr/>
-<h2 id="15-mdx_math">15. 数学公式 (mdx_math)<a class="headerlink" href="#15-mdx_math" title="Permanent link">¶</a></h2>
-<h3 id="151">15.1 行内公式<a class="headerlink" href="#151" title="Permanent link">¶</a></h3>
-<p>行内公式: <script type="math/tex">E = mc^2</script>
+<h2 id="11-mdx_math">11. 数学公式 (mdx_math)<a class="headerlink" href="#11-mdx_math" title="Permanent link">¶</a></h2>
+<h3 id="111">11.1 行内公式<a class="headerlink" href="#111" title="Permanent link">¶</a></h3>
+<p>质能方程：<script type="math/tex">E = mc^2</script>
 </p>
-<p>勾股定理: <script type="math/tex">a^2 + b^2 = c^2</script>
+<p>二次方程：<script type="math/tex">ax^2 + bx + c = 0</script>
 </p>
-<h3 id="152">15.2 块级公式<a class="headerlink" href="#152" title="Permanent link">¶</a></h3>
+<h3 id="112">11.2 块级公式<a class="headerlink" href="#112" title="Permanent link">¶</a></h3>
+<p>
+<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \, dx = F(b) - F(a)
+</script>
+</p>
 <p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n
@@ -410,185 +348,108 @@ graph TD
 </p>
 <p>
 <script type="math/tex; mode=display">
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
 </script>
 </p>
 <hr/>
-<h2 id="16-pymdownxkeys">16. 键盘按键 (pymdownx.keys)<a class="headerlink" href="#16-pymdownxkeys" title="Permanent link">¶</a></h2>
-<p>复制快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span></p>
-<p>粘贴快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-v">V</kbd></span></p>
-<p>保存快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span></p>
-<p>全选快捷键：<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-a">A</kbd></span></p>
-<hr/>
-<h2 id="17">17. 高亮标记<a class="headerlink" href="#17" title="Permanent link">¶</a></h2>
-<h3 id="171-pymdownxmark">17.1 pymdownx.mark<a class="headerlink" href="#171-pymdownxmark" title="Permanent link">¶</a></h3>
-<p>这是 <mark>高亮文本</mark> 的示例。</p>
-<h3 id="172-markdown_mark">17.2 markdown_mark<a class="headerlink" href="#172-markdown_mark" title="Permanent link">¶</a></h3>
-<p>这是 ??高亮文本?? 的示例。</p>
-<hr/>
-<h2 id="18">18. 删除线和插入<a class="headerlink" href="#18" title="Permanent link">¶</a></h2>
-<h3 id="181-pymdownxtilde">18.1 删除线 (pymdownx.tilde)<a class="headerlink" href="#181-pymdownxtilde" title="Permanent link">¶</a></h3>
-<p><del>这是被删除的文本</del></p>
-<h3 id="182-markdowndelins">18.2 插入 (markdown<em>del</em>ins)<a class="headerlink" href="#182-markdowndelins" title="Permanent link">¶</a></h3>
-<p>++这是插入的文本++</p>
-<hr/>
-<h2 id="19-pymdownxprogressbar">19. 进度条 (pymdownx.progressbar)<a class="headerlink" href="#19-pymdownxprogressbar" title="Permanent link">¶</a></h2>
-<p>
-<div class="progress progress-20plus">
-<div class="progress-bar" style="width:25.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-</p>
-<p>
-<div class="progress progress-40plus">
-<div class="progress-bar" style="width:50.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-</p>
-<p>
-<div class="progress progress-60plus">
-<div class="progress-bar" style="width:75.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-</p>
-<p>
-<div class="progress progress-100plus">
-<div class="progress-bar" style="width:100.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-</p>
-<hr/>
-<h2 id="20-pymdownxmagiclink">20. 智能链接 (pymdownx.magiclink)<a class="headerlink" href="#20-pymdownxmagiclink" title="Permanent link">¶</a></h2>
-<p>自动识别并转换链接：</p>
+<h2 id="12-toc">12. 目录 (TOC)<a class="headerlink" href="#12-toc" title="Permanent link">¶</a></h2>
+<div class="toc">
 <ul>
-<li><a href="https://github.com/QingXuan2000">https://github.com/QingXuan2000</a></li>
-<li><a href="https://example.com/path/to/page">https://example.com/path/to/page</a></li>
+<li><a href="#markdown">Markdown 功能测试文档</a><ul>
+<li><a href="#1">1. 基础格式</a><ul>
+<li><a href="#11">1.1 标题</a></li>
 </ul>
-<hr/>
-<h2 id="21-meta">21. 元数据 (meta)<a class="headerlink" href="#21-meta" title="Permanent link">¶</a></h2>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nn">---</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Markdown 测试文档</span>
-<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QingXuanJun</span>
-<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-04-06</span>
-<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">markdown</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">blog</span><span class="p p-Indicator">]</span>
-<span class="nn">---</span>
-</code></pre></div></td></tr></table></div>
-<hr/>
-<h2 id="22-html-mdinhtml">22. <abbr title="HyperText Markup Language">HTML</abbr> 内嵌 (md<em>in</em>html)<a class="headerlink" href="#22-html-mdinhtml" title="Permanent link">¶</a></h2>
-<div class="custom-container">
-<h3 id="html-markdown"><abbr title="HyperText Markup Language">HTML</abbr> 容器内的 Markdown<a class="headerlink" href="#html-markdown" title="Permanent link">¶</a></h3>
-<p>这是一个在 <abbr title="HyperText Markup Language">HTML</abbr> <code>div</code> 容器内的 Markdown 内容。</p>
-<ul>
-<li>列表项 1</li>
-<li>列表项 2</li>
-<li>列表项 3</li>
-</ul>
-</div>
-<hr/>
-<h2 id="23-smarty">23. 智能标点 (smarty)<a class="headerlink" href="#23-smarty" title="Permanent link">¶</a></h2>
-<p>测试智能标点转换：</p>
-<ul>
-<li>“双引号” 和 ‘单引号’</li>
-<li>省略号…</li>
-<li>破折号 — 和 –</li>
-<li>箭头 &lt;- 和 -&gt;</li>
-</ul>
-<hr/>
-<h2 id="24-nl2br">24. 换行处理 (nl2br)<a class="headerlink" href="#24-nl2br" title="Permanent link">¶</a></h2>
-<p>第一行<br/>
-第二行（单换行）</p>
-<p>第三行（空行分隔）</p>
-<hr/>
-<h2 id="25-diff">25. 代码 diff 展示<a class="headerlink" href="#25-diff" title="Permanent link">¶</a></h2>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gi">+ 新增的行</span>
-<span class="gd">- 删除的行</span>
-<span class="gs">! 重要的更改</span>
-# 注释
-<span class="w"> </span> 未更改的行
-</code></pre></div></td></tr></table></div>
-<hr/>
-<h2 id="26">26. 复杂嵌套示例<a class="headerlink" href="#26" title="Permanent link">¶</a></h2>
-<blockquote>
-<h3 id="_3">引用块内的标题<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<p>引用块内的段落，包含 <strong>粗体</strong> 和 <em>斜体</em>。</p>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 引用块内的代码</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello from blockquote!"</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<ul>
-<li>列表项 1</li>
-<li>列表项 2</li>
-</ul>
-</blockquote>
-<hr/>
-<h2 id="_4">文档总结<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<p>本文档涵盖了所有已安装的 Markdown 扩展功能：</p>
-<h3 id="python-markdown-11">Python-Markdown 官方扩展 (11个)<a class="headerlink" href="#python-markdown-11" title="Permanent link">¶</a></h3>
-<ol>
-<li>✅ <strong>extra</strong> - 包含 abbr, attr<em>list, def</em>list, fenced<em>code, footnotes, md</em>in_html, tables</li>
-<li>✅ <strong>toc</strong> - 目录生成</li>
-<li>✅ <strong>sane_lists</strong> - 更合理的列表处理</li>
-<li>✅ <strong>codehilite</strong> - 代码高亮</li>
-<li>✅ <strong>nl2br</strong> - 换行转 <code>&lt;br&gt;</code></li>
-<li>✅ <strong>smarty</strong> - 智能标点转换</li>
-<li>✅ <strong>admonition</strong> - 警告/提示框</li>
-<li>✅ <strong>meta</strong> - 元数据处理</li>
-<li>✅ <strong>wikilinks</strong> - Wiki 链接 <a class="wikilink" href="/Page/">Page</a></li>
-<li>✅ <strong>legacy_attrs</strong> - 旧版属性语法</li>
-<li>✅ <strong>legacy_em</strong> - 旧版强调语法</li>
-</ol>
-<h3 id="pymdownx-15">pymdownx 扩展 (15个)<a class="headerlink" href="#pymdownx-15" title="Permanent link">¶</a></h3>
-<ol start="12">
-<li>✅ <strong>pymdownx.highlight</strong> - 增强代码高亮</li>
-<li>✅ <strong>pymdownx.superfences</strong> - 增强围栏代码块</li>
-<li>✅ <strong>pymdownx.tabbed</strong> - 标签页支持</li>
-<li>✅ <strong>pymdownx.details</strong> - 折叠详情</li>
-<li>✅ <strong>pymdownx.emoji</strong> - 表情符号支持</li>
-<li>✅ <strong>pymdownx.tasklist</strong> - 任务列表</li>
-<li>✅ <strong>pymdownx.magiclink</strong> - 自动链接转换</li>
-<li>✅ <strong>pymdownx.keys</strong> - 键盘按键标记</li>
-<li>✅ <strong>pymdownx.mark</strong> - 高亮标记 <mark>text</mark></li>
-<li>✅ <strong>pymdownx.tilde</strong> - 删除线 <del>text</del> 和下标 <sub>text</sub></li>
-<li>✅ <strong>pymdownx.caret</strong> - 上标 <sup>text</sup></li>
-<li>✅ <strong>pymdownx.inlinehilite</strong> - 行内代码高亮</li>
-<li>✅ <strong>pymdownx.progressbar</strong> - 进度条</li>
-<li>✅ <strong>pymdownx.blocks</strong> - 通用块容器</li>
-<li>✅ <strong>pymdownx.snippets</strong> - 代码片段引用</li>
-</ol>
-<h3 id="5">其他第三方扩展 (5个)<a class="headerlink" href="#5" title="Permanent link">¶</a></h3>
-<ol start="27">
-<li>✅ <strong>mdx_math</strong> - 数学公式支持</li>
-<li>✅ <strong>markdown_checklist</strong> - 任务列表增强</li>
-<li>✅ <strong>markdown<em>del</em>ins</strong> - 删除线和插入</li>
-<li>✅ <strong>markdown_mark</strong> - 高亮标记</li>
-<li>✅ <strong>markdown_urlize</strong> - 自动链接</li>
-</ol>
-<hr/>
-<p><em>文档结束 - 本文档用于测试所有 Markdown 扩展功能</em></p>
-<div class="footnote">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>这是第一个脚注的内容。 <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
-<li id="fn:2">
-<p>这是第二个脚注的内容，可以包含多行。 <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</ul>
 </li>
-</ol>
-</div></div>
+<li><a href="#_1">一级标题</a><ul>
+<li><a href="#_2">二级标题</a><ul>
+<li><a href="#_3">三级标题</a><ul>
+<li><a href="#_4">四级标题</a><ul>
+<li><a href="#_5">五级标题</a><ul>
+<li><a href="#_6">六级标题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#12">1.2 文本样式</a></li>
+<li><a href="#13">1.3 段落与换行</a></li>
+</ul>
+</li>
+<li><a href="#2">2. 列表</a><ul>
+<li><a href="#21">2.1 无序列表</a></li>
+<li><a href="#22">2.2 有序列表</a></li>
+<li><a href="#23">2.3 混合列表</a></li>
+</ul>
+</li>
+<li><a href="#3">3. 链接与图片</a><ul>
+<li><a href="#31">3.1 普通链接</a></li>
+<li><a href="#32">3.2 引用式链接</a></li>
+<li><a href="#33">3.3 自动链接</a></li>
+<li><a href="#34">3.4 图片</a></li>
+<li><a href="#35">3.5 带链接的图片</a></li>
+</ul>
+</li>
+<li><a href="#4">4. 代码</a><ul>
+<li><a href="#41">4.1 行内代码</a></li>
+<li><a href="#42">4.2 代码块</a></li>
+<li><a href="#43">4.3 带行号的代码块</a></li>
+<li><a href="#44">4.4 缩进代码块</a></li>
+</ul>
+</li>
+<li><a href="#5">5. 表格</a><ul>
+<li><a href="#51">5.1 基础表格</a></li>
+<li><a href="#52">5.2 对齐表格</a></li>
+<li><a href="#53">5.3 复杂表格</a></li>
+</ul>
+</li>
+<li><a href="#6">6. 引用块</a><ul>
+<li><a href="#61">6.1 简单引用</a></li>
+<li><a href="#62">6.2 嵌套引用</a></li>
+<li><a href="#63">6.3 引用中的其他元素</a></li>
+<li><a href="#_7">引用中的标题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_8">引用中的代码</a><ul>
+<li><a href="#7">7. 水平分割线</a></li>
+<li><a href="#8-html">8. HTML 嵌入</a></li>
+<li><a href="#9-pymdownx">9. pymdownx 扩展功能</a><ul>
+<li><a href="#91-highlight">9.1 高亮 (Highlight)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#python">带行号的 Python 代码</a><ul>
+<li><a href="#92-details">9.2 Details / 折叠块</a></li>
+<li><a href="#93-emoji">9.3 Emoji 表情</a></li>
+<li><a href="#94">9.4 任务列表</a></li>
+<li><a href="#95-magiclink">9.5 MagicLink（自动链接）</a></li>
+<li><a href="#96-keys">9.6 Keys（键盘按键）</a></li>
+<li><a href="#97-mark">9.7 Mark（高亮标记）</a></li>
+<li><a href="#98-tilde">9.8 Tilde（下标）</a></li>
+<li><a href="#99-caret">9.9 Caret（上标）</a></li>
+<li><a href="#10-admonition">10. Admonition（提示框）</a></li>
+<li><a href="#11-mdx_math">11. 数学公式 (mdx_math)</a><ul>
+<li><a href="#111">11.1 行内公式</a></li>
+<li><a href="#112">11.2 块级公式</a></li>
+</ul>
+</li>
+<li><a href="#12-toc">12. 目录 (TOC)</a></li>
+<li><a href="#13-wikilinks">13. WikiLinks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr/>
+<h2 id="13-wikilinks">13. WikiLinks<a class="headerlink" href="#13-wikilinks" title="Permanent link">¶</a></h2>
+<p><a class="wikilink" href="/WikiLink/">WikiLink</a></p></div>
 <div class="article-footer"><div class="article-tag"><span>文章标签：</span><div class="tag"><span>个人</span></div></div></div></div></div>
 <footer><p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p></footer>
 <link rel="stylesheet" href="../css/blogArticle.css"><link rel="stylesheet" href="../css/QBLOG.css" />
