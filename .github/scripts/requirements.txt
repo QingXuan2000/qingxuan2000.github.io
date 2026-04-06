@@ -2,4 +2,3 @@ markdown
 pygments
 beautifulsoup4
 pymdown-extensions
-python-markdown-math
