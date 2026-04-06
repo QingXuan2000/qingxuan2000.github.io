@@ -179,33 +179,27 @@ class TagManager:
 
 def md_to_html(md: str) -> str:
     extensions = [
-        # Python-Markdown 官方扩展
         "extra", "toc", "sane_lists", "codehilite", "nl2br", "smarty",
         "admonition", "meta", "wikilinks", "legacy_attrs", "legacy_em",
-        # pymdownx 扩展 (pip install pymdown-extensions)
-        "pymdownx.highlight", "pymdownx.superfences", "pymdownx.tabbed",
-        "pymdownx.details", "pymdownx.emoji", "pymdownx.tasklist",
-        "pymdownx.magiclink", "pymdownx.keys", "pymdownx.mark",
-        "pymdownx.tilde", "pymdownx.caret", "pymdownx.inlinehilite", "pymdownx.progressbar",
-        # 其他第三方扩展 (已测试可用的)
-        "mdx_math",           # 数学公式 (pip install python-markdown-math)
+        "pymdownx.highlight", "pymdownx.details", "pymdownx.emoji",
+        "pymdownx.tasklist", "pymdownx.magiclink", "pymdownx.keys",
+        "pymdownx.mark", "pymdownx.tilde", "pymdownx.caret",
+        "mdx_math",
     ]
     configs = {
         "codehilite": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
         "toc": {"permalink": True},
         "pymdownx.highlight": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
-        "pymdownx.superfences": {"custom_fences": [{"name": "mermaid", "class": "mermaid", "format": "!!!start!!!{}!!!end!!!"}]},
-        "pymdownx.emoji": {},  # 使用默认配置
+        "pymdownx.emoji": {},
         "pymdownx.tasklist": {"custom_checkbox": True, "clickable_checkbox": True},
-        "mdx_math": {"enable_dollar_delimiter": True},  # 支持 $...$ 和 $$...$$
+        "mdx_math": {"enable_dollar_delimiter": True},
     }
     html = markdown.markdown(md, extensions=extensions, extension_configs=configs, output_format="html5")
-    
-    # 添加复制按钮
+
     soup = BeautifulSoup(html, 'html.parser')
     for pre in soup.find_all('pre'):
-        if not pre.find_parent('table', class_='codehilitetable'):
-            pre.insert(0, BeautifulSoup('<span class="copy-btn">Copy</span>', 'html.parser'))
+        copy_btn = BeautifulSoup('<span class="copy-btn">Copy</span>', 'html.parser')
+        pre.insert(0, copy_btn)
     return str(soup)
 
 
