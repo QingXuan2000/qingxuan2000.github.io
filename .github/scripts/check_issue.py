@@ -195,7 +195,7 @@ def md_to_html(md: str) -> str:
         "toc": {"permalink": True},
         "pymdownx.highlight": {"linenums": True, "css_class": "codehilite", "use_pygments": True},
         "pymdownx.superfences": {"custom_fences": [{"name": "mermaid", "class": "mermaid", "format": "!!!start!!!{}!!!end!!!"}]},
-        "pymdownx.emoji": {"emoji_generator": "material"},
+        "pymdownx.emoji": {},  # 使用默认配置
         "pymdownx.tasklist": {"custom_checkbox": True, "clickable_checkbox": True},
         "mdx_math": {"enable_dollar_delimiter": True},  # 支持 $...$ 和 $$...$$
     }
