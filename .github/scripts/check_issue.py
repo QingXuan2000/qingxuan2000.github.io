@@ -334,27 +334,31 @@ def convert_markdown_to_html(md_text: str) -> str:
     # 所有官方支持的扩展
     # extra 已包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
     extensions = [
-        "extra",           # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
-        "toc",             # 目录生成
-        "sane_lists",      # 更合理的列表处理
-        "codehilite",      # 代码高亮
-        "nl2br",           # 换行转 <br>
-        "smarty",          # 智能标点转换
-        "admonition",      # 警告/提示框
-        "meta",            # 元数据处理
-        "wikilinks",       # Wiki 链接 [[Page]]
-        "legacy_attrs",    # 旧版属性语法
-        "legacy_em",       # 旧版强调语法
+        "extra",                    # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
+        "toc",                      # 目录生成
+        "sane_lists",               # 更合理的列表处理
+        "codehilite",               # 代码高亮
+        "nl2br",                    # 换行转 <br>
+        "smarty",                   # 智能标点转换
+        "admonition",               # 警告/提示框
+        "meta",                     # 元数据处理
+        "wikilinks",                # Wiki 链接 [[Page]]
+        "legacy_attrs",             # 旧版属性语法
+        "legacy_em",                # 旧版强调语法
+        "pymdownx.arithmatex",      # 数学公式支持
     ]
     
     extension_configs = {
         "codehilite": {
-            "linenums": False,
+            "linenums": True,
             "css_class": "codehilite",
-            "use_pygments": False
+            "use_pygments": True
         },
         "toc": {
             "permalink": True  # 为标题添加锚点链接
+        },
+        "pymdownx.arithmatex": {
+            "generic": True  # 启用通用数学公式支持
         }
     }
     

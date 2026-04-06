@@ -775,3 +775,83 @@
         padding: var(--article-padding-lg) var(--article-padding-xl);
     }
 }
+
+/* ------------------------------------------------------------- */
+/* 数学公式样式 (MathJax) */
+/* ------------------------------------------------------------- */
+
+.article-content mjx-container {
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+.article-content mjx-container[display="true"] {
+    display: block;
+    margin: var(--article-margin-xl) 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
+.article-content mjx-container svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ------------------------------------------------------------- */
+/* 代码块行号样式 (Pygments) */
+/* ------------------------------------------------------------- */
+
+.article-content .codehilitetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: transparent;
+}
+
+.article-content .codehilitetable td {
+    padding: 0;
+    border: none;
+}
+
+.article-content .codehilitetable .linenos {
+    width: 1%;
+    min-width: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid var(--article-code-border);
+}
+
+.article-content .codehilitetable .linenos pre {
+    margin: 0;
+    padding: var(--article-padding-3xl) var(--article-padding-md);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--text-secondary-color);
+    text-align: right;
+    font-size: var(--article-font-base);
+    line-height: var(--article-line-height-base);
+}
+
+.article-content .codehilitetable .code {
+    width: 99%;
+}
+
+.article-content .codehilitetable .code pre {
+    margin: 0;
+    border-radius: 0 var(--article-radius-xl) var(--article-radius-xl) 0;
+    border: none;
+    border-left: 1px solid var(--article-code-border);
+}
+
+/* 有行号时代码块调整 */
+.article-content .codehilitetable pre::before {
+    border-radius: 0 var(--article-radius-xl) 0 0;
+}
+
+.article-content .codehilitetable .linenos + .code pre::before {
+    border-radius: 0 var(--article-radius-xl) 0 0;
+}
+
+.article-content .codehilitetable .code pre code {
+    border-radius: 0 0 var(--article-radius-xl) 0;
+}

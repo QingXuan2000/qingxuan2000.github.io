@@ -1,1 +1,3 @@
 markdown
+pygments
+pymdown-extensions
