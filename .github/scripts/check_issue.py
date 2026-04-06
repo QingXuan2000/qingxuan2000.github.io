@@ -177,7 +177,52 @@ class TagManager:
 
 # ==================== Markdown 处理 ====================
 
+def escape_special_chars(md: str) -> str:
+    """
+    转义特殊字符，处理 -[空格] 后的内容
+    将列表项中的特殊字符进行转义，避免被 Markdown 解析器误解析
+    """
+    lines = md.split('\n')
+    result = []
+    
+    for line in lines:
+        # 匹配列表项：以 - 或 * 或 + 开头，后跟空格
+        stripped = line.lstrip()
+        indent = line[:len(line) - len(stripped)]
+        
+        if stripped.startswith('- ') or stripped.startswith('* ') or stripped.startswith('+ '):
+            # 提取列表标记后的内容
+            marker = stripped[:2]
+            content = stripped[2:]
+            
+            # 转义内容中的特殊字符
+            # 转义 [ ] 任务列表语法（如果不在开头）
+            if content.startswith('[ ] ') or content.startswith('[x] ') or content.startswith('[X] '):
+                # 保留任务列表语法，但转义后面的内容
+                task_marker = content[:4]
+                rest = content[4:]
+                # 转义 rest 中的特殊字符
+                rest = rest.replace('[', '\\[').replace(']', '\\]')
+                content = task_marker + rest
+            else:
+                # 转义所有 [ 和 ]
+                content = content.replace('[', '\\[').replace(']', '\\]')
+            
+            # 转义其他可能被误解析的字符
+            # 转义行首的 > 避免被解析为引用
+            if content.startswith('>'):
+                content = '\\' + content
+            
+            line = indent + marker + content
+        
+        result.append(line)
+    
+    return '\n'.join(result)
+
+
 def md_to_html(md: str) -> str:
+    # 先进行字符转义
+    md = escape_special_chars(md)
     extensions = [
         "extra", "toc", "sane_lists", "codehilite", "nl2br", "smarty",
         "admonition", "meta", "wikilinks", "legacy_attrs", "legacy_em",
