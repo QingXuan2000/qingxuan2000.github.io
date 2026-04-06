@@ -201,10 +201,6 @@
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btn-active {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 /* ------------------------------------------------------------- */
 /* 交互元素样式 */
 /* ------------------------------------------------------------- */
@@ -669,10 +665,7 @@ nav li {
 }
 
 #card-list-box #card-list {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
     min-height: calc(100vh - (2.4em));
-
     width: 794px;
 }
 
@@ -736,7 +729,6 @@ footer {
     flex: 1;
     background: var(--surface-color);
     backdrop-filter: var(--backdrop-blur);
-    transition: 0.5s ease-in-out;
 }
 
 body.light-theme .loading-div {
@@ -811,8 +803,8 @@ body.light-theme .loading-div {
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: 0.2s ease-in-out;
     padding-right: 5rem;
+    transition: 0.2s ease-in-out;
 }
 
 /* 分隔线 */
@@ -835,7 +827,6 @@ body.light-theme .loading-div {
 /* ------------------------------------------------------------- */
 
 #theme-toggle i {
-    transition: 0.1s ease-in;
 }
 
 /* ------------------------------------------------------------- */
@@ -922,8 +913,8 @@ body.light-theme .loading-div {
     border-radius: 100rem;
     color: var(--text-color);
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--box-shadow-color) 0 4px 20px 0px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tag-name {

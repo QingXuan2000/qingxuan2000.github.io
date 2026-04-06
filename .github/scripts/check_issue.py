@@ -334,18 +334,18 @@ def convert_markdown_to_html(md_text: str) -> str:
     # 所有官方支持的扩展
     # extra 已包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
     extensions = [
-        "extra",                    # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
-        "toc",                      # 目录生成
-        "sane_lists",               # 更合理的列表处理
-        "codehilite",               # 代码高亮
-        "nl2br",                    # 换行转 <br>
-        "smarty",                   # 智能标点转换
-        "admonition",               # 警告/提示框
-        "meta",                     # 元数据处理
-        "wikilinks",                # Wiki 链接 [[Page]]
-        "legacy_attrs",             # 旧版属性语法
-        "legacy_em",                # 旧版强调语法
-        "pymdownx.arithmatex",      # 数学公式支持
+        "extra",           # 包含: abbr, attr_list, def_list, fenced_code, footnotes, md_in_html, tables
+        "toc",             # 目录生成
+        "sane_lists",      # 更合理的列表处理
+        "codehilite",      # 代码高亮
+        "nl2br",           # 换行转 <br>
+        "smarty",          # 智能标点转换
+        "admonition",      # 警告/提示框
+        "meta",            # 元数据处理
+        "wikilinks",       # Wiki 链接 [[Page]]
+        "legacy_attrs",    # 旧版属性语法
+        "legacy_em",       # 旧版强调语法
+        "del",             # 删除线 ~~text~~
     ]
     
     extension_configs = {
@@ -356,9 +356,6 @@ def convert_markdown_to_html(md_text: str) -> str:
         },
         "toc": {
             "permalink": True  # 为标题添加锚点链接
-        },
-        "pymdownx.arithmatex": {
-            "generic": True  # 启用通用数学公式支持
         }
     }
     
@@ -373,14 +370,34 @@ def convert_markdown_to_html(md_text: str) -> str:
 
 
 def add_copy_buttons_to_code(html: str) -> str:
-    """为代码块添加复制按钮"""
-    def insert_button(match):
+    """为代码块添加复制按钮（只在不带行号的 pre 代码块中添加）"""
+    
+    def insert_button_to_pre(match):
         pre_content = match.group(0)
         copy_btn = '<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i>&nbsp;Copy</span>'
         pre_tag_end = pre_content.find('>') + 1
         return pre_content[:pre_tag_end] + '\n                ' + copy_btn + pre_content[pre_tag_end:]
     
-    return re.sub(r'<pre[^>]*>.*?</pre>', insert_button, html, flags=re.DOTALL)
+    # 先移除 codehilitetable 中的所有复制按钮（如果之前添加过）
+    html = re.sub(r'<span class="copy-btn">.*?</span>', '', html, flags=re.DOTALL)
+    
+    # 只为不在 codehilitetable 中的 pre 标签添加复制按钮
+    # 使用 BeautifulSoup 更精确地处理
+    from bs4 import BeautifulSoup
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # 找到所有不在 codehilitetable 中的 pre 标签
+    for pre in soup.find_all('pre'):
+        # 检查是否在 codehilitetable 中
+        parent_table = pre.find_parent('table', class_='codehilitetable')
+        if parent_table is None:
+            # 不在 codehilitetable 中，添加复制按钮
+            copy_btn = soup.new_tag('span', **{'class': 'copy-btn'})
+            copy_btn.string = 'Copy'
+            pre.insert(0, copy_btn)
+    
+    return str(soup)
 
 
 # ==================== 文章管理类 ====================

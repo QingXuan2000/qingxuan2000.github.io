@@ -83,22 +83,6 @@
     --article-scrollbar-thumb: #4a4a4a;
     --article-scrollbar-thumb-hover: #5a5a5a;
 
-    /* 提示框颜色 */
-    --article-alert-info-border: #3498db;
-    --article-alert-info-bg: rgba(52, 152, 219, 0.1);
-    --article-alert-warning-border: #f39c12;
-    --article-alert-warning-bg: rgba(243, 156, 18, 0.1);
-    --article-alert-danger-border: #e74c3c;
-    --article-alert-danger-bg: rgba(231, 76, 60, 0.1);
-
-    /* 代码高亮颜色 */
-    --article-syntax-keyword: #c586c0;
-    --article-syntax-string: #ce9178;
-    --article-syntax-comment: #6a9955;
-    --article-syntax-function: #dcdcaa;
-    --article-syntax-number: #b5cea8;
-    --article-syntax-operator: #d4d4d4;
-
     /* 终端按钮颜色 */
     --article-terminal-btn-close: #ff5f56;
     --article-terminal-btn-minimize: #ffbd2e;
@@ -157,6 +141,7 @@
     margin-top: var(--article-margin-3xl);
     margin-bottom: var(--article-margin-lg);
     line-height: var(--article-line-height-sm);
+    scroll-margin-top: calc(var(--nav-height) + 2em);
 }
 
 .article-content h1 {
@@ -289,29 +274,6 @@
 }
 
 /* ------------------------------------------------------------- */
-/* 任务列表 */
-/* ------------------------------------------------------------- */
-
-.article-content .task-list {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.article-content .task-list li {
-    display: flex;
-    align-items: center;
-    gap: var(--article-spacing-md);
-}
-
-.article-content .task-list input[type="checkbox"] {
-    width: 1.2em;
-    height: 1.2em;
-    accent-color: var(--primary-color);
-    cursor: default;
-    pointer-events: none;
-}
-
-/* ------------------------------------------------------------- */
 /* 引用块样式 */
 /* ------------------------------------------------------------- */
 
@@ -343,40 +305,11 @@
 }
 
 /* ------------------------------------------------------------- */
-/* 提示框样式 */
-/* ------------------------------------------------------------- */
-
-.article-content .alert {
-    border-left-width: var(--article-border-width-lg);
-    border-left-style: solid;
-    border-radius: var(--article-radius-lg);
-    padding: var(--article-padding-2xl) var(--article-padding-4xl);
-}
-
-.article-content .alert-info {
-    border-left-color: var(--article-alert-info-border);
-    background: var(--article-alert-info-bg);
-}
-
-.article-content .alert-warning {
-    border-left-color: var(--article-alert-warning-border);
-    background: var(--article-alert-warning-bg);
-}
-
-.article-content .alert-danger {
-    border-left-color: var(--article-alert-danger-border);
-    background: var(--article-alert-danger-bg);
-}
-
-/* ------------------------------------------------------------- */
 /* 代码样式 */
 /* ------------------------------------------------------------- */
 
 .article-content code {
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    background: var(--surface-color);
-    padding: var(--article-padding-sm) var(--article-padding-md);
-    border-radius: var(--article-radius-md);
     font-size: var(--article-font-base);
     color: var(--primary-color);
     border: var(--article-border-width-sm) solid var(--border-color);
@@ -387,37 +320,66 @@
 /* ------------------------------------------------------------- */
 
 .article-content pre {
-    background: var(--article-code-bg);
-    border-radius: var(--article-radius-xl);
     padding: 0;
     margin: var(--article-margin-2xl) 0;
-    border: var(--article-border-width-sm) solid var(--article-code-border);
     box-shadow: var(--article-shadow-lg);
-    position: relative;
+
     display: flex;
     flex-direction: column;
+
+    container-type: inline-size;
 }
 
 /* ------------------------------------------------------------- */
-/* 终端标题栏 */
+/* 复制按钮 */
 /* ------------------------------------------------------------- */
 
-.article-content pre::before {
+.article-content pre .copy-btn {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    z-index: 10;
+
+    font-family: inherit !important;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8em;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0;
+    transition: var(--article-transition-fast);
+}
+
+.article-content .codehilite:hover .copy-btn {
+    opacity: 1;
+}
+
+/* ------------------------------------------------------------- */
+/* 代码块行号样式 */
+/* ------------------------------------------------------------- */
+
+.article-content .codehilitetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--article-margin-2xl) 0;
+    border-radius: var(--article-radius-xl);
+    overflow: hidden;
+    background: var(--article-code-bg);
+    border: var(--article-border-width-sm) solid var(--article-code-border);
+    box-shadow: var(--article-shadow-lg);
+    position: relative;
+    display: block;
+}
+
+.article-content .codehilitetable::before {
     content: '';
     display: block;
     height: 32px;
     background: var(--article-terminal-header-bg);
     border-radius: var(--article-radius-xl) var(--article-radius-xl) 0 0;
     border-bottom: var(--article-border-width-sm) solid var(--article-terminal-header-border);
-    flex-shrink: 0;
-    position: relative;
 }
 
-/* ------------------------------------------------------------- */
-/* 窗口控制按钮 */
-/* ------------------------------------------------------------- */
-
-.article-content pre::after {
+.article-content .codehilitetable::after {
     content: '';
     position: absolute;
     top: 10px;
@@ -429,52 +391,42 @@
     box-shadow:
         20px 0 0 var(--article-terminal-btn-minimize),
         40px 0 0 var(--article-terminal-btn-maximize);
-    flex-shrink: 0;
 }
 
-/* ------------------------------------------------------------- */
-/* 复制按钮 */
-/* ------------------------------------------------------------- */
-
-.article-content pre {
-    container-type: inline-size;
+.article-content .codehilitetable td {
+    padding: 0;
+    border: none;
+    vertical-align: top;
 }
 
-.article-content pre .copy-btn {
-    position: absolute;
-    top: 6px;
-    right: 12px;
-    z-index: 10;
-    
-    font-family: inherit !important;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.8em;
-    cursor: pointer;
+/* 行号列 */
+.article-content .codehilitetable .linenos {
+    background: rgba(255, 255, 255, 0.03);
+    border-right: var(--article-border-width-sm) solid var(--article-code-border);
+    width: 1%;
+    min-width: 3em;
+    text-align: center;
     user-select: none;
-    opacity: 0;
-    transition: var(--article-transition-fast);
 }
 
-.article-content pre:hover .copy-btn {
-    opacity: 1;
+.article-content .codehilitetable .linenos .linenodiv {
+    padding: var(--article-padding-3xl) var(--article-padding-md);
+    color: var(--text-secondary-color);
+    font-size: var(--article-font-base);
+    line-height: var(--article-line-height-base);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-.article-content pre .copy-btn.copied {
-    background: rgba(39, 201, 63, 0.2);
-    border-color: rgba(39, 201, 63, 0.4);
-    color: #27c93f;
-}
-
-.article-content pre .copy-btn.copied::before {
-    content: '✓';
+.article-content .codehilitetable .linenos .linenodiv pre {
+    margin: 0;
+    padding: 0.4em;
 }
 
 /* ------------------------------------------------------------- */
-/* 代码内容区域 - 单独滚动 */
+/* 代码内容区域 */
 /* ------------------------------------------------------------- */
 
 .article-content pre code {
-    background: transparent;
     padding: var(--article-padding-3xl);
     border: none;
     color: var(--article-code-text);
@@ -483,43 +435,104 @@
     display: block;
     font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Consolas', monospace;
     overflow-x: auto;
-    flex: 1;
-}
-
-.article-content pre code[class*="language-"] {
-    display: block;
 }
 
 /* ------------------------------------------------------------- */
-/* 代码高亮颜色 */
+/* 代码语法高亮 - Pygments 样式 */
 /* ------------------------------------------------------------- */
 
-.article-content pre .keyword {
-    color: var(--article-syntax-keyword);
+/* 关键字 (def, class, return, if, for 等) */
+.article-content pre .k {
+    color: #c586c0;
 }
 
-.article-content pre .string {
-    color: var(--article-syntax-string);
+/* 函数名 */
+.article-content pre .nf {
+    color: #dcdcaa;
 }
 
-.article-content pre .comment {
-    color: var(--article-syntax-comment);
+/* 类名 */
+.article-content pre .nc {
+    color: #4ec9b0;
 }
 
-.article-content pre .function {
-    color: var(--article-syntax-function);
+/* 字符串 */
+.article-content pre .s,
+.article-content pre .s2 {
+    color: #ce9178;
 }
 
-.article-content pre .number {
-    color: var(--article-syntax-number);
+/* 注释 */
+.article-content pre .c1,
+.article-content pre .cm {
+    color: #6a9955;
 }
 
-.article-content pre .operator {
-    color: var(--article-syntax-operator);
+/* 内置函数/方法 */
+.article-content pre .nb {
+    color: #dcdcaa;
 }
 
-.article-content pre::selection {
-    background-color: var(--primary-color);
+/* 常量 (True, False, None) */
+.article-content pre .kc {
+    color: #569cd6;
+}
+
+/* 变量名 */
+.article-content pre .n,
+.article-content pre .nx {
+    color: #9cdcfe;
+}
+
+/* 操作符 */
+.article-content pre .o {
+    color: #d4d4d4;
+}
+
+/* 标点符号 */
+.article-content pre .p {
+    color: #d4d4d4;
+}
+
+/* 空白符 */
+.article-content pre .w {
+    color: transparent;
+}
+
+/* 文档字符串 */
+.article-content pre .sd {
+    color: #6a9955;
+}
+
+/* HTML/XML 标签名 */
+.article-content pre .nt {
+    color: #569cd6;
+}
+
+/* HTML/XML 属性名 */
+.article-content pre .na {
+    color: #9cdcfe;
+}
+
+/* 插值/模板字符串 */
+.article-content pre .sb,
+.article-content pre .si {
+    color: #ce9178;
+}
+
+/* JavaScript 关键字 */
+.article-content pre .kd {
+    color: #c586c0;
+}
+
+/* self/this */
+.article-content pre .bp {
+    color: #569cd6;
+}
+
+/* 行号 */
+.article-content pre .normal {
+    color: #858585;
 }
 
 /* ------------------------------------------------------------- */
@@ -566,7 +579,7 @@
 /* ------------------------------------------------------------- */
 
 .article-content thead {
-    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
 .article-content th {
@@ -604,11 +617,8 @@
 /* 悬停效果 */
 /* ------------------------------------------------------------- */
 
-.article-content tbody tr:hover {
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.article-content tbody tr:hover td {
+.article-content tbody tr:hover td:not(.codehilitetable td) {
+    background: var(--surface-color);
     color: var(--text-color);
 }
 
@@ -630,7 +640,6 @@
 /* ------------------------------------------------------------- */
 
 .article-content table code {
-    background: rgba(0, 0, 0, 0.2);
     padding: var(--article-padding-xs) var(--article-padding-md);
     font-size: var(--article-font-md);
 }
@@ -774,84 +783,4 @@
     .article-content td {
         padding: var(--article-padding-lg) var(--article-padding-xl);
     }
-}
-
-/* ------------------------------------------------------------- */
-/* 数学公式样式 (MathJax) */
-/* ------------------------------------------------------------- */
-
-.article-content mjx-container {
-    display: inline-block;
-    margin: 0 0.2em;
-}
-
-.article-content mjx-container[display="true"] {
-    display: block;
-    margin: var(--article-margin-xl) 0;
-    text-align: center;
-    overflow-x: auto;
-}
-
-.article-content mjx-container svg {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* ------------------------------------------------------------- */
-/* 代码块行号样式 (Pygments) */
-/* ------------------------------------------------------------- */
-
-.article-content .codehilitetable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-    background: transparent;
-}
-
-.article-content .codehilitetable td {
-    padding: 0;
-    border: none;
-}
-
-.article-content .codehilitetable .linenos {
-    width: 1%;
-    min-width: 40px;
-    background: rgba(0, 0, 0, 0.2);
-    border-right: 1px solid var(--article-code-border);
-}
-
-.article-content .codehilitetable .linenos pre {
-    margin: 0;
-    padding: var(--article-padding-3xl) var(--article-padding-md);
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    color: var(--text-secondary-color);
-    text-align: right;
-    font-size: var(--article-font-base);
-    line-height: var(--article-line-height-base);
-}
-
-.article-content .codehilitetable .code {
-    width: 99%;
-}
-
-.article-content .codehilitetable .code pre {
-    margin: 0;
-    border-radius: 0 var(--article-radius-xl) var(--article-radius-xl) 0;
-    border: none;
-    border-left: 1px solid var(--article-code-border);
-}
-
-/* 有行号时代码块调整 */
-.article-content .codehilitetable pre::before {
-    border-radius: 0 var(--article-radius-xl) 0 0;
-}
-
-.article-content .codehilitetable .linenos + .code pre::before {
-    border-radius: 0 var(--article-radius-xl) 0 0;
-}
-
-.article-content .codehilitetable .code pre code {
-    border-radius: 0 0 var(--article-radius-xl) 0;
 }
