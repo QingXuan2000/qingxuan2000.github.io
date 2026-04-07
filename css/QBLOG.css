@@ -146,18 +146,54 @@
 }
 
 @font-face {
-    font-family: "SmileySans-Oblique";
-    src: url("../fonts/SmileySans-Oblique.woff2");
-}
-
-@font-face {
-    font-family: "AlimamaFangYuanTiVF-Thin";
-    src: url("../fonts/AlimamaFangYuanTiVF-Thin.woff2");
-}
-
-@font-face {
     font-family: "This-July";
-    src: url("../fonts/This-July.woff2");
+    src: url("../fonts/This-July.ttf");
+}
+
+@font-face {
+    font-family: "阿里妈妈方圆体";
+    src: url("../fonts/阿里妈妈方圆体.ttf");
+}
+
+@font-face {
+    font-family: "得意黑";
+    src: url("../fonts/得意黑.ttf");
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 200W.ttf");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 300W.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 400W.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 500W.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 600W.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "江城圆体";
+    src: url("../fonts/江城圆体/江城圆体 700W.ttf");
+    font-weight: 700;
 }
 
 /* ------------------------------------------------------------- */
@@ -170,7 +206,8 @@
     box-sizing: border-box;
 
     font-display: swap;
-    font-family: "AlimamaFangYuanTiVF-Thin";
+    font-family: "江城圆体", "阿里妈妈方圆体", sans-serif;
+    letter-spacing: 0.1em;
 }
 
 *:not(.article-content pre):not(.article-content pre code)::-webkit-scrollbar {
@@ -489,8 +526,11 @@ nav li {
     align-items: center;
 }
 
+.card-header h1,
 .card-header h2 {
     flex-grow: 1;
+
+    font-family: "得意黑";
 }
 
 .card-header p {
