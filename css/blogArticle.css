@@ -1188,6 +1188,12 @@
     animation: progress-bar-stripes 1s linear infinite;
 }
 
+.toc::before {
+    content: "\f0ca";
+
+    font-family: "Font Awesome 6 Free";
+}
+
 @keyframes progress-bar-stripes {
     0% { background-position: 0.5rem 0; }
     100% { background-position: 0 0; }

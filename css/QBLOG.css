@@ -142,22 +142,22 @@
 
 @font-face {
     font-family: "Font Awesome 6 Free";
-    src: url(../fonts/fontawesome-webfont.ttf);
+    src: url("../fonts/fontawesome-webfont.woff2");
 }
 
 @font-face {
     font-family: "SmileySans-Oblique";
-    src: url("../fonts/SmileySans-Oblique.ttf");
+    src: url("../fonts/SmileySans-Oblique.woff2");
 }
 
 @font-face {
     font-family: "AlimamaFangYuanTiVF-Thin";
-    src: url(../fonts/AlimamaFangYuanTiVF-Thin.ttf);
+    src: url("../fonts/AlimamaFangYuanTiVF-Thin.woff2");
 }
 
 @font-face {
     font-family: "This-July";
-    src: url("../fonts/This-July.ttf");
+    src: url("../fonts/This-July.woff2");
 }
 
 /* ------------------------------------------------------------- */
