@@ -226,6 +226,8 @@
     box-sizing: border-box;
 
     font-family: "江城圆体", "阿里妈妈方圆体", sans-serif;
+
+    scroll-behavior: smooth;
 }
 
 *:not(.article-content pre):not(.article-content pre code)::-webkit-scrollbar {
