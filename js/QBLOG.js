@@ -1,6 +1,6 @@
 // 变量设置
 
-const maxPageNum = 1;
+const maxPageNum = 2;
 
 // 主题设置
 const themes = {
