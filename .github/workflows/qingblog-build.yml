@@ -1,4 +1,4 @@
-name: 📝 QingBlog AutoBuild
+name: 📝 QingBlog 自动构建运行流
 
 on:
   issues:
