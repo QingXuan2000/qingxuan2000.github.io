@@ -385,7 +385,7 @@ class TagManager:
 
 <footer><p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p></footer>
 <link rel="stylesheet" href="/css/QBLOG.css"><script src="/js/QBLOG.js"></script>
-<link rel="stylesheet" href="/css/font-awesome.min.css"><style>#card-list-wrapper{border-top:none}</style></body></html>''')
+<link rel="stylesheet" href="/css/font-awesome.min.css"><style>#card-list-wrapper{{border-top:none}}</style></body></html>''')
         print(f"✅ 标签页面已创建：{name} 第{page_num}页")
     
     def update_cloud(self, tags: List[str], inc: bool = True) -> None:
