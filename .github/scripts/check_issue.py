@@ -296,9 +296,12 @@ class PageManager:
                                 num = parts[1].strip()
                                 existing_tag_dict[tag] = num
                     
-                    # 更新传入的标签
+                    # 更新传入的标签，删除文章数量为0的标签
                     for tag, num in tag_page_nums.items():
-                        existing_tag_dict[tag] = str(num)
+                        if num > 0:
+                            existing_tag_dict[tag] = str(num)
+                        elif tag in existing_tag_dict:
+                            del existing_tag_dict[tag]
                     
                     # 构建新的标签配置字符串
                     tag_entries = []
@@ -335,9 +338,12 @@ class PageManager:
                                 num = parts[1].strip()
                                 existing_tag_dict[tag] = num
                     
-                    # 更新传入的标签
+                    # 更新传入的标签，删除文章数量为0的标签
                     for tag, num in tag_page_nums.items():
-                        existing_tag_dict[tag] = str(num)
+                        if num > 0:
+                            existing_tag_dict[tag] = str(num)
+                        elif tag in existing_tag_dict:
+                            del existing_tag_dict[tag]
                     
                     # 构建新的标签配置字符串
                     tag_entries = []
@@ -355,12 +361,14 @@ class PageManager:
                     if re.search(pattern, content):
                         tag_entries = []
                         for tag, num in tag_page_nums.items():
-                            tag_entries.append(f"'{tag}': {num}")
-                        replacement = f'const maxArticlePageNum = {total_pages};\nconst maxTagPageNums = {{'
-                        for entry in tag_entries:
-                            replacement += f'\n  {entry},'
-                        replacement = replacement.rstrip(',') + '\n};'
-                        content = re.sub(pattern, replacement, content)
+                            if num > 0:
+                                tag_entries.append(f"'{tag}': {num}")
+                        if tag_entries:
+                            replacement = f'const maxArticlePageNum = {total_pages};\nconst maxTagPageNums = {{'
+                            for entry in tag_entries:
+                                replacement += f'\n  {entry},'
+                            replacement = replacement.rstrip(',') + '\n};'
+                            content = re.sub(pattern, replacement, content)
             
             with open(js_path, 'w', encoding='utf-8') as f:
                 f.write(content)
@@ -459,17 +467,46 @@ class TagManager:
         
         start, end = html.find(pattern), html.find('</a>', html.find(pattern))
         tag_html = html[start:end]
-        count = int(re.search(r'<span class="tag-count">(\d+)</span>', tag_html).group(1))
+        count = int(re.search(r'<span class="tag-count">(+)</span>', tag_html).group(1))
         new_count = count + (1 if inc else -1)
         
         if new_count <= 0:
             li_start = html.rfind('<li>', 0, start)
             li_end = html.find('</li>', end)
             print(f"✅ 标签已移除：{tag}")
+            # 删除空标签目录
+            self._delete_empty_tag_dir(tag)
             return html[:li_start] + html[li_end + 5:]
         
         print(f"✅ 标签计数已更新：{tag} ({count} → {new_count})")
         return html[:start] + tag_html.replace(f'>{count}<', f'>{new_count}<') + html[end:]
+    
+    def _delete_empty_tag_dir(self, tag_name: str) -> None:
+        """删除空标签目录"""
+        tag_dir = os.path.join(self.tags_dir, tag_name)
+        if os.path.exists(tag_dir) and os.path.isdir(tag_dir):
+            # 检查目录是否为空
+            if not os.listdir(tag_dir):
+                try:
+                    os.rmdir(tag_dir)
+                    print(f"✅ 空标签目录已删除：{tag_name}")
+                except Exception as e:
+                    print(f"⚠️ 删除空标签目录失败：{tag_name} - {e}")
+            else:
+                # 检查是否只有index.html文件，且文件为空
+                files = os.listdir(tag_dir)
+                if len(files) == 1 and files[0] == "index.html":
+                    index_path = os.path.join(tag_dir, "index.html")
+                    try:
+                        with open(index_path, 'r', encoding='utf-8') as f:
+                            content = f.read().strip()
+                        # 检查index.html是否为空或只包含基本结构
+                        if not content or '<ul id="card-list"></ul>' in content:
+                            os.remove(index_path)
+                            os.rmdir(tag_dir)
+                            print(f"✅ 空标签目录已删除：{tag_name}")
+                    except Exception as e:
+                        print(f"⚠️ 删除空标签目录失败：{tag_name} - {e}")
     
     def get_tag_page_count(self, tag_name: str) -> int:
         """获取标签页的总页数"""
