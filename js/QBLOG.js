@@ -20,7 +20,7 @@ const blogConfig = {
       '生活': 1,
       '阅读': 1,
       '随记': 1
-}
+    }
   }
 };
 
@@ -244,14 +244,16 @@ const paginationControls = `
   </div>
 `
 
-const pageName = window.location.pathname.split("/").filter(Boolean)[0];
+function DynamicComponentBox() {
+  const pageName = window.location.pathname.split("/").filter(Boolean)[0];
 
-if (pageName === undefined || pageName === "article" || pageName === "pages" || pageName === "tags") {
-  document.querySelector("body").insertAdjacentHTML("beforeend", paginationControls);
+  if (pageName === undefined || pageName === "article" || pageName === "pages" || pageName === "tags") {
+    document.querySelector("body").insertAdjacentHTML("beforeend", paginationControls);
+  }
+
+  document.querySelector("body").insertAdjacentHTML("afterbegin", componentBoxHeader);
+  document.querySelector("body").insertAdjacentHTML("beforeend", componentBoxFooter);
 }
-
-document.querySelector("body").insertAdjacentHTML("afterbegin", componentBoxHeader);
-document.querySelector("body").insertAdjacentHTML("beforeend", componentBoxFooter);
 
 // 标题切换
 function initWebTitle() {
@@ -722,6 +724,7 @@ function initPagination() {
 
 // DOM加载完成后初始化所有功能
 window.addEventListener("DOMContentLoaded", () => {
+  DynamicComponentBox();
   initBackToTop();
   initSidebar();
   initWebTitle();
