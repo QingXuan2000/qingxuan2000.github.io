@@ -279,16 +279,36 @@ class PageManager:
             # 更新blogConfig对象中的标签页分页变量
             if tag_page_nums:
                 # 首先尝试更新完整的maxTagPageNums对象
-                pattern = r'maxTagPageNums: \{[^\}]*\},'
-                tag_entries = []
-                for tag, num in tag_page_nums.items():
-                    tag_entries.append(f"'{tag}': {num}")
-                replacement = 'maxTagPageNums: {'
-                for entry in tag_entries:
-                    replacement += f'\n      {entry},'
-                replacement = replacement.rstrip(',') + '\n    },'
-                
-                if re.search(pattern, content):
+                pattern = r'maxTagPageNums: \{([^\}]*)\},'
+                match = re.search(pattern, content)
+                if match:
+                    # 提取现有的标签配置
+                    existing_tags = match.group(1)
+                    # 构建新的标签配置，保留现有标签，更新传入的标签
+                    tag_lines = existing_tags.strip().split('\n')
+                    existing_tag_dict = {}
+                    for line in tag_lines:
+                        line = line.strip().rstrip(',')
+                        if line:
+                            parts = line.split(':')
+                            if len(parts) == 2:
+                                tag = parts[0].strip().strip("'\"")
+                                num = parts[1].strip()
+                                existing_tag_dict[tag] = num
+                    
+                    # 更新传入的标签
+                    for tag, num in tag_page_nums.items():
+                        existing_tag_dict[tag] = str(num)
+                    
+                    # 构建新的标签配置字符串
+                    tag_entries = []
+                    for tag, num in existing_tag_dict.items():
+                        tag_entries.append(f"'{tag}': {num}")
+                    replacement = 'maxTagPageNums: {'
+                    for entry in tag_entries:
+                        replacement += f'\n      {entry},'
+                    replacement = replacement.rstrip(',') + '\n    },'
+                    
                     content = re.sub(pattern, replacement, content)
             
             # 同时更新别名变量，保持兼容性
@@ -298,16 +318,36 @@ class PageManager:
                 content = re.sub(pattern, replacement, content)
             
             if tag_page_nums:
-                pattern = r'const maxTagPageNums = \{[^\}]*\};'
-                tag_entries = []
-                for tag, num in tag_page_nums.items():
-                    tag_entries.append(f"'{tag}': {num}")
-                replacement = 'const maxTagPageNums = {'
-                for entry in tag_entries:
-                    replacement += f'\n  {entry},'
-                replacement = replacement.rstrip(',') + '\n};'
-                
-                if re.search(pattern, content):
+                pattern = r'const maxTagPageNums = \{([^\}]*)\};'
+                match = re.search(pattern, content)
+                if match:
+                    # 提取现有的标签配置
+                    existing_tags = match.group(1)
+                    # 构建新的标签配置，保留现有标签，更新传入的标签
+                    tag_lines = existing_tags.strip().split('\n')
+                    existing_tag_dict = {}
+                    for line in tag_lines:
+                        line = line.strip().rstrip(',')
+                        if line:
+                            parts = line.split(':')
+                            if len(parts) == 2:
+                                tag = parts[0].strip().strip("'\"")
+                                num = parts[1].strip()
+                                existing_tag_dict[tag] = num
+                    
+                    # 更新传入的标签
+                    for tag, num in tag_page_nums.items():
+                        existing_tag_dict[tag] = str(num)
+                    
+                    # 构建新的标签配置字符串
+                    tag_entries = []
+                    for tag, num in existing_tag_dict.items():
+                        tag_entries.append(f"'{tag}': {num}")
+                    replacement = 'const maxTagPageNums = {'
+                    for entry in tag_entries:
+                        replacement += f'\n  {entry},'
+                    replacement = replacement.rstrip(',') + '\n};'
+                    
                     content = re.sub(pattern, replacement, content)
             
             with open(js_path, 'w', encoding='utf-8') as f:
