@@ -228,26 +228,36 @@ class PageManager:
         return page_num - 1
     
     def update_max_page_num(self, total_pages: int) -> None:
-        """更新QBLOG.js中的maxPageNum值"""
+        """更新QBLOG.js和QBLOG.min.js中的maxPageNum值"""
+
         js_path = os.path.join(self.workspace, "js", "QBLOG.js")
-        if not os.path.exists(js_path):
-            print(f"⚠️ QBLOG.js文件不存在：{js_path}")
-            return
+        if os.path.exists(js_path):
+            with open(js_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            pattern = r'const maxPageNum = \d+;'
+            replacement = f'const maxPageNum = {total_pages};'
+            
+            if re.search(pattern, content):
+                content = re.sub(pattern, replacement, content)
+                with open(js_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print(f"✅ QBLOG.js 中 maxPageNum 已更新为：{total_pages}")
         
-        with open(js_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        # 查找并更新maxPageNum值
-        pattern = r'const maxPageNum = \d+;'
-        replacement = f'const maxPageNum = {total_pages};'
-        
-        if re.search(pattern, content):
-            content = re.sub(pattern, replacement, content)
-            with open(js_path, 'w', encoding='utf-8') as f:
-                f.write(content)
-            print(f"✅ maxPageNum已更新为：{total_pages}")
-        else:
-            print(f"⚠️ 未找到maxPageNum定义，无法更新")
+        # 更新 QBLOG.min.js (无空格版本)
+        min_js_path = os.path.join(self.workspace, "js", "QBLOG.min.js")
+        if os.path.exists(min_js_path):
+            with open(min_js_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            pattern = r'const maxPageNum=\d+;'
+            replacement = f'const maxPageNum={total_pages};'
+            
+            if re.search(pattern, content):
+                content = re.sub(pattern, replacement, content)
+                with open(min_js_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print(f"✅ QBLOG.min.js 中 maxPageNum 已更新为：{total_pages}")
 
 # ==================== 标签管理 ====================
 
