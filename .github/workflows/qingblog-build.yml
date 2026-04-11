@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-blog:
-    name: 🚀 构建博客页面
+    name: 🚀 QingBlog构建
     runs-on: ubuntu-latest
 
     permissions:
@@ -27,7 +27,7 @@ jobs:
       - name: 📦安装 Python 依赖包
         run: pip install -r .github/scripts/requirements.txt
 
-      - name: 🔧执行博客构建脚本
+      - name: 🔧启动构建脚本
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
