@@ -279,7 +279,7 @@ class PageManager:
             # 更新blogConfig对象中的标签页分页变量
             if tag_page_nums:
                 # 首先尝试更新完整的maxTagPageNums对象
-                pattern = r'maxTagPageNums: \{([^\}]*)\},'
+                pattern = r'maxTagPageNums: \{([^\}]*)\}'
                 match = re.search(pattern, content)
                 if match:
                     # 提取现有的标签配置
@@ -307,7 +307,7 @@ class PageManager:
                     replacement = 'maxTagPageNums: {'
                     for entry in tag_entries:
                         replacement += f'\n      {entry},'
-                    replacement = replacement.rstrip(',') + '\n    },'
+                    replacement = replacement.rstrip(',') + '\n    }'
                     
                     content = re.sub(pattern, replacement, content)
             
@@ -349,6 +349,18 @@ class PageManager:
                     replacement = replacement.rstrip(',') + '\n};'
                     
                     content = re.sub(pattern, replacement, content)
+                else:
+                    # 如果不存在maxTagPageNums变量，创建它
+                    pattern = r'const maxArticlePageNum = \d+;'
+                    if re.search(pattern, content):
+                        tag_entries = []
+                        for tag, num in tag_page_nums.items():
+                            tag_entries.append(f"'{tag}': {num}")
+                        replacement = f'const maxArticlePageNum = {total_pages};\nconst maxTagPageNums = {{'
+                        for entry in tag_entries:
+                            replacement += f'\n  {entry},'
+                        replacement = replacement.rstrip(',') + '\n};'
+                        content = re.sub(pattern, replacement, content)
             
             with open(js_path, 'w', encoding='utf-8') as f:
                 f.write(content)
