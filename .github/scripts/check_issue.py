@@ -341,14 +341,11 @@ class TagManager:
         if page_num == 1:
             return os.path.join(self.tags_dir, f"{tag_name}", "index.html")
         else:
-            return os.path.join(self.tags_dir, f"{tag_name}", "pages", f"{page_num}.html")
+            return os.path.join(self.tags_dir, f"{tag_name}", f"{page_num}.html")
     
     def _get_tag_dir(self, tag_name: str, page_num: int = 1) -> str:
         """获取标签目录"""
-        if page_num == 1:
-            return os.path.join(self.tags_dir, tag_name)
-        else:
-            return os.path.join(self.tags_dir, tag_name, "pages")
+        return os.path.join(self.tags_dir, tag_name)
     
     def create_page(self, name: str, page_num: int = 1) -> None:
         tag_dir = self._get_tag_dir(name, page_num)
