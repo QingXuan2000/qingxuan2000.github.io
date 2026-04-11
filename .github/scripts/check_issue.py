@@ -42,6 +42,7 @@ def truncate(text: str, max_len: int = 150) -> str:
 def get_link(file_path: str, target_id: str) -> str:
     path = file_path.replace('\\', '/')
     if 'tags/' in path: return f"../article/{target_id}.html"
+    if 'pages/' in path: return f"../article/{target_id}.html"
     if 'article/' in path and 'index.html' in path: return f"./{target_id}.html"
     return f"./article/{target_id}.html"
 
@@ -193,6 +194,27 @@ class PageManager:
     <div id="card-list-wrapper">
         <ul id="card-list">
         </ul>
+        <div id="pagination-controls-wrapper">
+            <div id="pagination-controls">
+                <div id="prev-trigger" class="glass">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <span>上一页</span>
+                </div>
+
+                <div id="input-page-num-wrapper" class="glass">
+                    <span id="page-num"></span>
+                    <input id="input-page-num" type="text" placeholder="输入页码" class="glass">
+                    <div id="go-to-page-btn" class="glass">
+                        <i class="fa fa-level-down" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div id="next-trigger" class="glass">
+                    <span>下一页</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>

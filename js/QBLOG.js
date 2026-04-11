@@ -592,7 +592,7 @@ const TagManager = {
     this.setupTagClickHandler();
   },
 
-  // 设置标签点击处理（使用事件委托）
+  // 点击标签处理
   setupTagClickHandler: function () {
     document.addEventListener("click", function (e) {
       if (e.target.closest(".tag")) {
@@ -606,7 +606,7 @@ const TagManager = {
 
   // 跳转到标签页面
   navigateToTagPage: function (tagText) {
-    const basePath = window.location.pathname.includes("article") || window.location.pathname.includes("tags") ? "../" : "";
+    const basePath = window.location.pathname.includes("article") || window.location.pathname.includes("tags") || window.location.pathname.includes("pages") ? "../" : "";
     location.href = `${basePath}tags/${tagText}.html`;
   },
 
