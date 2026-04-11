@@ -1061,7 +1061,7 @@ body.light-theme .loading-div {
 #pagination-controls #input-page-num-wrapper input:focus {
     box-shadow: var(--box-shadow-color) 0 4px 20px 0px;
     outline: none;
-    padding: 0 1rem;
+    padding: 0 1em;
 
     color: var(--text-color);
 
@@ -1069,6 +1069,10 @@ body.light-theme .loading-div {
     max-width: 6.5em;
 
     border-radius: 0.6rem;
+}
+
+input::placeholder {
+  text-align: center;
 }
 
 #pagination-controls #input-page-num-wrapper #go-to-page-btn {
@@ -1161,11 +1165,6 @@ body.light-theme .loading-div {
 
     #pagination-controls {
         flex-direction: column;
-    }
-
-    #pagination-controls #input-page-num-wrapper input,
-    #pagination-controls #input-page-num-wrapper input:focus {
-        padding: 0 1rem;
     }
 }
 

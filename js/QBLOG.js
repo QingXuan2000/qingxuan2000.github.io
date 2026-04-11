@@ -122,15 +122,15 @@ const componentBox = `
 
             <ul>
                 <li>
-                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="/"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <li>
-                    <a href="../article/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                    <a href="/article/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
                 </li>
 
                 <li>
-                    <a href="../tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
+                    <a href="/tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
                 </li>
 
                 <li>
@@ -157,26 +157,26 @@ const componentBox = `
         </div>
 
         <div class="user-info">
-            <img src="../img/Avatar.png" alt="Avatar" />
+            <img src="/img/Avatar.png" alt="Avatar" />
             <h1>QingXuanJun</h1>
         </div>
 
         <nav>
             <ul class="glass">
                 <li>
-                    <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
+                    <a href="/"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;首页</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
 
                 <li>
-                    <a href="../article/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
+                    <a href="/article/"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;文章</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
 
                 <li>
-                    <a href="../tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
+                    <a href="/tags/"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;标签</a>
                 </li>
 
                 <div class="divider" style="width: 100%; height: 1px;"></div>
@@ -606,8 +606,7 @@ const TagManager = {
 
   // 跳转到标签页面
   navigateToTagPage: function (tagText) {
-    const basePath = window.location.pathname.includes("article") || window.location.pathname.includes("tags") || window.location.pathname.includes("pages") ? "../" : "";
-    location.href = `${basePath}tags/${tagText}.html`;
+    location.href = `/tags/${tagText}/`;
   },
 
   // 获取所有标签
@@ -637,18 +636,48 @@ function initPagination() {
 
   if (!prevTrigger || !nextTrigger) return;
 
-  // 获取当前页码
-  const getCurrentPage = () => {
+  // 判断是否在标签页面
+  const isTagPage = window.location.pathname.includes("/tags/");
+  
+  // 获取当前页码和标签名
+  let current = 1;
+  let tagName = null;
+  
+  if (isTagPage) {
+    // 标签页面：tags/个人/index.html 或 tags/个人/2.html
+    const pathParts = window.location.pathname.split("/tags/");
+    if (pathParts.length > 1) {
+      const tagPart = pathParts[1];
+      const tagPageMatch = tagPart.match(/^([^/]+)\/(\d+)(?:\.html)?$/);
+      const tagIndexMatch = tagPart.match(/^([^/]+)\/index(?:\.html)?$/);
+      
+      if (tagPageMatch) {
+        tagName = tagPageMatch[1];
+        current = parseInt(tagPageMatch[2]);
+      } else if (tagIndexMatch) {
+        tagName = tagIndexMatch[1];
+        current = 1;
+      }
+    }
+  } else {
+    // 普通分页页面
     const match = window.location.pathname.match(/\/pages\/(\d+)(?:\.html)?$/);
-    return match ? parseInt(match[1]) : 1;
-  };
+    current = match ? parseInt(match[1]) : 1;
+  }
 
   // 跳转页面
   const goToPage = (page) => {
-    window.location.href = page === 1 ? "/index.html" : `/pages/${page}.html`;
+    if (isTagPage && tagName) {
+      if (page === 1) {
+        window.location.href = `/tags/${tagName}/`;
+      } else {
+        window.location.href = `/tags/${tagName}/${page}.html`;
+      }
+    } else {
+      window.location.href = page === 1 ? "/" : `/pages/${page}.html`;
+    }
   };
 
-  const current = getCurrentPage();
   pageNum.textContent = `${current} / ${maxPageNum}`;
 
   // 上一页

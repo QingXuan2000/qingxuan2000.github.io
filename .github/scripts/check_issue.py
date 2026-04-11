@@ -40,11 +40,7 @@ def truncate(text: str, max_len: int = 150) -> str:
     return text[:max_len] + "..." if len(text) > max_len else text
 
 def get_link(file_path: str, target_id: str) -> str:
-    path = file_path.replace('\\', '/')
-    if 'tags/' in path: return f"../article/{target_id}.html"
-    if 'pages/' in path: return f"../article/{target_id}.html"
-    if 'article/' in path and 'index.html' in path: return f"./{target_id}.html"
-    return f"./article/{target_id}.html"
+    return f"/article/{target_id}.html"
 
 
 # ==================== HTML 处理器 ====================
@@ -187,7 +183,7 @@ class PageManager:
     <meta name="color-scheme" content="light dark">
     <title></title>
 
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -221,9 +217,9 @@ class PageManager:
         <p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p>
     </footer>
 
-    <link rel="stylesheet" href="../css/QBLOG.min.css" />
-    <script src="../js/QBLOG.min.js"></script>
-    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/QBLOG.min.css" />
+    <script src="/js/QBLOG.min.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
 
     <style>
         #card-list-wrapper {{
@@ -302,23 +298,108 @@ class TagManager:
     def __init__(self, workspace: str):
         self.tags_dir = os.path.join(workspace, "tags")
     
-    def _tag_path(self, name: str) -> str:
-        return os.path.join(self.tags_dir, f"{name}.html")
+    def _get_tag_page_path(self, tag_name: str, page_num: int = 1) -> str:
+        """获取标签页面路径"""
+        if page_num == 1:
+            return os.path.join(self.tags_dir, f"{tag_name}", "index.html")
+        else:
+            return os.path.join(self.tags_dir, f"{tag_name}", f"{page_num}.html")
+    
+    def _get_tag_dir(self, tag_name: str) -> str:
+        """获取标签目录"""
+        return os.path.join(self.tags_dir, tag_name)
     
     def create_page(self, name: str) -> None:
-        path = self._tag_path(name)
+        tag_dir = self._get_tag_dir(name)
+        path = self._get_tag_page_path(name, 1)
         if os.path.exists(path):
             print(f"ℹ️ 标签页面已存在：{name}")
             return
-        os.makedirs(self.tags_dir, exist_ok=True)
+        os.makedirs(tag_dir, exist_ok=True)
         with open(path, 'w', encoding='utf-8') as f:
             f.write(f'''<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title></head>
-<body><div id="title"><h1>{name}</h1></div><div id="card-list-wrapper"><ul id="card-list"></ul></div>
+<body><div id="title"><h1>{name}</h1></div><div id="card-list-wrapper">
+<ul id="card-list"></ul>
+<div id="pagination-controls-wrapper">
+    <div id="pagination-controls">
+        <div id="prev-trigger" class="glass">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <span>上一页</span>
+        </div>
+        <div id="input-page-num-wrapper" class="glass">
+            <span id="page-num"></span>
+            <input id="input-page-num" type="text" placeholder="输入页码" class="glass">
+            <div id="go-to-page-btn" class="glass">
+                <i class="fa fa-level-down" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="next-trigger" class="glass">
+            <span>下一页</span>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+</div>
 <footer><p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p></footer>
-<link rel="stylesheet" href="../css/QBLOG.min.css"><script src="../js/QBLOG.min.js"></script>
-<link rel="stylesheet" href="../css/font-awesome.min.css"><style>#card-list-wrapper{{border-top:none}}</style></body></html>''')
+<link rel="stylesheet" href="/css/QBLOG.min.css"><script src="/js/QBLOG.min.js"></script>
+<link rel="stylesheet" href="/css/font-awesome.min.css"><style>#card-list-wrapper{{border-top:none}}</style></body></html>''')
         print(f"✅ 标签页面已创建：{name}")
+    
+    def create_tag_pagination_page(self, tag_name: str, page_num: int) -> str:
+        """创建标签分页页面"""
+        tag_dir = self._get_tag_dir(tag_name)
+        path = self._get_tag_page_path(tag_name, page_num)
+        os.makedirs(tag_dir, exist_ok=True)
+        
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(f'''<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title></head>
+<body><div id="card-list-wrapper">
+<ul id="card-list"></ul>
+<div id="pagination-controls-wrapper">
+    <div id="pagination-controls">
+        <div id="prev-trigger" class="glass">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <span>上一页</span>
+        </div>
+        <div id="input-page-num-wrapper" class="glass">
+            <span id="page-num"></span>
+            <input id="input-page-num" type="text" placeholder="输入页码" class="glass">
+            <div id="go-to-page-btn" class="glass">
+                <i class="fa fa-level-down" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="next-trigger" class="glass">
+            <span>下一页</span>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+</div>
+<footer><p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p></footer>
+<link rel="stylesheet" href="/css/QBLOG.min.css"><script src="/js/QBLOG.min.js"></script>
+<link rel="stylesheet" href="/css/font-awesome.min.css"><style>#card-list-wrapper{{border-top:none}}</style></body></html>''')
+        print(f"✅ 标签分页页面已创建：{tag_name} 第 {page_num} 页")
+        return path
+    
+    def get_tag_total_pages(self, tag_name: str) -> int:
+        """获取标签总页数"""
+        page_num = 1
+        while os.path.exists(self._get_tag_page_path(tag_name, page_num)):
+            page_num += 1
+        return page_num - 1
+    
+    def find_tag_last_non_full_page(self, tag_name: str, max_cards: int) -> int:
+        """查找标签最后一个未满的页面"""
+        total_pages = self.get_tag_total_pages(tag_name)
+        for page_num in range(total_pages, 0, -1):
+            path = self._get_tag_page_path(tag_name, page_num)
+            if os.path.exists(path):
+                p = HTMLProcessor(path)
+                if p._count_cards() < max_cards:
+                    return page_num
+        return 0
     
     def update_cloud(self, tags: List[str], inc: bool = True) -> None:
         path = os.path.join(self.tags_dir, "index.html")
@@ -333,12 +414,12 @@ class TagManager:
             f.write(html)
     
     def _update_tag(self, html: str, tag: str, inc: bool) -> str:
-        pattern = f'<a href="./{tag}.html" class="tag-item">'
+        pattern = f'<a href="/tags/{tag}/" class="tag-item">'
         if pattern not in html:
             if not inc: return html
             # 添加新标签
             pos = html.find('</ul>', html.find('<ul class="tag-cloud">'))
-            return html[:pos] + f'<li><a href="./{tag}.html" class="tag-item"><span class="tag-name">{tag}</span><span class="tag-count">1</span></a></li>' + html[pos:]
+            return html[:pos] + f'<li><a href="/tags/{tag}/" class="tag-item"><span class="tag-name">{tag}</span><span class="tag-count">1</span></a></li>' + html[pos:]
         
         start, end = html.find(pattern), html.find('</a>', html.find(pattern))
         tag_html = html[start:end]
@@ -355,19 +436,50 @@ class TagManager:
         return html[:start] + tag_html.replace(f'>{count}<', f'>{new_count}<') + html[end:]
     
     def sync(self, issue_id: str, title: str, date: str, content: str, 
-             target: List[str], all_labels: List[str], op: str = "add") -> None:
+             target: List[str], all_labels: List[str], op: str = "add", 
+             max_cards: int = 20) -> None:
         for label in target:
-            path = self._tag_path(label)
             if op == "add":
                 self.create_page(label)
+                # 查找是否是更新现有卡片
+                found = False
+                total_pages = self.get_tag_total_pages(label)
+                for page_num in range(1, total_pages + 1):
+                    path = self._get_tag_page_path(label, page_num)
+                    if os.path.exists(path):
+                        p = HTMLProcessor(path)
+                        if p._find_card(issue_id):
+                            p.add_or_update(title, date, content, issue_id, all_labels, None)
+                            p.save()
+                            print(f"✅ 卡片已更新：{issue_id}")
+                            found = True
+                            break
+                if found:
+                    continue
+                
+                # 添加新卡片
+                target_page = self.find_tag_last_non_full_page(label, max_cards)
+                if target_page == 0:
+                    # 所有页面都满了，创建新页面
+                    target_page = total_pages + 1
+                    path = self.create_tag_pagination_page(label, target_page)
+                else:
+                    path = self._get_tag_page_path(label, target_page)
+                
                 p = HTMLProcessor(path)
                 p.add_or_update(title, date, content, issue_id, all_labels, None)
                 p.save()
-                print(f"✅ 卡片已添加到标签页：{label}")
-            elif op == "remove" and os.path.exists(path):
-                p = HTMLProcessor(path)
-                p.remove_card(issue_id)
-                p.save()
+                print(f"✅ 卡片已添加到标签页：{label} 第 {target_page} 页")
+                
+            elif op == "remove":
+                # 从所有标签分页删除卡片
+                total_pages = self.get_tag_total_pages(label)
+                for page_num in range(1, total_pages + 1):
+                    path = self._get_tag_page_path(label, page_num)
+                    if os.path.exists(path):
+                        p = HTMLProcessor(path)
+                        p.remove_card(issue_id)
+                        p.save()
                 print(f"✅ 卡片已从标签页删除：{label}")
 
 
@@ -638,7 +750,7 @@ class BlogGenerator:
             page_num += 1
         
         if old:
-            self.tag.sync(self.cfg.ISSUE_ID, "", "", "", old, [], "remove")
+            self.tag.sync(self.cfg.ISSUE_ID, "", "", "", old, [], "remove", self.cfg.BLOG_ARTICLES_PER_PAGE)
             self.tag.update_cloud(old, False)
         print("=" * 50 + "\n✅ 删除操作完成")
     
@@ -659,7 +771,8 @@ class BlogGenerator:
         if is_new:
             if self.cfg.ISSUE_LABELS:
                 self.tag.sync(self.cfg.ISSUE_ID, self.cfg.ISSUE_TITLE, date, 
-                             truncate(self.cfg.ISSUE_BODY), self.cfg.ISSUE_LABELS, self.cfg.ISSUE_LABELS)
+                             truncate(self.cfg.ISSUE_BODY), self.cfg.ISSUE_LABELS, self.cfg.ISSUE_LABELS, 
+                             max_cards=self.cfg.BLOG_ARTICLES_PER_PAGE)
                 self.tag.update_cloud(self.cfg.ISSUE_LABELS, True)
         else:
             to_add = [l for l in self.cfg.ISSUE_LABELS if l not in old]
@@ -667,15 +780,17 @@ class BlogGenerator:
             to_keep = [l for l in self.cfg.ISSUE_LABELS if l in old]
             
             if to_remove:
-                self.tag.sync(self.cfg.ISSUE_ID, "", "", "", to_remove, [], "remove")
+                self.tag.sync(self.cfg.ISSUE_ID, "", "", "", to_remove, [], "remove", self.cfg.BLOG_ARTICLES_PER_PAGE)
                 self.tag.update_cloud(to_remove, False)
             if to_add:
                 self.tag.sync(self.cfg.ISSUE_ID, self.cfg.ISSUE_TITLE, date, 
-                             truncate(self.cfg.ISSUE_BODY), to_add, self.cfg.ISSUE_LABELS)
+                             truncate(self.cfg.ISSUE_BODY), to_add, self.cfg.ISSUE_LABELS, 
+                             max_cards=self.cfg.BLOG_ARTICLES_PER_PAGE)
                 self.tag.update_cloud(to_add, True)
             if to_keep:
                 self.tag.sync(self.cfg.ISSUE_ID, self.cfg.ISSUE_TITLE, date, 
-                             truncate(self.cfg.ISSUE_BODY), to_keep, self.cfg.ISSUE_LABELS)
+                             truncate(self.cfg.ISSUE_BODY), to_keep, self.cfg.ISSUE_LABELS, 
+                             max_cards=self.cfg.BLOG_ARTICLES_PER_PAGE)
     
     def run(self) -> None:
         if self.cfg.ISSUE_AUTHOR != self.cfg.TARGET_AUTHOR:
