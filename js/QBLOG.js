@@ -1,10 +1,25 @@
 // 变量设置
 
 const blogConfig = {
+  blogInfo: {
+    author: "QingXuan2000"
+  },
   maxPageNum: {
-    maxArticlePageNum: 1,
+    maxArticlePageNum: 2,
     maxTagPageNums: {
-
+      '个人': 2,
+      '健康': 1,
+      '关系': 1,
+      '创作': 1,
+      '复盘': 1,
+      '实用': 1,
+      '影音': 1,
+      '技术': 1,
+      '旅行': 1,
+      '游戏': 1,
+      '生活': 1,
+      '阅读': 1,
+      '随记': 1
     }
   }
 };
@@ -42,7 +57,7 @@ const themes = {
 };
 
 // 组件库
-const componentBox = `
+const componentBoxHeader = `
     <!-- -------------------- 加载动画 -------------------- -->
 
     <div class="loading">
@@ -165,7 +180,7 @@ const componentBox = `
 
         <div class="user-info">
             <img src="/img/Avatar.png" alt="Avatar" />
-            <h1>QingXuanJun</h1>
+            <h1>${blogConfig.blogInfo.author}</h1>
         </div>
 
         <nav>
@@ -197,15 +212,53 @@ const componentBox = `
     </div>
 `;
 
-document.querySelector("body").insertAdjacentHTML("afterbegin", componentBox);
+const componentBoxFooter = `
+  <!-- -------------------- 页脚 -------------------- -->
+  <footer>
+    <p>© 2025-2026 ${blogConfig.blogInfo.author}. All rights reserved.</p>
+  </footer>
+`;
+
+const paginationControls = `
+  <!-- -------------------- 翻页控制 -------------------- -->
+  <div id="pagination-controls-wrapper">
+      <div id="pagination-controls">
+          <div id="prev-trigger" class="glass">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              <span>上一页</span>
+          </div>
+
+          <div id="input-page-num-wrapper" class="glass">
+              <span id="page-num"></span>
+              <input id="input-page-num" type="text" placeholder="输入页码" class="glass">
+              <div id="go-to-page-btn" class="glass">
+                  <i class="fa fa-level-down" aria-hidden="true"></i>
+              </div>
+          </div>
+
+          <div id="next-trigger" class="glass">
+              <span>下一页</span>
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </div>
+      </div>
+  </div>
+`
+
+const pageName = window.location.pathname.split("/").filter(Boolean)[0];
+
+if (pageName === undefined || pageName === "article" || pageName === "pages" || pageName === "tags") {
+  document.querySelector("body").insertAdjacentHTML("beforeend", paginationControls);
+}
+
+document.querySelector("body").insertAdjacentHTML("afterbegin", componentBoxHeader);
+document.querySelector("body").insertAdjacentHTML("beforeend", componentBoxFooter);
 
 // 标题切换
 function initWebTitle() {
   const webTitleNormalList = [
-    "QingBlog - QingXuanJun的个人博客 💻",
-    "QingBlog - 欢迎来到QingXuanJun的个人博客哦~ 🎉",
+    "QingBlog - 这是一个程序员的个人博客 💻",
+    "QingBlog - 欢迎来到me的博客哦~ 🎉",
     "QingBlog - 欢迎来到一位技术宅的Blog 🤓",
-    "QingBlog - 这里是QingXuanJun独一无二的小站哦！⭐",
     "QingBlog - 代码、生活与碎碎念 ✨📝",
     "QingBlog - 一个喜欢折腾的极客空间 🛠️⚡",
     "QingBlog - 记录成长，分享热爱 📖❤️",
@@ -590,14 +643,14 @@ function initPagination() {
     const pathParts = path.split("/");
     if (pathParts.length > 2) {
       tagName = decodeURIComponent(pathParts[2]);
-      
+
       if (pathParts.length > 3) {
         const pagePart = pathParts[3].replace(".html", "");
         if (pagePart && !isNaN(pagePart)) {
           current = parseInt(pagePart);
         }
       }
-      
+
       maxPageNum = blogConfig.maxPageNum.maxTagPageNums[tagName] || 1;
     }
   } else {
