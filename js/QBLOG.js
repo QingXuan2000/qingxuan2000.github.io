@@ -1,6 +1,16 @@
 // 变量设置
 
-const maxPageNum = 2;
+const blogConfig = {
+  maxPageNum: {
+    maxArticlePageNum: 2,
+    maxTagPageNums: {
+      '个人': 2,
+      '技术': 1,
+      '生活': 1,
+      '游戏': 1
+    }
+  }
+};
 
 // 主题设置
 const themes = {
@@ -633,52 +643,62 @@ function initPagination() {
   const nextTrigger = document.getElementById("next-trigger");
   const goToPageBtn = document.getElementById("go-to-page-btn");
   const pageNum = document.getElementById("page-num");
+  const inputPageNum = document.getElementById("input-page-num");
 
-  if (!prevTrigger || !nextTrigger) return;
+  if (!prevTrigger || !nextTrigger || !pageNum) return;
 
-  // 判断是否在标签页面
-  const isTagPage = window.location.pathname.includes("/tags/");
-  
-  // 获取当前页码和标签名
+  // 是否标签页
+  const path = window.location.pathname;
+  const isTagPage = path.startsWith("/tags/");
   let current = 1;
-  let tagName = null;
-  
+  let maxPageNum = blogConfig.maxPageNum.maxArticlePageNum;
+  let tagName = '';
+
   if (isTagPage) {
-    // 标签页面：tags/个人/index.html 或 tags/个人/2.html
-    const pathParts = window.location.pathname.split("/tags/");
-    if (pathParts.length > 1) {
-      const tagPart = pathParts[1];
-      const tagPageMatch = tagPart.match(/^([^/]+)\/(\d+)(?:\.html)?$/);
-      const tagIndexMatch = tagPart.match(/^([^/]+)\/index(?:\.html)?$/);
+    // 提取标签名和页码
+    const pathParts = path.split("/");
+    if (pathParts.length > 2) {
+      tagName = decodeURIComponent(pathParts[2]);
       
-      if (tagPageMatch) {
-        tagName = tagPageMatch[1];
-        current = parseInt(tagPageMatch[2]);
-      } else if (tagIndexMatch) {
-        tagName = tagIndexMatch[1];
-        current = 1;
+      // 检测是否有页码
+      if (pathParts.length > 3) {
+        const pagePart = pathParts[3].replace(".html", "");
+        if (pagePart && !isNaN(pagePart) && !isNaN(parseInt(pagePart))) {
+          current = parseInt(pagePart);
+        }
       }
+      
+      // 读取对应的分页数据
+      maxPageNum = blogConfig.maxPageNum.maxTagPageNums[tagName] || 1;
     }
   } else {
-    // 普通分页页面
-    const match = window.location.pathname.match(/\/pages\/(\d+)(?:\.html)?$/);
-    current = match ? parseInt(match[1]) : 1;
+    // 获取当前页码
+    if (path.includes("/pages/")) {
+      const parts = path.split("/pages/");
+      if (parts.length > 1) {
+        const pagePart = parts[1].replace(".html", "");
+        if (pagePart && !isNaN(pagePart) && !isNaN(parseInt(pagePart))) {
+          current = parseInt(pagePart);
+        }
+      }
+    }
   }
 
-  // 跳转页面
+  // 跳转
   const goToPage = (page) => {
-    if (isTagPage && tagName) {
-      if (page === 1) {
-        window.location.href = `/tags/${tagName}/`;
-      } else {
-        window.location.href = `/tags/${tagName}/${page}.html`;
-      }
+    if (isTagPage) {
+      window.location.href = page === 1 ? `/tags/${tagName}/` : `/tags/${tagName}/${page}.html`;
     } else {
       window.location.href = page === 1 ? "/" : `/pages/${page}.html`;
     }
   };
 
-  pageNum.textContent = `${current} / ${maxPageNum}`;
+  // 更新页码显示
+  const updatePageDisplay = () => {
+    pageNum.textContent = `${current} / ${maxPageNum}`;
+  };
+
+  updatePageDisplay();
 
   // 上一页
   prevTrigger.addEventListener("click", () => {
@@ -698,9 +718,10 @@ function initPagination() {
 
   // 跳转指定页
   goToPageBtn.addEventListener("click", () => {
-    const target = parseInt(document.getElementById("input-page-num").value.trim());
+    if (!inputPageNum) return;
+    const target = parseInt(inputPageNum.value.trim());
 
-    if (!target) {
+    if (isNaN(target)) {
       return showAlert("red", "<i class=\"fa fa-warning\" aria-hidden=\"true\"></i>&nbsp;请输入有效的页码！");
     }
     if (target < 1 || target > maxPageNum) {
@@ -708,6 +729,25 @@ function initPagination() {
     }
     goToPage(target);
   });
+
+  // 输入框回车事件
+  if (inputPageNum) {
+    inputPageNum.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        goToPageBtn.click();
+      }
+    });
+  }
+
+  // 禁用第一页的上一页按钮和最后一页的下一页按钮
+  if (current <= 1) {
+    prevTrigger.classList.add("disabled");
+    prevTrigger.style.cursor = "not-allowed";
+  }
+  if (current >= maxPageNum) {
+    nextTrigger.classList.add("disabled");
+    nextTrigger.style.cursor = "not-allowed";
+  }
 }
 
 // -------------------------------------------------------------

@@ -704,8 +704,8 @@ nav li {
     width: 30%;
     border-radius: 0.3em 0 0 0;
 
-    border-top: 14px dashed var(--text-color);
-    border-left: 14px dashed var(--text-color);
+    border-top: 14px solid var(--text-color);
+    border-left: 14px solid var(--text-color);
 
     position: absolute;
     top: 50%;
@@ -1110,8 +1110,8 @@ input::placeholder {
     }
 
     .hero-div-content h1::before {
-        border-top: 10px dashed var(--text-color);
-        border-left: 10px dashed var(--text-color);
+        border-top: 10px solid var(--text-color);
+        border-left: 10px solid var(--text-color);
     }
 }
 
@@ -1159,8 +1159,8 @@ input::placeholder {
     }
 
     .hero-div-content h1::before {
-        border-top: 5px dashed var(--text-color);
-        border-left: 5px dashed var(--text-color);
+        border-top: 5px solid var(--text-color);
+        border-left: 5px solid var(--text-color);
     }
 
     #pagination-controls {
