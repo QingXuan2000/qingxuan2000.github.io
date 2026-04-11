@@ -144,9 +144,9 @@ class HTMLProcessor:
             # 添加卡片到当前页面
             self.html = self.html[:ul_end] + card + self.html[ul_end:]
             
-            # 添加分页控件（如果卡片数量超过限制）
+            # 添加分页控件
             if cfg and self._count_cards() >= cfg.BLOG_ARTICLES_PER_PAGE:
-                # 查找分页控件位置并添加（在card-list-wrapper之后）
+                # 查找分页控件位置并添加
                 controls_pos = self.html.find('</div>', self.html.find('</ul>'))
                 if controls_pos != -1:
                     pagination = self._gen_pagination_controls(1, 2)
@@ -161,13 +161,15 @@ class HTMLProcessor:
 class PageManager:
     def __init__(self, workspace: str):
         self.workspace = workspace
+        self.pages_dir = os.path.join(workspace, "pages")
+        os.makedirs(self.pages_dir, exist_ok=True)
     
     def _get_page_path(self, page_num: int) -> str:
         """获取页面路径"""
         if page_num == 1:
             return os.path.join(self.workspace, "index.html")
         else:
-            return os.path.join(self.workspace, f"{page_num}.html")
+            return os.path.join(self.pages_dir, f"{page_num}.html")
     
     def create_page(self, page_num: int) -> str:
         """创建新页面"""
@@ -184,7 +186,7 @@ class PageManager:
     <meta name="color-scheme" content="light dark">
     <title></title>
 
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -197,9 +199,9 @@ class PageManager:
         <p>© 2025-2026 QingXuanJun & QingXuan2000. All rights reserved.</p>
     </footer>
 
-    <link rel="stylesheet" href="./css/QBLOG.min.css" />
-    <script src="./js/QBLOG.min.js"></script>
-    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/QBLOG.min.css" />
+    <script src="../js/QBLOG.min.js"></script>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
 
     <style>
         #card-list-wrapper {{
@@ -227,6 +229,20 @@ class PageManager:
             page_num += 1
         return page_num - 1
     
+    def find_last_non_full_page(self, max_cards: int) -> int:
+        """查找最后一个未满的页面编号，返回0表示没有，需要从首页开始"""
+        total_pages = self.get_total_pages()
+        
+        for page_num in range(total_pages, 0, -1):
+            path = self._get_page_path(page_num)
+            if os.path.exists(path):
+                p = HTMLProcessor(path)
+                card_count = p._count_cards()
+                if card_count < max_cards:
+                    return page_num
+        
+        return 0
+    
     def update_max_page_num(self, total_pages: int) -> None:
         """更新QBLOG.js和QBLOG.min.js中的maxPageNum值"""
 
@@ -244,7 +260,6 @@ class PageManager:
                     f.write(content)
                 print(f"✅ QBLOG.js 中 maxPageNum 已更新为：{total_pages}")
         
-        # 更新 QBLOG.min.js (无空格版本)
         min_js_path = os.path.join(self.workspace, "js", "QBLOG.min.js")
         if os.path.exists(min_js_path):
             with open(min_js_path, 'r', encoding='utf-8') as f:
@@ -345,7 +360,7 @@ def escape_special_chars(md: str) -> str:
     result = []
     
     for line in lines:
-        # 匹配列表项：以 - 或 * 或 + 开头，后跟空格
+        # 匹配列表项：以 - 或 * 或 + 开头
         stripped = line.lstrip()
         indent = line[:len(line) - len(stripped)]
         
@@ -509,27 +524,62 @@ class BlogGenerator:
         print("=" * 50)
     
     def _update_indices(self, title: str, date: str, content: str, issue_id: str, labels: List[str]) -> None:
-        # 更新首页
+        # 先检查首页
         idx = self.cfg.WORKSPACE + 'index.html'
         p = HTMLProcessor(idx)
-        need_new_page = p.add_or_update(title, date, content, issue_id, labels, self.cfg)
-        p.save()
+        pos = p._find_card(issue_id)
         
-        # 如果需要创建新页面
-        if need_new_page:
-            next_page_num = self.page.get_next_page_num()
-            new_page_path = self.page.create_page(next_page_num)
-            
-            # 在新页面中添加卡片
-            p_new = HTMLProcessor(new_page_path)
-            p_new.add_or_update(title, date, content, issue_id, labels, self.cfg)
-            p_new.save()
-            
-            # 更新maxPageNum值
+        target_page_num = None
+        is_update = False
+        
+        if pos:
+            # 首页有这个卡片，直接更新
+            is_update = True
+            p.add_or_update(title, date, content, issue_id, labels, self.cfg)
+            p.save()
+        else:
+            # 检查其他页面
             total_pages = self.page.get_total_pages()
-            self.page.update_max_page_num(total_pages)
+            for page_num in range(2, total_pages + 1):
+                page_path = self.page._get_page_path(page_num)
+                if os.path.exists(page_path):
+                    p_page = HTMLProcessor(page_path)
+                    pos_page = p_page._find_card(issue_id)
+                    if pos_page:
+
+                        is_update = True
+                        p_page.add_or_update(title, date, content, issue_id, labels, self.cfg)
+                        p_page.save()
+                        target_page_num = page_num
+                        break
+        
+        # 如果是新卡片，找最后一个未满的页面添加
+        if not is_update:
+            # 查找最后一个未满的页面
+            last_non_full_page = self.page.find_last_non_full_page(self.cfg.BLOG_ARTICLES_PER_PAGE)
             
-            print(f"✅ 卡片已添加到新页面：{new_page_path}")
+            if last_non_full_page == 0:
+                # 所有页面都满了，需要创建新页面
+                next_page_num = self.page.get_next_page_num()
+                new_page_path = self.page.create_page(next_page_num)
+                
+                # 在新页面中添加卡片
+                p_new = HTMLProcessor(new_page_path)
+                p_new.add_or_update(title, date, content, issue_id, labels, self.cfg)
+                p_new.save()
+                
+                # 更新maxPageNum值
+                total_pages = self.page.get_total_pages()
+                self.page.update_max_page_num(total_pages)
+                
+                print(f"✅ 卡片已添加到新页面：{new_page_path}")
+            else:
+
+                page_path = self.page._get_page_path(last_non_full_page)
+                p_target = HTMLProcessor(page_path)
+                p_target.add_or_update(title, date, content, issue_id, labels, self.cfg)
+                p_target.save()
+                print(f"✅ 卡片已添加到页面 {last_non_full_page}：{page_path}")
         
         # 更新文章列表页
         idx = self.cfg.WORKSPACE + 'article/index.html'
