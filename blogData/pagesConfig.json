@@ -2,10 +2,11 @@
     "maxPageNum": {
         "maxArticlePageNum": 1,
         "maxTagPageNums": {
-            
+            "碎碎念": 1
         }
     },
-    "tagsArtiAcleTotal": {
-        
+    "tagsArtiAcleTotal": {},
+    "tagsArticleTotal": {
+        "碎碎念": 1
     }
 }
