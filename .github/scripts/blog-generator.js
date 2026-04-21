@@ -151,11 +151,15 @@ const loadJson = async (filePath) => {
 const preprocessFormulas = (md) => {
   let result = md;
   result = result.replace(CONST.FORMULA_PATTERNS.block, (match) => {
-    const content = match.slice(1, -1);
+    const content = match.slice(1, -1).trim();
+    if (!content || content === 'TOC' || content.startsWith('=')) return match;
+    if (!/\\|\^|_|frac|sqrt|sum|int|lim/.test(content)) return match;
     return `$$${content}$$`;
   });
   result = result.replace(CONST.FORMULA_PATTERNS.inline, (match) => {
-    const content = match.slice(1, -1);
+    const content = match.slice(1, -1).trim();
+    if (!content || content === 'TOC' || content.startsWith('=')) return match;
+    if (!/\\|\^|_|frac|sqrt|sum|int|lim/.test(content)) return match;
     return `$${content}$`;
   });
   return result;
