@@ -1,4 +1,4 @@
-name: "QingBlog 自动构建运行流"
+name: 📝 QingBlog 自动构建运行流
 
 on:
   issues:
@@ -6,32 +6,28 @@ on:
 
 jobs:
   build-blog:
-    name: "[核心执行] QingBlog构建"
+    name: 🚀 QingBlog构建
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
-    defaults:
-      run:
-        working-directory: .github/scripts
-
     steps:
-      - name: "[代码拉取] 检出代码仓库"
+      - name: 📥 检出代码仓库
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "[环境配置] 配置 Node.js 20.x 环境"
-        uses: actions/setup-node@v4
+      - name: 🐍 配置 Python 3.12 环境
+        uses: actions/setup-python@v5
         with:
-          node-version: '20'
+          python-version: '3.12'
 
-      - name: "[依赖安装] 安装 Node.js 依赖包"
-        run: npm install
+      - name: 📦安装 Python 依赖包
+        run: pip install -r .github/scripts/requirements.txt
 
-      - name: "[构建执行] 启动 Node.js 构建脚本"
+      - name: 🔧启动构建脚本
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
@@ -42,12 +38,11 @@ jobs:
           ISSUE_ACTION: ${{ github.event.action }}
           BLOG_CONFIG_PATH: "blogData/blogConfig.json"
           PAGES_CONFIG_PATH: "blogData/pagesConfig.json"
-        run: node blog-generator.js
+        run: python .github/scripts/check_issue.py
 
-      - name: "[变更推送] 提交并推送更改"
+      - name: 📤提交并推送更改
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "[文章更新] ${{ github.event.action == 'deleted' && '删除文章' || '更新文章' }}: ${{ github.event.issue.title }}"
+          commit_message: "📝 ${{ github.event.action == 'deleted' && '删除文章' || '更新文章' }}: ${{ github.event.issue.title }}"
           file_pattern: '*'
           push_options: '--force-with-lease'
-          

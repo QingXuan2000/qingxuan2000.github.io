@@ -2,17 +2,10 @@
     "maxPageNum": {
         "maxArticlePageNum": 1,
         "maxTagPageNums": {
-            "个人": 1,
-            "技术": 1,
-            "游戏": 1
+            
         }
     },
     "tagsArtiAcleTotal": {
-        "个人": 11,
-        "技术": 1,
-        "游戏": 1
-    },
-    "tagsArticleTotal": {
-        "个人": 1
+        
     }
 }
