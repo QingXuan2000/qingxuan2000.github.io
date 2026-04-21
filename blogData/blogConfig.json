@@ -1,0 +1,50 @@
+{
+    "blogInfo": {
+        "blogName": "QingBlog",
+        "yearOfWriting": 2025,
+        "currentYear": 2026
+    },
+    "author": {
+        "targetAuthor": "QingXuan2000",
+        "introShort": "一名热爱前端开发与技术分享的自学开发者",
+        "introDetail": "从 2025 年开始持续写作与前端实践，专注于 HTML、CSS、JavaScript 开发，追求简洁、优雅、响应式的界面设计。喜欢折腾 UI、组件化开发与自动化部署，习惯用代码解决问题，持续学习新前端技术与工具链。",
+        "socialMediaPlatform": {
+            "GitHub": {
+                "icon": "<i class=\"fa fa-github\" aria-hidden=\"true\"></i>",
+                "url": "https://github.com/QingXuan2000"
+            },
+            "BiliBili": {
+                "icon": "<img src=\"https://pic1.imgdb.cn/item/69e38c83c84565a4b2d8a092.svg\" style=\"height: 20px; width: 20px;\" alt=\"bilibili\">",
+                "url": "https://space.bilibili.com/1061598904"
+            }
+        },
+        "authorTags": {
+            "HTML": 65,
+            "CSS": 60,
+            "JavaScript": 40,
+            "前端开发": 55,
+            "响应式": 60,
+            "组件化": 60,
+            "UI设计": 35,
+            "自学能力": 70,
+            "沟通": 40,
+            "团队协作": 40,
+            "问题解决": 45,
+            "持续学习": 35
+        }
+    },
+    "buildConfig": {
+        "utcOffset": 8,
+        "articlesPerPage": 20
+    },
+    "robotsConfig": {
+        "siteUrl": "https://qingxuan2000.github.io",
+        "allowPaths": [
+            "/"
+        ],
+        "disallowPaths": [
+            "/blogData/"
+        ],
+        "sitemapUrl": "https://qingxuan2000.github.io/sitemap.xml"
+    }
+}
