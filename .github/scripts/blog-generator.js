@@ -146,6 +146,49 @@ const loadJson = async (filePath) => {
 };
 
 /**
+ * 预处理数学公式
+ */
+const preprocessFormulas = (md) => {
+  let result = md;
+  result = result.replace(CONST.FORMULA_PATTERNS.block, (match) => {
+    const content = match.slice(1, -1);
+    return `$$${content}$$`;
+  });
+  result = result.replace(CONST.FORMULA_PATTERNS.inline, (match) => {
+    const content = match.slice(1, -1);
+    return `$${content}$`;
+  });
+  return result;
+};
+
+/**
+ * 预处理进度条
+ */
+const preprocessProgress = (md) => {
+  return md.replace(/\[=([^\]]+)\]/g, (_, progress) => {
+    return `<progressBar>${progress}</progressBar>`;
+  });
+};
+
+/**
+ * 预处理 Admonition
+ */
+const preprocessAdmonition = (md) => {
+  return md.replace(/!!!\s+(\w+)\s+"([^"]+)"\s*\n([\s\S]*?)(?=\n\n|\n\S|$)/g, (_, type, title, content) => {
+    return `<admonition type="${type}" title="${title}">\n${content.trim()}\n</admonition>`;
+  });
+};
+
+/**
+ * 预处理 Tabbed
+ */
+const preprocessTabbed = (md) => {
+  return md.replace(/===\s*"([^"]+)"\s*\n([\s\S]*?)(?=\n===\s*"[^"]+"|\n\n\S|$)/g, (_, tabName, content) => {
+    return `<tab name="${tabName}">\n${content.trim()}\n</tab>`;
+  });
+};
+
+/**
  * Markdown转HTML核心方法
  */
 const mdToHtml = (md) => {
@@ -177,8 +220,28 @@ const mdToHtml = (md) => {
     .use(markdownItSub)
     .use(markdownItSup)
     .use(markdownItMathjax, CONST.MATHJAX_CONFIG)
-    .use(markdownItContainer, 'admonition', {})
-    .use(markdownItContainer, 'details', {})
+    .use(markdownItContainer, 'admonition', {
+      render: (tokens, idx) => {
+        if (tokens[idx].type !== 'container_admonition_open') return '';
+        const m = tokens[idx].info.trim().match(/^admonition(?:\s+(\w+))?(?:\s+"([^"]+)")?/);
+        const type = m[1] || 'note';
+        const title = m[2] || '';
+        return `<div class="admonition ${type}"><p class="admonition-title">${title}</p>\n`;
+      },
+      validator: () => true
+    })
+    .use(markdownItContainer, 'details', {
+      render: (tokens, idx) => {
+        if (tokens[idx].type === 'container_details_open') {
+          return '<details><summary>';
+        }
+        if (tokens[idx].type === 'container_details_close') {
+          return '</summary></details>\n';
+        }
+        return '';
+      },
+      validator: () => true
+    })
     .use(tab, { name: 'tabs' })
     .use(markdownItFootnote)
     .use(markdownItAbbr)
@@ -186,7 +249,12 @@ const mdToHtml = (md) => {
     .use(markdownItProgressBar)
     .use(markdownItKbd);
 
-  const html = mdParser.render(md);
+  let processedMd = preprocessFormulas(md);
+  processedMd = preprocessProgress(processedMd);
+  processedMd = preprocessAdmonition(processedMd);
+  processedMd = preprocessTabbed(processedMd);
+
+  const html = mdParser.render(processedMd);
   const dom = new JSDOM(html);
   const document = dom.window.document;
 
