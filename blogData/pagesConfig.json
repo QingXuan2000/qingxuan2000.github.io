@@ -2,10 +2,14 @@
     "maxPageNum": {
         "maxArticlePageNum": 1,
         "maxTagPageNums": {
-            "碎碎念": 1
+            "碎碎念": 1,
+            "技术": 1,
+            "前端": 1
         }
     },
     "tagsArticleTotal": {
-        "碎碎念": 1
+        "碎碎念": 2,
+        "技术": 1,
+        "前端": 1
     }
 }
