@@ -1,0 +1,61 @@
+{
+  "info": {
+    "hero": {
+      "kicker": "FRONTEND ENGINEER",
+      "title": "QxBit Studio",
+      "tagline": [
+        "QxBit Building", "QxToolBox Building", "QingBlog Building"
+      ],
+      "sub": "Web 前端 · CLI 工具 · 静态站点"
+    },
+    "blog": "https://blog.qxbit.me",
+    "email": "hello@qxbit.studio"
+  },
+  "social": [
+    { "name": "GitHub", "url": "https://github.com/QingXuanJun" },
+    { "name": "Blog", "url": "https://blog.qxbit.me" }
+  ],
+  "portfolio": [
+    {
+      "tag": "开源产品",
+      "name": "QingBlog",
+      "desc": "基于 GitHub Issues 的轻量静态博客框架，无需服务器即可发布文章。",
+      "imagePath": "https://picsum.photos/seed/1145148888/800/500"
+    },
+    {
+      "tag": "CLI 工具",
+      "name": "QxToolBox",
+      "desc": "面向开发者的命令行效率工具箱，Node.js 实现。",
+      "imagePath": "https://picsum.photos/seed/1145147777/800/500"
+    },
+    {
+      "tag": "开源作品集",
+      "name": "更多项目与实验",
+      "desc": "GitHub 上持续发布前端工具、静态站点生成器、CLI 应用及技术文章。关注以获得最新动态。",
+      "imagePath": "https://picsum.photos/seed/opensource/1200/400",
+      "wide": true
+    }
+  ],
+  "services": [
+    {
+      "name": "前端工程",
+      "desc": "从界面设计到渲染性能，以原生 HTML/CSS/JS 为基底，不依赖重型框架，交付精确、可维护的前端实现。",
+      "details": ["Web 应用与交互界面", "响应式设计与无障碍", "性能审计与优化"]
+    },
+    {
+      "name": "静态站点 & 工具链",
+      "desc": "自建静态站点生成器，熟悉从 Markdown 编译到 CI/CD 部署的完整链路。GitHub Actions 自动化构建与发布。",
+      "details": ["静态站点生成器开发", "Markdown 渲染管线", "CI/CD 自动化部署"]
+    },
+    {
+      "name": "CLI 应用开发",
+      "desc": "用 Node.js 构建命令行工具，关注交互体验、输出格式与跨平台兼容，让终端操作高效且愉悦。",
+      "details": ["Node.js CLI 框架", "终端交互与配色", "跨平台构建与分发"]
+    },
+    {
+      "name": "技术写作",
+      "desc": "将技术决策与实现细节转化为清晰文档。博客、教程、项目 README —— 让代码被理解而非仅被运行。",
+      "details": ["技术博客与深度文章", "开源项目文档", "知识体系构建"]
+    }
+  ]
+}
