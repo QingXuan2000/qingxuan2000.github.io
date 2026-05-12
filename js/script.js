@@ -147,6 +147,7 @@
       const url = info[key];
       if (!url || typeof url !== 'string') return;
       el.setAttribute('href', key === 'email' ? `mailto:${url}` : url);
+      if (key === 'email') el.textContent = url;
     });
   }
 
