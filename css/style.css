@@ -800,12 +800,15 @@ ul {
 
 /* 缩略图 */
 .work-thumb {
-  position: relative;
+  display: grid;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: var(--gray-100);
 }
 .work-img {
+  grid-row: 1;
+  grid-column: 1;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -821,16 +824,21 @@ ul {
   transform: scale(1.03);
 }
 
-/* 叠加层 - 宽卡片毛玻璃效果 */
+/* 叠加层 — 与图片共享同一 grid cell，内容自然撑开高度 */
 .work-overlay {
-  position: absolute;
-  inset: 0;
+  grid-row: 1;
+  grid-column: 1;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 32px;
   background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
   color: var(--white);
+  pointer-events: none;
+}
+.work-overlay > * {
+  pointer-events: auto;
 }
 .work-overlay--frost {
   background: rgba(0, 0, 0, 0.35);
@@ -839,6 +847,7 @@ ul {
   justify-content: center;
   align-items: flex-start;
   padding: 48px;
+  overflow: hidden;
 }
 
 /* 标签 */
@@ -1184,6 +1193,7 @@ ul {
   .work-overlay {
     padding: 24px;
   }
+
 }
 
 @media (max-width: 480px) {
